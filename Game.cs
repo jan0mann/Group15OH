@@ -119,15 +119,13 @@ namespace OperationHav
             Console.ForegroundColor = ConsoleColor.Yellow; //also for visibility, were the current program starts
             Console.WriteLine("Welcome to Operation Hav!");
             Console.ResetColor();
-            Console.WriteLine("Operation Hav is a new, exiting game about the whole world around Sea Life!");
+            Console.WriteLine("The United Nations are urgently hiring you, to save the sea waters surrounding pacific archipelago ,,”, which consists of five islands. \nEach island’s inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by mankind.");
             PrintHelp();
             Console.WriteLine();
         }
 
         private static void PrintHelp()
         {
-            Console.WriteLine("You are lost. You are alone. You are on an Island.");
-            Console.WriteLine("In the middle of the Pacific Ocean.");
             Console.WriteLine();
             Console.WriteLine("Navigate by typing 'north', 'south', 'east', or 'west'.");
             Console.WriteLine("Type 'look' for more details.");
