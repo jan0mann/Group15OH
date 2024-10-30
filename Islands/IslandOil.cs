@@ -1,6 +1,6 @@
 namespace OperationHav
 {
-public class IslandOil 
+    public class IslandOil : Island
     {
         
     }
