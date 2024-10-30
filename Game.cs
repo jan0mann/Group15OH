@@ -1,3 +1,5 @@
+using System.Drawing;
+
 namespace OperationHav
 {
     public class Game
@@ -83,8 +85,19 @@ namespace OperationHav
                         break;
 
                     case "quit":
+                        Console.WriteLine("Thank you for playing Operation Hav!");
                         continuePlaying = false;
                         break;
+
+                    case "refuse":
+                    Console.WriteLine("You refused to help and therefore ignored the hiring. You keep on with your everyday life. \nA few months later, you see in the news that ,,” has by now become completely uninhabitable, all of its surviving people having to be evacuated...");
+                    continuePlaying = false; 
+                    break;
+                    
+                    case "accept":
+                    Console.WriteLine("Cool! Game goes on...");
+                    PrintHelp();
+                    break;
 
                     case "help":
                         PrintHelp();
@@ -96,7 +109,7 @@ namespace OperationHav
                 }
             }
 
-            Console.WriteLine("Thank you for playing World of Zuul!");
+            
         }
 
         private void Move(string direction)
@@ -119,9 +132,9 @@ namespace OperationHav
             Console.ForegroundColor = ConsoleColor.Yellow; //also for visibility, were the current program starts
             Console.WriteLine("Welcome to Operation Hav!");
             Console.ResetColor();
-            Console.WriteLine("The United Nations are urgently hiring you, to save the sea waters surrounding pacific archipelago ,,”, which consists of five islands. \nEach island’s inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by mankind.");
-            PrintHelp();
-            Console.WriteLine();
+            Console.WriteLine("The United Nations are urgently hiring you, to save the sea waters surrounding pacific archipelago IslandComplex, which consists of five islands. \nEach islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by mankind.");
+            Console.WriteLine("Do you accept the invitation to save IslandComplex? (type accept or refuse) ");
+            
         }
 
         private static void PrintHelp()
