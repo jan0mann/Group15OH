@@ -1,6 +1,6 @@
 namespace OperationHav
 {
-    public class IslandCoralReef : Island
+    public class MainIsland : Island
     {
         
     }

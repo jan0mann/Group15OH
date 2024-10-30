@@ -4,22 +4,22 @@ namespace OperationHav
 {
     public class Game
     {
-        private Room? currentRoom;
-        private Room? previousRoom;
+        private Island? currentIsland;
+        private Island? previousIsland;
 
         public Game()
         {
-            CreateRooms();
+            CreateIslands();
         }
 
-        private void CreateRooms()
+        private void CreateIslands()
         {
   
-            Room? outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub. There is a key on the ground");
-            Room? theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
-            Room? pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
-            Room? lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
-            Room? office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
+            Island? outside = new("The main island in the center of the archipelago.", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub. There is a key on the ground");
+            Island? theatre = new("The northern island.", "This island suffers from extreme industrial waste, because it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. Ever since the latter fell, however, no one came to clean, or even dismantle the old facilities, leaving our island a gigantic junkyard ...");
+            Island? pub = new("The eastern island.", "Due to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…");
+            Island? lab = new("The western island.", "This island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…");
+            Island? office = new("The southern island.", "It is the only island affected by more than one problem, and those happen to be the ones of ALL the other islands! And to make things even worse, it is exactly there where our biggest and most important coral reef is located! Somebody needs to do something before it dies off…");
 
             outside.SetExits(null, theatre, lab, pub); // North, East, South, West
 
@@ -31,9 +31,10 @@ namespace OperationHav
 
             office.SetExit("west", lab);
 
-            currentRoom = outside;
+            currentIsland = outside;
         }
 
+        bool beginning_of_game = true;
         public void Play()
         {
             Parser parser = new();
@@ -41,9 +42,10 @@ namespace OperationHav
             PrintWelcome();
 
             bool continuePlaying = true;
+            string invalid_command = "Invalid. Type again:";
             while (continuePlaying)
             {
-                Console.WriteLine(currentRoom?.ShortDescription);
+                Console.WriteLine(currentIsland?.ShortDescription);
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("   > ");
                 Console.ResetColor();
@@ -52,59 +54,88 @@ namespace OperationHav
 
                 if (string.IsNullOrEmpty(input))
                 {
-                    Console.WriteLine("Please enter a command.");
+                    Console.WriteLine("Please enter a command:");
                     continue;
                 }
+                
 
                 Command? command = parser.GetCommand(input);
 
                 if (command == null)
                 {
-                    Console.WriteLine("I don't know that command.");
+                    Console.WriteLine(invalid_command);
                     continue;
                 }
 
+                
                 switch(command.Name)
                 {
                     case "look":
-                        Console.WriteLine(currentRoom?.LongDescription);
+                        if (beginning_of_game == false)
+                            Console.WriteLine(currentIsland?.LongDescription);
+                        else 
+                            Console.WriteLine(invalid_command);
                         break;
 
+
                     case "back":
-                        if (previousRoom == null)
+                        if (previousIsland == null)
                             Console.WriteLine("You can't go back from here!");
                         else
-                            currentRoom = previousRoom;
+                            currentIsland = previousIsland;
                         break;
+
 
                     case "north":
                     case "south":
-                    case "east":
+                    case "east" :
                     case "west":
-                        Move(command.Name);
+                        if (beginning_of_game == false)
+                            Move(command.Name);
+                        else 
+                            Console.WriteLine(invalid_command);
                         break;
 
+
                     case "quit":
-                        Console.WriteLine("Thank you for playing Operation Hav!");
-                        continuePlaying = false;
+                        if (beginning_of_game == false)
+                            Console.WriteLine("Thank you for playing Operation Hav!");
+                            continuePlaying = false;
                         break;
 
                     case "refuse":
-                    Console.WriteLine("You refused to help and therefore ignored the hiring. You keep on with your everyday life. \nA few months later, you see in the news that ,,” has by now become completely uninhabitable, all of its surviving people having to be evacuated...");
-                    continuePlaying = false; 
-                    break;
+                        if (beginning_of_game == true)
+                        {
+                            Console.WriteLine("You refused to help and therefore ignored the hiring. \nYou keep on with your everyday life. \nA few months later, you see in the news that ,,” has by now become completely uninhabitable, \nall of its surviving people having to be evacuated...");
+                            continuePlaying = false;
+                        }
+                        else 
+                            Console.WriteLine(invalid_command);
+                        break;
                     
-                    case "accept":
-                    Console.WriteLine("Cool! Game goes on...");
-                    PrintHelp();
-                    break;
 
-                    case "help":
-                        PrintHelp();
+                    case "accept":
+                        if (beginning_of_game == true)
+                        {  
+                            beginning_of_game = false;
+                            Console.WriteLine("Amazing! \nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you. \nUnsure, you head to the airport...");
+                            PrintHelp();
+                        }
+                        else 
+                            Console.WriteLine(invalid_command);
                         break;
 
+
+                    case "help":
+                        if (beginning_of_game == false)
+                            PrintHelp();
+                        else 
+                            Console.WriteLine(invalid_command);
+                        break;
+
+
                     default:
-                        Console.WriteLine("I don't know what command.");
+                        Console.WriteLine(invalid_command);
                         break;
                 }
             }
@@ -114,10 +145,10 @@ namespace OperationHav
 
         private void Move(string direction)
         {
-            if (currentRoom?.Exits.ContainsKey(direction) == true)
+            if (currentIsland?.Exits.ContainsKey(direction) == true)
             {
-                previousRoom = currentRoom;
-                currentRoom = currentRoom?.Exits[direction];
+                previousIsland = currentIsland;
+                currentIsland = currentIsland?.Exits[direction];
             }
             else
             {
@@ -142,7 +173,7 @@ namespace OperationHav
             Console.WriteLine();
             Console.WriteLine("Navigate by typing 'north', 'south', 'east', or 'west'.");
             Console.WriteLine("Type 'look' for more details.");
-            Console.WriteLine("Type 'back' to go to the previous room.");
+            Console.WriteLine("Type 'back' to go to the previous Island.");
             Console.WriteLine("Type 'help' to print this message again.");
             Console.WriteLine("Type 'quit' to exit the game.");
         }
