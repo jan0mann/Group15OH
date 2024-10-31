@@ -49,7 +49,7 @@ namespace OperationHav
                
                 }
                 else
-                 Console.WriteLine(currentIsland?.ShortDescription);
+                Console.WriteLine(currentIsland?.ShortDescription);
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("   > ");
                 Console.ResetColor();
@@ -76,14 +76,14 @@ namespace OperationHav
                 switch(command.Name)
                 {
                     case "look":
-                        if (beginning_of_game == false)
+                        if (beginning_of_game == false) //Solution for 'locking' the other cases when accept or refuse isn't typed in yet
                             Console.WriteLine(currentIsland?.LongDescription);
                         else 
                             Console.WriteLine(invalid_command);
                         break;
 
 
-                    case "back":
+                    case "back": //going back from where you came from
                         if (previousIsland == null)
                             Console.WriteLine("You can't go back from here!");
                         else
@@ -108,7 +108,7 @@ namespace OperationHav
                             continuePlaying = false;
                         break;
 
-                    case "refuse":
+                    case "refuse": //When refusing the offer, the game will end with a message giving the player a learning that he probably should try the game because it is needed SDG wise
                         if (beginning_of_game == true)
                         {
                             Console.WriteLine("You refused to help and therefore ignored the hiring. \nYou keep on with your everyday life. \nA few months later, you see in the news that ,,” has by now become completely uninhabitable, \nall of its surviving people having to be evacuated...");
@@ -119,11 +119,11 @@ namespace OperationHav
                         break;
                     
 
-                    case "accept":
+                    case "accept": //When accepting the offer, the real part of the game begins
                         if (beginning_of_game == true)
                         {  
                             beginning_of_game = false;
-                            Console.WriteLine("Amazing! \nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you. \nUnsure, you head to the airport...");
+                            Console.WriteLine("\nAmazing! \nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you. \nUnsure, you head to the airport...");
                             PrintHelp();
                         }
                         else 
@@ -131,7 +131,7 @@ namespace OperationHav
                         break;
 
 
-                    case "help":
+                    case "help": //printing the print help (direction info)
                         if (beginning_of_game == false)
                             PrintHelp();
                         else 
@@ -165,7 +165,7 @@ namespace OperationHav
         private static void PrintWelcome()
         {
             Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); //only for visibility
-            Console.ForegroundColor = ConsoleColor.Yellow; //also for visibility, were the current program starts
+            Console.ForegroundColor = ConsoleColor.Yellow; //also for visibility, were the current terminal output starts
             Console.WriteLine("Welcome to Operation Hav!");
             Console.ResetColor();
             Console.WriteLine("The United Nations are urgently hiring you, to save the sea waters surrounding pacific archipelago IslandComplex, which consists of five islands. \nEach islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by mankind.");
