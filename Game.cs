@@ -46,11 +46,12 @@ namespace OperationHav
             while (continuePlaying)
             {
                 if(beginning_of_game == false)
+                {
                     Console.WriteLine(currentIsland?.ShortDescription);
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write("   > ");
                     Console.ResetColor();
-                
+                }
 
                 string? input = Console.ReadLine();
 
