@@ -15,7 +15,7 @@ namespace OperationHav
         private void CreateIslands()
         {
   
-            Island? outside = new("The main island in the center of the archipelago.", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub. There is a key on the ground");
+            Island? outside = new("You are on main island in the center of the archipelago.", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub. There is a key on the ground");
             Island? theatre = new("The northern island.", "This island suffers from extreme industrial waste, because it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. Ever since the latter fell, however, no one came to clean, or even dismantle the old facilities, leaving our island a gigantic junkyard ...");
             Island? pub = new("The eastern island.", "Due to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…");
             Island? lab = new("The western island.", "This island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…");
@@ -45,7 +45,11 @@ namespace OperationHav
             string invalid_command = "Invalid. Type again.";
             while (continuePlaying)
             {
-                Console.WriteLine(currentIsland?.ShortDescription);
+                if( beginning_of_game == true){
+               
+                }
+                else
+                 Console.WriteLine(currentIsland?.ShortDescription);
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("   > ");
                 Console.ResetColor();
