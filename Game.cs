@@ -121,7 +121,7 @@ namespace OperationHav
                         if (beginning_of_game == true)
                         {  
                             beginning_of_game = false;
-                            Console.WriteLine("\nAmazing! \nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you. \nUnsure, you head to the airport...");
+                            Accepted();
                             PrintHelp();
                         }
                         else 
@@ -164,54 +164,75 @@ namespace OperationHav
         {
             Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); //only for visibility
             Console.ForegroundColor = ConsoleColor.Yellow; //also for visibility, were the current terminal output starts
-            Console.WriteLine("Welcome to Operation Hav!");
+            Console.WriteLine("Welcome to Operation Hav!\n");
             Console.ResetColor();
-            Console.WriteLine("The United Nations are urgently hiring you, to save the sea waters surrounding pacific archipelago IslandComplex, which consists of five islands. \nEach islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by mankind.");
-            Console.WriteLine("Do you accept the invitation to save IslandComplex? (type accept or refuse) ");
+            Console.WriteLine("The United Nations are urgently hiring you, to save the sea waters surrounding pacific archipelago IslandComplex, which consists of five islands. \nEach islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by mankind. (wait)");
+            Thread.Sleep(5000);
+            Console.WriteLine("\nDo you accept the invitation to save IslandComplex? (type accept or refuse) \n");
             
+        }
+
+        private static void Accepted()
+        {   
+            Console.WriteLine("\nAmazing! \nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you. \nUnsure, you head to the airport... (wait)\n");
+            Thread.Sleep(4000);
+            Console.WriteLine("... you arrive on the island of ,,”, which lies in the center of the archipelago. \nYou return to this island by default when leaving an island or finishing its problem. \nIt is also here, where you get to choose your next step. (wait)");
+            Thread.Sleep(6000);
         }
 
         private static void PrintHelp()
         {
-            Console.WriteLine();
-            Console.Write("Navigate by typing"); 
-            Console.ForegroundColor = ConsoleColor.Yellow; //highligting the commands
-            Console.Write(" north");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("\n\nYou now have the following options:\n");
             Console.ResetColor();
-            Console.Write(",");
+
+            Console.Write("Check the current local ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(" south");
+            Console.Write("situation");
             Console.ResetColor();
-            Console.Write(","); 
+            Console.Write(". By doing that, you'll find out your progress and what impact your previous choices/actions had.\n"); 
+
+            Console.Write("Go to the ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(" east");
+            Console.Write("harbor");
             Console.ResetColor();
-            Console.Write(", or"); 
+            Console.Write(". Choose an island to go there and solve its problem.\n"); 
+
+            Console.Write("Talk to the ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(" west");
+            Console.Write("locals");
             Console.ResetColor();
-            Console.Write(":\n");
-            Console.Write("Type");
+            Console.Write(". Choose an island to get a description of it and its problem, or ask for help.\n");
+
+            Console.Write("Check your ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(" look"); 
+            Console.Write("inventory"); 
             Console.ResetColor();
-            Console.Write(" for more details.\n");
-            Console.Write("Type"); 
+            Console.Write(". You'll see the items and resources that you've collected so far.\n");
+
+            Console.Write("View the "); 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(" back");
+            Console.Write("map");
             Console.ResetColor();
-            Console.Write(" to go to the previous Island.\n");
-            Console.Write("Type");
+            Console.Write(". It will display the archipelago and tell you your current location.\n");
+
+            Console.Write("\nType");
             Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write(" help"); 
             Console.ResetColor();
             Console.Write(" to print this message again.\n");
+
             Console.Write("Type");
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.Write(" quit");
             Console.ResetColor();
-            Console.Write(" to exit the game.");
+            Console.Write(" to exit the game.\n");
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("\nWhat are you doing?");
+            Console.ResetColor();
+            Console.Write(" (type the colored word)\n");
         }
     }
 }
