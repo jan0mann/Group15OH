@@ -50,6 +50,7 @@ namespace OperationHav
                 }
                 else
                 Console.WriteLine(currentIsland?.ShortDescription);
+                Console.Write("\n"); //adding space in between program output and user input
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("   > ");
                 Console.ResetColor();
