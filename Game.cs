@@ -42,7 +42,7 @@ namespace OperationHav
             PrintWelcome();
 
             bool continuePlaying = true;
-            string invalid_command = "Invalid. Type again.";
+            string invalid_command = "\nInvalid. Type again.";
             while (continuePlaying)
             {
                 if(beginning_of_game == false)
