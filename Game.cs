@@ -49,7 +49,7 @@ namespace OperationHav
                 {
                     Console.WriteLine(currentIsland?.ShortDescription);
                     Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("   > ");
+                    Console.Write("\n   > ");
                     Console.ResetColor();
                 }
 
