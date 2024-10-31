@@ -25,12 +25,12 @@ namespace OperationHav
 
             Northern_Island.SetExit("south", Main_Island);
 
-            Western_Island.SetExit("east", Main_Island);
+            Eastern_Island.SetExit("west", Main_Island);
 
             Southern_Island.SetExit("north", Main_Island);
 
-            Eastern_Island.SetExit("west", Main_Island);
-
+            Western_Island.SetExit("east", Main_Island);
+            
             currentIsland = Main_Island;
         }
 
