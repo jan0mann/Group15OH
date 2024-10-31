@@ -53,6 +53,7 @@ namespace OperationHav
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("   > ");
                 Console.ResetColor();
+                
 
                 string? input = Console.ReadLine();
 
