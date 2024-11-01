@@ -1,4 +1,6 @@
+using System.ComponentModel;
 using System.Drawing;
+using System.Security.Cryptography.X509Certificates;
 
 namespace OperationHav
 {
@@ -13,7 +15,7 @@ namespace OperationHav
             CreateIslands();
         }
 
-        private void CreateIslands()
+        public void CreateIslands()
         {
   
             Island? Main_Island = new("\nYou are on main island in the center of the archipelago.", "\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found. \nHere the consequences of all other problems, carry over.", "you talked with the locals");
@@ -35,10 +37,13 @@ namespace OperationHav
             currentIsland = Main_Island;
         }
 
+
+
         bool beginning_of_game = true;
-        public Island? Northern_Island { get; private set; } // minigame industrial
-         static int playerPoints = 0; // player score system, if for example player will have 3 points, one for each completed mini game, he can enter coral reef
-        static Random random = new Random(); // minigame industrial
+    
+        public bool harbor = false;
+
+        public static int playerPoints = 0; // player score system, if (for example!) player will have 3 points, one for each completed mini game, he can enter coral reef
 
 
         public void Play()
@@ -58,11 +63,11 @@ namespace OperationHav
                     Console.ResetColor();
                 }
 
-                string? input = Console.ReadLine();
+                string? input = Console.ReadLine().ToLower();
 
                 if (string.IsNullOrEmpty(input))
                 {
-                    Console.WriteLine("Please enter a command:");
+                    Console.WriteLine("\nPlease enter a command:");
                     continue;
                 }
                 
@@ -86,11 +91,18 @@ namespace OperationHav
                             Console.WriteLine(invalid_command);
                         break; 
 
+                    case "harbor":
+                        // if(currentIsland ==)
+                            harbor = true;
+                            Console.WriteLine("Welcome to the harbor of ,,''! What direction do you want to ride to, Captain?");
+                        break;
+
+
                     case "locals": // adding locals
                         if (beginning_of_game == false){
                             Console.WriteLine(currentIsland?.Locals);
                             Thread.Sleep(4000);
-                            StartMinigame(); // here the minigame in industrial starts
+                            IslandIndustrial.Minigame(); // here the minigame in industrial starts
                         }
                         else
                             Console.WriteLine(invalid_command);
@@ -109,7 +121,7 @@ namespace OperationHav
                     case "south":
                     case "east" :
                     case "west":
-                        if (beginning_of_game == false)
+                        if ((beginning_of_game == false) && (harbor == true))                      
                             Move(command.Name);
                         else 
                             Console.WriteLine(invalid_command);
@@ -162,45 +174,6 @@ namespace OperationHav
             
         }
 
-        // MINIGAME FOR INDUSTRIAL WASTE STARTS HERE
-         static void StartMinigame()
-         {
-            int minigamePoints = 0;
-            
-        for (int i = 0; i < 10; i++)
-        {
-        
-            string[] wasteTypes = { "plastic", "metal", "radioactive" };
-        string pickedWaste = wasteTypes[random.Next(wasteTypes.Length)];
-
-        Console.WriteLine($"You have picked up {pickedWaste} waste.");
-        Console.WriteLine("Which container will you put it in? (plastic, metal, radioactive):\n");
-        string container = Console.ReadLine().ToLower();
-
-        if (container == pickedWaste)
-        {
-            Console.WriteLine("Correct! You have placed the waste in the right container.\n");
-            minigamePoints++;
-        }
-        else
-        {
-            Console.WriteLine("Incorrect. Try again.\n");
-        }
-        }
-         
-        if (minigamePoints < 5)
-        {
-            Console.WriteLine("You scored less than 5 points. Game over.");
-            Environment.Exit(0);// Quit the game
-        }
-        else
-        {
-            Console.WriteLine("You have successfully completed the minigame.");
-            playerPoints = 1; // Player earns a point after completing the minigame
-        }
-
-         }
-         //MINIGAME ENDS HERE
 
         private void Move(string direction)
         {
@@ -230,10 +203,14 @@ namespace OperationHav
 
         private static void Accepted()
         {   
-            Console.WriteLine("\nAmazing! \nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you. \nUnsure, you head to the airport... (wait)\n");
-            Thread.Sleep(4000);
-            Console.WriteLine("... you arrive on the island of ,,”, which lies in the center of the archipelago. \nYou return to this island by default when leaving an island or finishing its problem. \nIt is also here, where you get to choose your next step. (wait)");
-            Thread.Sleep(6000);
+            Console.WriteLine("\nAmazing! \n\nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you. \nUnsure, you head to the airport... (wait)\n");
+            Thread.Sleep(5000);
+            Console.WriteLine("... you arrive on the island of ,,”, which lies in the center of the archipelago.");
+            Thread.Sleep(2500);
+            Console.WriteLine("\nYou return to this island by default when leaving an island or finishing its problem.");
+            Thread.Sleep(2500);
+            Console.WriteLine("\nIt is also here, where you get to choose your next step.");
+            Thread.Sleep(2500);
         }
 
         private static void PrintHelp()

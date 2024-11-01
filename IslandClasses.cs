@@ -1,6 +1,6 @@
 namespace OperationHav
 {
-    public class Island
+    public class Island //headclass for every island; all the classes of the other islands inherit from this class
     {
         public string ShortDescription { get; set; }
         public string LongDescription { get; set;}
@@ -28,13 +28,11 @@ namespace OperationHav
                 Exits[direction] = neighbor;
         }
     }
-
-
-
     // Here ends the headclass for all the islands. 
-    // Below you'll find the subclasses for each island.
 
 
+
+    // Below you'll find the subclasses for each island:
 
     //Bartek and Noah, please use this class for your island/minigame
     public class IslandIndustrial : Island 
@@ -47,12 +45,46 @@ namespace OperationHav
         }
 
         //You might wanne use this method here for the game itself
-        public void IndustrialWaste()
+        public static void Minigame()
         {
-       
-         
 
-         }
+            int minigamePoints = 0;
+
+            Random random = new Random();
+
+            for (int i = 0; i < 10; i++)
+            {
+            
+                string[] wasteTypes = { "plastic", "metal", "radioactive" };
+                string pickedWaste = wasteTypes[random.Next(wasteTypes.Length)];
+
+                Console.WriteLine($"You have picked up {pickedWaste} waste.");
+                Console.WriteLine("Which container will you put it in? (plastic, metal, radioactive):\n");
+                string container = Console.ReadLine().ToLower();
+
+                if (container == pickedWaste)
+                {
+                    Console.WriteLine("Correct! You have placed the waste in the right container.\n");
+                    minigamePoints++;
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect. Try again.\n");
+                }
+            }
+                
+            if (minigamePoints < 5)
+            {
+                Console.WriteLine("You scored less than 5 points. Game over.");
+                Environment.Exit(0);// Quit the game
+            }
+            else
+            {
+                Console.WriteLine("You have successfully completed the minigame.");
+                Game.playerPoints++; // Player earns a point after completing the minigame
+            }
+
+        }
         
     }
 
@@ -69,7 +101,7 @@ namespace OperationHav
         }
 
         //You might wanne use this method here for the game itself
-        public void OilSpill()
+        public void Minigame()
         {
 
         }
@@ -88,7 +120,7 @@ namespace OperationHav
         }
 
         //You might wanne use this method here for the game itself
-        public void PlasticWaste()
+        public void Minigame()
         {
 
         }
@@ -107,7 +139,7 @@ namespace OperationHav
         }
 
         //We might wanne use this method here for the game itself
-        public void CoralReef()
+        public void Minigame()
         {
 
         }
