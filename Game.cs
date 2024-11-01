@@ -90,7 +90,7 @@ namespace OperationHav
                         if (beginning_of_game == false){
                             Console.WriteLine(currentIsland?.Locals);
                             Thread.Sleep(4000);
-                            StartMinigame();
+                            StartMinigame(); // here the minigame in industrial starts
                         }
                         else
                             Console.WriteLine(invalid_command);
