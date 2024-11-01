@@ -4,7 +4,7 @@ namespace OperationHav
     {
         public string ShortDescription { get; set; }
         public string LongDescription { get; set;}
-        public string Locals{ get; set;}
+        public string Locals{ get; set;} // adding "locals" option for every island so if you go to an island you can talk with the locals
         public Dictionary<string, Island> Exits { get; set; } = new();
 
         public Island(string shortDesc, string longDesc, string locals)
@@ -49,9 +49,11 @@ namespace OperationHav
         //You might wanne use this method here for the game itself
         public void IndustrialWaste()
         {
-            
+       
          
-        }
+
+         }
+        
     }
 
 

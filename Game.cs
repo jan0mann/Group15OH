@@ -6,6 +6,7 @@ namespace OperationHav
     {
         private Island? currentIsland;
         private Island? previousIsland;
+        
 
         public Game()
         {
@@ -16,7 +17,7 @@ namespace OperationHav
         {
   
             Island? Main_Island = new("\nYou are on main island in the center of the archipelago.", "\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found. \nHere the consequences of all other problems, carry over.", "you talked with the locals");
-            IslandIndustrial? Northern_Island = new("\nThe northern island.", "\nThis island suffers from extreme industrial waste, because it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. Ever since the latter fell, however, no one came to clean, or even dismantle the old facilities, leaving our island a gigantic junkyard ...","you talked with the locals");
+            IslandIndustrial? Northern_Island = new("\nThe northern island.", "\nThis island suffers from extreme industrial waste, because it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. Ever since the latter fell, however, no one came to clean, or even dismantle the old facilities, leaving our island and its surrounding waters a gigantic junkyard ...","On the shore of the island, you meet an old man.\n You find out that the old factories have polluted the local environment and you need to clean it up.\n Having received from the UN the anti-hazardous suit and special containers, you decide to do it right away.\n");
             IslandOil? Eastern_Island = new("\nThe eastern island.", "\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…","you talked with the locals");
             IslandPlastic? Western_Island = new("\nThe western island.", "\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…","you talked with the locals");
             IslandCoral? Southern_Island = new("\nThe southern island.", "\nIt is the only island affected by more than one problem, and those happen to be the ones of ALL the other islands! And to make things even worse, it is exactly there where our biggest and most important coral reef is located! Somebody needs to do something before it dies off…","you talked with the locals");
@@ -35,10 +36,14 @@ namespace OperationHav
         }
 
         bool beginning_of_game = true;
+        public Island? Northern_Island { get; private set; } // minigame industrial
+         static int playerPoints = 0; // player score system, if for example player will have 3 points, one for each completed mini game, he can enter coral reef
+        static Random random = new Random(); // minigame industrial
+
+
         public void Play()
         {
             Parser parser = new();
-
             PrintWelcome();
 
             bool continuePlaying = true;
@@ -81,10 +86,13 @@ namespace OperationHav
                             Console.WriteLine(invalid_command);
                         break; 
 
-                    case "locals":
-                        if (beginning_of_game == false)
+                    case "locals": // adding locals
+                        if (beginning_of_game == false){
                             Console.WriteLine(currentIsland?.Locals);
-                        else 
+                            Thread.Sleep(4000);
+                            StartMinigame();
+                        }
+                        else
                             Console.WriteLine(invalid_command);
                         break;
 
@@ -153,6 +161,46 @@ namespace OperationHav
 
             
         }
+
+        // MINIGAME FOR INDUSTRIAL WASTE STARTS HERE
+         static void StartMinigame()
+         {
+            int minigamePoints = 0;
+            
+        for (int i = 0; i < 10; i++)
+        {
+        
+            string[] wasteTypes = { "plastic", "metal", "radioactive" };
+        string pickedWaste = wasteTypes[random.Next(wasteTypes.Length)];
+
+        Console.WriteLine($"You have picked up {pickedWaste} waste.");
+        Console.WriteLine("Which container will you put it in? (plastic, metal, radioactive):\n");
+        string container = Console.ReadLine().ToLower();
+
+        if (container == pickedWaste)
+        {
+            Console.WriteLine("Correct! You have placed the waste in the right container.\n");
+            minigamePoints++;
+        }
+        else
+        {
+            Console.WriteLine("Incorrect. Try again.\n");
+        }
+        }
+         
+        if (minigamePoints < 5)
+        {
+            Console.WriteLine("You scored less than 5 points. Game over.");
+            Environment.Exit(0);// Quit the game
+        }
+        else
+        {
+            Console.WriteLine("You have successfully completed the minigame.");
+            playerPoints = 1; // Player earns a point after completing the minigame
+        }
+
+         }
+         //MINIGAME ENDS HERE
 
         private void Move(string direction)
         {
