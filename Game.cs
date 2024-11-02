@@ -81,94 +81,104 @@ namespace OperationHav
                 }
 
                 
-                switch(command.Name)
-                {
+                    switch(command.Name)
+                    {
 
-                    case "look":
-                        if (beginning_of_game == false) //Solution for 'locking' the other cases when accept or refuse isn't typed in yet
-                            Console.WriteLine(currentIsland?.LongDescription);
-                        else 
+                        case "look":
+                            if (beginning_of_game == false) //Solution for 'locking' the other cases when accept or refuse isn't typed in yet
+                                Console.WriteLine(currentIsland?.LongDescription);
+                            else 
+                                Console.WriteLine(invalid_command);
+                            break; 
+
+                        case "harbor":
+                            if ((beginning_of_game == false) && (currentIsland.ShortDescription == "\nYou are on main island in the center of the archipelago."))
+                            {
+                                harbor = true;
+                                Console.WriteLine("\n Welcome to the harbor of ,,''! \nWhat direction do you want to ride to, Captain? \n(Type 'back' to leave)");
+                            }
+                            else 
+                                Console.WriteLine(invalid_command);
+                            break;
+
+
+                        case "locals": // adding locals
+                            if (beginning_of_game == false)
+                            {
+                                Console.WriteLine(currentIsland?.Locals);
+                                Thread.Sleep(4000);
+                                IslandIndustrial.Minigame(); // here the minigame in industrial starts
+                            }
+                            else
+                                Console.WriteLine(invalid_command);
+                            break;
+
+
+                        case "back": //going back from where you came from
+                            if (harbor == true)
+                            {
+                                Console.WriteLine("\nYou left the harbor.");
+                                harbor = false;
+                            }    
+                            else if (previousIsland == null)
+                                Console.WriteLine("You can't go back from here!");
+                            else
+                                currentIsland = previousIsland;
+                            break;
+
+
+                        case "north":
+                        case "south":
+                        case "east" :
+                        case "west":
+                            if ((beginning_of_game == false) && (harbor == true))                      
+                                Move(command.Name);
+                            else 
+                                Console.WriteLine(invalid_command);
+                            break;
+
+
+                        case "quit":
+                            if (beginning_of_game == false)
+                                Console.WriteLine("\nThank you for playing Operation Hav!");
+                                continuePlaying = false;
+                            break;
+
+                        case "refuse": //When refusing the offer, the game will end with a message giving the player a learning that he probably should try the game because it is needed SDG wise
+                            if (beginning_of_game == true)
+                            {
+                                Console.WriteLine("You refused to help and therefore ignored the hiring. \nYou keep on with your everyday life. \nA few months later, you see in the news that ,,” has by now become completely uninhabitable, \nall of its surviving people having to be evacuated...");
+                                continuePlaying = false;
+                            }
+                            else 
+                                Console.WriteLine(invalid_command);
+                            break;
+                        
+
+                        case "accept": //When accepting the offer, the real part of the game begins
+                            if (beginning_of_game == true)
+                            {  
+                                beginning_of_game = false;
+                                Accepted();
+                                PrintHelp();
+                            }
+                            else 
+                                Console.WriteLine(invalid_command);
+                            break;
+
+
+                        case "help": //printing the print help (direction info)
+                            if (beginning_of_game == false)
+                                PrintHelp();
+                            else 
+                                Console.WriteLine(invalid_command);
+                            break;
+
+
+                        default:
                             Console.WriteLine(invalid_command);
-                        break; 
-
-                    case "harbor":
-                        // if(currentIsland ==)
-                            harbor = true;
-                            Console.WriteLine("Welcome to the harbor of ,,''! What direction do you want to ride to, Captain?");
-                        break;
-
-
-                    case "locals": // adding locals
-                        if (beginning_of_game == false){
-                            Console.WriteLine(currentIsland?.Locals);
-                            Thread.Sleep(4000);
-                            IslandIndustrial.Minigame(); // here the minigame in industrial starts
-                        }
-                        else
-                            Console.WriteLine(invalid_command);
-                        break;
-
-
-                    case "back": //going back from where you came from
-                        if (previousIsland == null)
-                            Console.WriteLine("You can't go back from here!");
-                        else
-                            currentIsland = previousIsland;
-                        break;
-
-
-                    case "north":
-                    case "south":
-                    case "east" :
-                    case "west":
-                        if ((beginning_of_game == false) && (harbor == true))                      
-                            Move(command.Name);
-                        else 
-                            Console.WriteLine(invalid_command);
-                        break;
-
-
-                    case "quit":
-                        if (beginning_of_game == false)
-                            Console.WriteLine("Thank you for playing Operation Hav!");
-                            continuePlaying = false;
-                        break;
-
-                    case "refuse": //When refusing the offer, the game will end with a message giving the player a learning that he probably should try the game because it is needed SDG wise
-                        if (beginning_of_game == true)
-                        {
-                            Console.WriteLine("You refused to help and therefore ignored the hiring. \nYou keep on with your everyday life. \nA few months later, you see in the news that ,,” has by now become completely uninhabitable, \nall of its surviving people having to be evacuated...");
-                            continuePlaying = false;
-                        }
-                        else 
-                            Console.WriteLine(invalid_command);
-                        break;
-                    
-
-                    case "accept": //When accepting the offer, the real part of the game begins
-                        if (beginning_of_game == true)
-                        {  
-                            beginning_of_game = false;
-                            Accepted();
-                            PrintHelp();
-                        }
-                        else 
-                            Console.WriteLine(invalid_command);
-                        break;
-
-
-                    case "help": //printing the print help (direction info)
-                        if (beginning_of_game == false)
-                            PrintHelp();
-                        else 
-                            Console.WriteLine(invalid_command);
-                        break;
-
-
-                    default:
-                        Console.WriteLine(invalid_command);
-                        break;
-                }
+                            break;
+                    }
             }
 
             
