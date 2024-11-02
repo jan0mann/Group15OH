@@ -107,7 +107,10 @@ namespace OperationHav
                             {
                                 Console.WriteLine(currentIsland?.Locals);
                                 Thread.Sleep(4000);
-                                IslandIndustrial.Minigame(); // here the minigame in industrial starts
+                                if (currentIsland is IslandIndustrial) // making the minigame start only in IslandIndustrial
+                                {
+                                IslandIndustrial.Minigame(); // start the minigame
+                                } // here the minigame in industrial starts
                             }
                             else
                                 Console.WriteLine(invalid_command);
