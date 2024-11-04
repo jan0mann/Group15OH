@@ -42,6 +42,7 @@ namespace OperationHav
         bool beginning_of_game = true;
     
         public bool harbor = false;
+ 
 
         public static int playerPoints = 0; // player score system, if (for example!) player will have 3 points, one for each completed mini game, he can enter coral reef
 
@@ -105,12 +106,20 @@ namespace OperationHav
                         case "locals": // adding locals
                             if (beginning_of_game == false)
                             {
+                                 if ( currentIsland is IslandIndustrial & playerPoints >= 1) // preventing the player from repeating the minigame
+                                {
+                                    Console.WriteLine("You have already completed the minigame");
+                                    currentIsland = previousIsland;
+                                }
+                                else 
+
                                 Console.WriteLine(currentIsland?.Locals);
                                 Thread.Sleep(4000);
                                 if (currentIsland is IslandIndustrial) // making the minigame start only in IslandIndustrial
                                 {
                                 IslandIndustrial.Minigame(); // start the minigame
                                 } // here the minigame in industrial starts
+
                             }
                             else
                                 Console.WriteLine(invalid_command);

@@ -52,7 +52,7 @@ namespace OperationHav
 
             Random random = new Random();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
             
                 string[] wasteTypes = { "plastic", "metal", "radioactive" };
@@ -73,7 +73,7 @@ namespace OperationHav
                 }
             }
                 
-            if (minigamePoints < 5)
+            if (minigamePoints < 3)
             {
                 Console.WriteLine("You scored less than 5 points. Game over.");
                 Environment.Exit(0);// Quit the game
