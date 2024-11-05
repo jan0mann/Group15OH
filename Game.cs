@@ -8,7 +8,15 @@ namespace OperationHav
     {
         private Island? currentIsland;
         private Island? previousIsland;
+        private Island? Main_Island;
+        private IslandIndustrial? Northern_Island;
+        private IslandOil? Eastern_Island;
+        private IslandPlastic? Western_Island;
+        private IslandCoral? Southern_Island;
         
+        
+
+
 
         public Game()
         {
@@ -18,11 +26,11 @@ namespace OperationHav
         public void CreateIslands()
         {
   
-            Island? Main_Island = new("\nYou are on main island in the center of the archipelago.", "\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found. \nHere the consequences of all other problems, carry over.", "you talked with the locals");
-            IslandIndustrial? Northern_Island = new("\nThe northern island.", "\nThis island suffers from extreme industrial waste, because it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. Ever since the latter fell, however, no one came to clean, or even dismantle the old facilities, leaving our island and its surrounding waters a gigantic junkyard ...","On the shore of the island, you meet an old man.\n You find out that the old factories have polluted the local environment and you need to clean it up.\n Having received from the UN the anti-hazardous suit and special containers, you decide to do it right away.\n");
-            IslandOil? Eastern_Island = new("\nThe eastern island.", "\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…","you talked with the locals");
-            IslandPlastic? Western_Island = new("\nThe western island.", "\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…","you talked with the locals");
-            IslandCoral? Southern_Island = new("\nThe southern island.", "\nIt is the only island affected by more than one problem, and those happen to be the ones of ALL the other islands! And to make things even worse, it is exactly there where our biggest and most important coral reef is located! Somebody needs to do something before it dies off…","you talked with the locals");
+            Main_Island = new("\nYou are on main island in the center of the archipelago.", "\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found. \nHere the consequences of all other problems, carry over.", "you talked with the locals");
+            Northern_Island = new("\nThe northern island.", "\nThis island suffers from extreme industrial waste, because it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. Ever since the latter fell, however, no one came to clean, or even dismantle the old facilities, leaving our island and its surrounding waters a gigantic junkyard ...","On the shore of the island, you meet an old man.\n You find out that the old factories have polluted the local environment and you need to clean it up.\n Having received from the UN the anti-hazardous suit and special containers, you decide to do it right away.\n");
+            Eastern_Island = new("\nThe eastern island.", "\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…","you talked with the locals");
+            Western_Island = new("\nThe western island.", "\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…","you talked with the locals");
+            Southern_Island = new("\nThe southern island.", "\nIt is the only island affected by more than one problem, and those happen to be the ones of ALL the other islands! And to make things even worse, it is exactly there where our biggest and most important coral reef is located! Somebody needs to do something before it dies off…","you talked with the locals");
 
             Main_Island.SetExits(Northern_Island, Eastern_Island, Southern_Island, Western_Island); // North, East, South, West
 
@@ -93,15 +101,16 @@ namespace OperationHav
                             break; 
 
                         case "harbor":
-                            if ((beginning_of_game == false) && (currentIsland is Island))
+                            if ((beginning_of_game == false) && (currentIsland.ShortDescription == "\nYou are on main island in the center of the archipelago."))
                             {
                                 harbor = true;
                                 Console.WriteLine("\n Welcome to the harbor of ,,''! \nWhat direction do you want to ride to, Captain? \n(Type 'back' to leave)");
+                                
                             }
                             else 
                                 Console.WriteLine(invalid_command);
                             break;
-
+                        
 
                         case "locals": // adding locals
                             if (beginning_of_game == false)
@@ -131,7 +140,7 @@ namespace OperationHav
                             {
                                 Console.WriteLine("\nYou left the harbor.");
                                 harbor = false;
-                            }    
+                            }   
                             else if (previousIsland == null)
                                 Console.WriteLine("You can't go back from here!");
                             else
@@ -143,8 +152,11 @@ namespace OperationHav
                         case "south":
                         case "east" :
                         case "west":
-                            if ((beginning_of_game == false) && (harbor == true))                      
+                            if ((beginning_of_game == false) && (harbor == true))   
+                            {                   
                                 Move(command.Name);
+                                harbor = false;
+                            }
                             else 
                                 Console.WriteLine(invalid_command);
                             break;

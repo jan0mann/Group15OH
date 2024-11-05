@@ -60,7 +60,7 @@ namespace OperationHav
 
                 Console.WriteLine($"You have picked up {pickedWaste} waste.");
                 Console.WriteLine("Which container will you put it in? (plastic, metal, radioactive):\n");
-                string container = Console.ReadLine().ToLower();
+                var container = Console.ReadLine().ToLower();
 
                 if (container == pickedWaste)
                 {
