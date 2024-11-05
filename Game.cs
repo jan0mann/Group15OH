@@ -8,7 +8,15 @@ namespace OperationHav
     {
         private Island? currentIsland;
         private Island? previousIsland;
+        private Island? Main_Island;
+        private IslandIndustrial? Northern_Island;
+        private IslandOil? Eastern_Island;
+        private IslandPlastic? Western_Island;
+        private IslandCoral? Southern_Island;
         
+        
+
+
 
         public Game()
         {
@@ -93,8 +101,7 @@ namespace OperationHav
                             break; 
 
                         case "harbor":
-                            if ((beginning_of_game == false) && (currentIsland.ShortDescription == "\nYou are on main island in the center of the archipelago."))
-                            {
+                            if ((beginning_of_game == false) && (currentIsland == Main_Island))                            {
                                 harbor = true;
                                 Console.WriteLine("\n Welcome to the harbor of ,,''! \nWhat direction do you want to ride to, Captain? \n(Type 'back' to leave)");
                             }
