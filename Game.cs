@@ -93,7 +93,7 @@ namespace OperationHav
                             break; 
 
                         case "harbor":
-                            if ((beginning_of_game == false) && (currentIsland.ShortDescription == "\nYou are on main island in the center of the archipelago."))
+                            if ((beginning_of_game == false) && (currentIsland is Island))
                             {
                                 harbor = true;
                                 Console.WriteLine("\n Welcome to the harbor of ,,''! \nWhat direction do you want to ride to, Captain? \n(Type 'back' to leave)");
