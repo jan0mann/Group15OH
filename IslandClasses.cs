@@ -2,7 +2,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace OperationHav
 {
-    public class Island //headclass for every island; all the classes of the other islands inherit from this class
+    public class Island // ==> this is the headclass for every island; every class of each island inherits from this class
     {
         public string ShortDescription { get; set; }
         public string LongDescription { get; set;}
@@ -38,6 +38,7 @@ namespace OperationHav
 
     // Below you'll find the subclasses for each island:
 
+
     //Bartek and Noah, please use this class for your island/minigame
     public class IslandIndustrial : Island 
     {   
@@ -65,7 +66,7 @@ namespace OperationHav
 
                 Console.WriteLine($"You have picked up {pickedWaste} waste.");
                 Console.WriteLine("Which container will you put it in? (plastic, metal, radioactive):\n");
-                var container = Console.ReadLine().ToLower();
+                var container = Console.ReadLine()?.ToLower();
 
                 if (container == pickedWaste)
                 {
@@ -75,19 +76,23 @@ namespace OperationHav
                 }
                 else
                 {
-                    Console.WriteLine("Incorrect. Try again.\n");
+                    Game.InvalidCommand();
                 }
             }
                 
             if (minigamePoints < 3)
             {
-                Console.WriteLine("You scored less than 5 points. Game over.");
+                Console.WriteLine("You scored less than 5 points.");
+                Thread.Sleep(3000);
+                Game.GameOver();
                 Environment.Exit(0);// Quit the game
             }
             else
             {
-                Console.WriteLine("You have successfully completed the minigame.");
+                Console.WriteLine("Congratulations! \nYou have completed the task and saved Oslø!");
                 Game.playerPoints++; // Player earns a point after completing the minigame
+                Thread.Sleep(3000);
+                Console.WriteLine($"{4 - Game.playerPoints} islands remain!");
             }
 
         }
