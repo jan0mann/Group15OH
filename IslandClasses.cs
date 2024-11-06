@@ -70,6 +70,7 @@ namespace OperationHav
                 if (container == pickedWaste)
                 {
                     Console.WriteLine("Correct! You have placed the waste in the right container.\n");
+                    Thread.Sleep(2000);
                     minigamePoints++;
                 }
                 else
