@@ -1,4 +1,5 @@
 using System.Reflection.Metadata.Ecma335;
+using OperationHav;
 
 namespace OperationHav
 {
@@ -6,16 +7,17 @@ namespace OperationHav
     {
         public string ShortDescription { get; set; }
         public string LongDescription { get; set;}
-        public string Locals{ get; set;} // adding "locals" option for every island so if you go to an island you can talk with the locals
-        public string Name{ get; set;}
+        public string Name { get; set;}
+        public static bool MinigameWon { get; set;}
+
         public Dictionary<string, Island> Exits { get; set; } = new();
 
-        public Island(string name, string shortDesc, string longDesc, string locals)
+        public Island(string name, string shortDesc, string longDesc, bool minigameWon)
         {
             ShortDescription = shortDesc;
             LongDescription = longDesc;
-            Locals = locals;
             Name = name;
+            MinigameWon = minigameWon;
         }
 
         public void SetExits(Island? north, Island? east, Island? south, Island? west)
@@ -42,17 +44,19 @@ namespace OperationHav
     //Bartek and Noah, please use this class for your island/minigame
     public class IslandIndustrial : Island 
     {   
-        public IslandIndustrial(string name, string shortDesc, string longDesc, string locals) : base (name, shortDesc, longDesc, locals )
+        public IslandIndustrial(string name, string shortDesc, string longDesc, bool minigameWon) : base (name, shortDesc, longDesc, minigameWon)
         {
             ShortDescription = shortDesc;
             LongDescription = longDesc;
-            Locals = locals;
             Name = name;
+            MinigameWon = minigameWon;
         }
 
-        //You might wanne use this method here for the game itself
-        public static void Minigame()
+        //You might wanne use this method here for the minigame itself
+        public static void StoryMinigame()
         {
+            Console.WriteLine("On the shore of the island, you meet an old man.\n You find out that the old factories have polluted the local environment and you need to clean it up.\n Having received from the UN the anti-hazardous suit and special containers, you decide to do it right away.\n");
+            Thread.Sleep(4000);
 
             int minigamePoints = 0;
 
@@ -60,12 +64,10 @@ namespace OperationHav
 
             for (int i = 0; i < 5; i++)
             {
-            
-                string[] wasteTypes = { "plastic", "metal", "radioactive" };
+                string[] wasteTypes = {"plastic", "metal", "radioactive"};
                 string pickedWaste = wasteTypes[random.Next(wasteTypes.Length)];
 
-                Console.WriteLine($"You have picked up {pickedWaste} waste.");
-                Console.WriteLine("Which container will you put it in? (plastic, metal, radioactive):\n");
+                Console.WriteLine($"You have picked up {pickedWaste} waste. \nWhich container will you put it in? (plastic, metal, radioactive):\n");
                 var container = Console.ReadLine()?.ToLower();
 
                 if (container == pickedWaste)
@@ -84,19 +86,15 @@ namespace OperationHav
             {
                 Console.WriteLine("You scored less than 5 points.");
                 Thread.Sleep(3000);
-                Game.GameOver();
-                Environment.Exit(0);// Quit the game
+                Game.GameOver();// Quit the game
             }
             else
             {
-                Console.WriteLine("Congratulations! \nYou have completed the task and saved Oslø!");
-                Game.playerPoints++; // Player earns a point after completing the minigame
-                Thread.Sleep(3000);
-                Console.WriteLine($"{4 - Game.playerPoints} islands remain!");
+                Game.MinigameVictory();
+                MinigameWon = true;
             }
 
         }
-        
     }
 
 
@@ -104,16 +102,16 @@ namespace OperationHav
         //Marcel and Jan, please use this class for your island/minigame
        public class IslandOil : Island 
     {   
-        public IslandOil(string name, string shortDesc, string longDesc, string locals) : base(name, shortDesc, longDesc, locals)
+        public IslandOil(string name, string shortDesc, string longDesc, bool minigameWon) : base(name, shortDesc, longDesc, minigameWon)
         {
             ShortDescription = shortDesc;
             LongDescription = longDesc;
-            Locals = locals;
             Name = name;
+            MinigameWon = minigameWon;
         }
 
-        //You might wanne use this method here for the game itself
-        public void Minigame()
+        //You might wanne use this method here for the minigame itself
+        public static void Minigame()
         {
 
         }
@@ -124,16 +122,16 @@ namespace OperationHav
         //serafeim and Darius, please use this class for your island/minigame
        public class IslandPlastic : Island 
     {   
-        public IslandPlastic(string name, string shortDesc, string longDesc, string locals) : base(name, shortDesc, longDesc, locals)
+        public IslandPlastic(string name, string shortDesc, string longDesc, bool minigameWon) : base(name, shortDesc, longDesc, minigameWon)
         {
             ShortDescription = shortDesc;
             LongDescription = longDesc;
-            Locals = locals;
             Name = name;
+            MinigameWon = minigameWon;
         }
 
-        //You might wanne use this method here for the game itself
-        public void Minigame()
+        //You might wanne use this method here for the minigame itself
+        public static void Minigame()
         {
 
         }
@@ -144,16 +142,16 @@ namespace OperationHav
      //On this island/minigame, we all work together (Darius can create the maze for this game now, of course)
        public class IslandCoral : Island 
     {   
-        public IslandCoral(string name, string shortDesc, string longDesc, string locals) : base(name, shortDesc, longDesc, locals)
+        public IslandCoral(string name, string shortDesc, string longDesc, bool minigameWon) : base(name, shortDesc, longDesc, minigameWon)
         {
             ShortDescription = shortDesc;
             LongDescription = longDesc;
-            Locals = locals;
             Name = name;
+            MinigameWon = minigameWon;
         }
 
-        //We might wanne use this method here for the game itself
-        public void Minigame()
+        //We might wanne use this method here for the minigame itself
+        public static void Minigame()
         {
 
         }

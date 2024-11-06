@@ -7,8 +7,10 @@ namespace OperationHav
 {
     public class Game
     {
-        private Island? currentIsland;
-        private Island? previousIsland;
+        private static Island? currentIsland;
+        private static Island? previousIsland;
+
+
         private Island? Main_Island;
         private IslandIndustrial? Northern_Island;
         private IslandOil? Eastern_Island;
@@ -23,11 +25,11 @@ namespace OperationHav
 
         public void CreateIslands()
         {
-            Main_Island = new("Mæinø", "You are on Mæinø, the centeral island of Økompleks.", "\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found. \nHere the consequences of all other problems, carry over.", "you talked with the locals");
-            Northern_Island = new("Oslø", "You are on Oslø, the northern island.", "\nThis island suffers from extreme industrial waste, because it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. Ever since the latter fell, however, no one came to clean, or even dismantle the old facilities, leaving our island and its surrounding waters a gigantic junkyard ...","On the shore of the island, you meet an old man.\n You find out that the old factories have polluted the local environment and you need to clean it up.\n Having received from the UN the anti-hazardous suit and special containers, you decide to do it right away.\n");
-            Eastern_Island = new("Tokyø", "You are on Tokyø, the eastern island.", "\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…","you talked with the locals");
-            Western_Island = new("Såndiægø", "You are on Såndiægø, the western island.", "\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…","you talked with the locals");
-            Southern_Island = new("Sydnø", "You are on Sydnø, the southern island.", "\nIt is the only island affected by more than one problem, and those happen to be the ones of ALL the other islands! And to make things even worse, it is exactly there where our biggest and most important coral reef is located! Somebody needs to do something before it dies off…","you talked with the locals");
+            Main_Island = new("Mæinø", "Mæinø, the centeral island of Økompleks.", "\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found. \nHere the consequences of all other problems, carry over.", false);
+            Northern_Island = new("Oslø", "Oslø, the northern island.", "\nThis island suffers from extreme industrial waste, because it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. Ever since the latter fell, however, no one came to clean, or even dismantle the old facilities, leaving our island and its surrounding waters a gigantic junkyard ...", false);
+            Eastern_Island = new("Tokyø", "Tokyø, the eastern island.", "\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…", false);
+            Western_Island = new("Såndiægø", "Såndiægø, the western island.", "\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…", false);
+            Southern_Island = new("Sydnø", "Sydnø, the southern island.", "\nIt is the only island affected by more than one problem, and those happen to be the ones of ALL the other islands! And to make things even worse, it is exactly there where our biggest and most important coral reef is located! Somebody needs to do something before it dies off…", false);
 
             Main_Island.SetExits(Northern_Island, Eastern_Island, Southern_Island, Western_Island); // North, East, South, West
 
@@ -68,10 +70,8 @@ namespace OperationHav
             while (continuePlaying)
             {
 
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n   > ");
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 string? input = Console.ReadLine()?.ToLower();
                 Console.ResetColor();
 
@@ -114,10 +114,9 @@ namespace OperationHav
                 else if (continuePlaying == true && beginning_of_game == false && minigame == false)
                     switch(command.Name)
                     {
-                        case "look":  //Solution for 'locking' the other cases when accept or refuse isn't typed in yet
-                                Console.WriteLine(currentIsland?.LongDescription);
-                            break; 
-
+                        //case "check":
+                        //    break;
+                        
                         case "harbor":
                             if (harbor == true)
                                 InvalidCommand();
@@ -125,24 +124,46 @@ namespace OperationHav
                                 harbor = true;
                                 Console.WriteLine($"\nWelcome to the harbor of {currentIsland?.Name}! \nWhat direction do you want to ride to, Captain? \n(Type 'back' to leave)");
                             break;
-                        
-                        case "locals": // adding locals
-                            {
-                                 if ( currentIsland is IslandIndustrial & playerPoints >= 1) // preventing the player from repeating the minigame
-                                {
-                                    Console.WriteLine("You have already completed the minigame");
-                                    currentIsland = previousIsland;
-                                }
-                                else 
 
-                                Console.WriteLine(currentIsland?.Locals);
-                                Thread.Sleep(4000);
-                                if (currentIsland is IslandIndustrial) // making the minigame start only in IslandIndustrial
-                                {
-                                IslandIndustrial.Minigame(); // here the minigame in industrial starts
-                                }
-                            }
+                        case "locals":  
+                                Console.WriteLine(currentIsland?.LongDescription);
                             break;
+
+                        //case "map":
+                        //    break;    
+
+                        case "start": // starting the minigame
+                                switch(currentIsland) 
+                                    {
+                                        case IslandIndustrial:  // making the minigame start only in IslandIndustrial
+                                            if(IslandIndustrial.MinigameWon)
+                                                AlreadyDone();
+                                            else
+                                                IslandIndustrial.StoryMinigame(); // here the minigame in industrial starts
+                                            break;
+
+                                        //case IslandOil:
+                                        //    if(IslandOil.MinigameWon)
+                                        //        AlreadyDone();
+                                        //    else
+                                        //        IslandOil.Minigame(); 
+                                        //    break;
+                                        
+                                        //case IslandPlastic:
+                                        //    if(IslandPlastic.MinigameWon)
+                                        //        AlreadyDone();
+                                        //    else
+                                        //        IslandPlastic.Minigame(); 
+                                        //    break;
+
+                                        //case IslandCoral:
+                                        //    if(IslandCoral.MinigameWon)
+                                        //        AlreadyDone();
+                                        //    else
+                                        //        IslandCoral.Minigame(); 
+                                        //    break;
+                                    }   
+                                break;
 
                         case "back": //going back from where you came from
                             if (harbor == true)
@@ -151,7 +172,7 @@ namespace OperationHav
                                 harbor = false;
                             }   
                             else if (previousIsland == null)
-                                Console.WriteLine("You can't go back from here!");
+                                InvalidCommand();
                             else
                                 currentIsland = previousIsland;
                             break;
@@ -170,7 +191,7 @@ namespace OperationHav
                             break;
 
                         case "quit":
-                                Console.WriteLine("\nThank you for playing Operation Hav!");
+                                Console.WriteLine("\nThank you for playing Operation Hav!\n");
                                 
                                 Environment.Exit(0);
                             break;
@@ -184,7 +205,7 @@ namespace OperationHav
                             break;
                      }
 
-                     Console.WriteLine($"\n({currentIsland?.ShortDescription})");
+                     Console.WriteLine($"\n(You are on {currentIsland?.ShortDescription})");
 
             }
         }
@@ -201,14 +222,14 @@ namespace OperationHav
             }
             else
             {
-                Console.WriteLine($"You can't go {direction}!");
+                Console.WriteLine($"\nYou can't go {direction}!");
             }
         }
 
 
 
         //Text - Methods !!
-        private static void PrintWelcome()
+        private void PrintWelcome()
         {
             Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); //only for visibility
             Console.ForegroundColor = ConsoleColor.Yellow; //also for visibility, were the current terminal output starts
@@ -221,7 +242,7 @@ namespace OperationHav
             
         }
 
-        private static void Accepted()
+        private void Accepted()
         {   
             Console.WriteLine("\nAmazing!\n");
             Thread.Sleep(1500);
@@ -235,17 +256,16 @@ namespace OperationHav
             Thread.Sleep(2500);
         }
         
-        private static void Refused()
-                {
-                    Console.WriteLine("\nYou refused to help and therefore ignored the hiring. \n");
-                    Thread.Sleep(2500);
-                    Console.WriteLine("\nYou keep on with your everyday life. \n");
-                    Thread.Sleep(2500);
-                    Console.WriteLine("\nA few months later, you see in the news that Økomplex has by now become completely uninhabitable, \nall of its surviving people having to be evacuated...\n");
-                    Thread.Sleep(5000);
-                    GameOver();
-                    Environment.Exit(0);
-                }
+        private void Refused()
+        {
+            Console.WriteLine("\nYou refused to help and therefore ignored the hiring. \n");
+            Thread.Sleep(2500);
+            Console.WriteLine("\nYou keep on with your everyday life. \n");
+            Thread.Sleep(2500);
+            Console.WriteLine("\nA few months later, you see in the news that Økomplex has by now become completely uninhabitable, \nall of its surviving people having to be evacuated...\n");
+            Thread.Sleep(5000);
+            GameOver();
+        }
 
 
         private static void PrintHelpMain()
@@ -256,25 +276,24 @@ namespace OperationHav
             Console.ResetColor();
             Thread.Sleep(1000);
 
-            Console.Write("Check the current local ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("situation");
+            Console.Write("Check");
             Console.ResetColor();
-            Console.Write(". By doing that, you'll find out your progress and what impact your previous choices/actions had.\n"); 
+            Console.Write(" the current local situation. By doing that, you'll find out your progress and performance.\n"); 
             Thread.Sleep(1000);
 
             Console.Write("Go to the ");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("harbor");
             Console.ResetColor();
-            Console.Write(". Choose an island to go there and solve its problem.\n"); 
+            Console.Write(". Choose an island, go there and solve its problem.\n"); 
             Thread.Sleep(1000);
 
             Console.Write("Talk to the ");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("locals");
             Console.ResetColor();
-            Console.Write(". Choose an island to get a description of it and its problem, or ask for help.\n");
+            Console.Write(". They can tell you more about the island you're on, and it's problem.\n");
             Thread.Sleep(1000);
 
             Console.Write("View the "); 
@@ -284,19 +303,26 @@ namespace OperationHav
             Console.Write(". It will display the archipelago and tell you your current location.\n");
             Thread.Sleep(1000);
 
-            Console.Write("\nType");
+            Console.Write("\nIf you're on an island that still has a problem, you might want to "); 
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("start");
             Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write(" help"); 
-            Console.ResetColor();
-            Console.Write(" to print this message again.\n");
+            Console.Write(" solving it for good.\n");
             Thread.Sleep(1000);
 
-            Console.Write("Type");
+            Console.Write("\n(Type");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write(" help"); 
+            Console.ResetColor();
+            Console.Write(" to print this message again.)\n");
+            Thread.Sleep(1000);
+
+            Console.Write("(Type");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write(" quit");
             Console.ResetColor();
-            Console.Write(" to exit the game.\n");
+            Console.Write(" to exit the game.)\n");
             Thread.Sleep(1000);
 
             Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -306,19 +332,35 @@ namespace OperationHav
 
         }
 
-        public static void InvalidCommand()
+        public static void MinigameVictory()
         {
-            Console.WriteLine("\nInvalid. Type again.");
-            Thread.Sleep(1000);
+            Console.WriteLine($"Congratulations! \nYou have completed the task and saved {currentIsland?.Name}!");
+            playerPoints++; // Player earns a point after completing the minigame
+            Thread.Sleep(3000);
+            Console.WriteLine($"\nYou returned to Mæinø. \n{4 - playerPoints} islands remain!");
+            currentIsland = previousIsland;
         }
+
+        public static void AlreadyDone()
+        {
+            Console.WriteLine("\nYou have already completed the minigame, and therefore returned to Mæinø. \nThere are more islands to save out there!");
+            currentIsland = previousIsland;
+        }
+
         public static void GameOver()
         {
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine("GAME OVER");
+            Console.Write("GAME OVER");
             Console.ResetColor();
             Console.WriteLine("\n\n\n");
             Thread.Sleep(2000);
+            Environment.Exit(0);
+        }
+        public static void InvalidCommand()
+        {
+            Console.WriteLine("\nInvalid. Type again.");
+            Thread.Sleep(1000);
         }
     }
 }

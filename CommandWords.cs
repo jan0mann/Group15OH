@@ -8,7 +8,7 @@ namespace OperationHav
 {
     public class CommandWords
     {
-        public List<string> ValidCommands { get; } = new List<string> { "north", "east", "south", "west", "look", "back", "quit", "help", "refuse", "accept", "situation", "harbor", "locals", "inventory", "map", "plastic", "metal", "radioactive" };// adding 4 more commands
+        public List<string> ValidCommands { get; } = new List<string> {"accept", "refuse",   "check", "harbor", "north","east","south","west","back", "locals", "map", "help", "quit",   "start",   "plastic", "metal", "radioactive" };
 
         public bool IsValidCommand(string command)
         {
