@@ -15,9 +15,6 @@ namespace OperationHav
         private IslandCoral? Southern_Island;
         
         
-
-
-
         public Game()
         {
             CreateIslands();
@@ -25,12 +22,11 @@ namespace OperationHav
 
         public void CreateIslands()
         {
-  
-            Main_Island = new("\nYou are on main island in the center of the archipelago.", "\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found. \nHere the consequences of all other problems, carry over.", "you talked with the locals");
-            Northern_Island = new("\nThe northern island.", "\nThis island suffers from extreme industrial waste, because it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. Ever since the latter fell, however, no one came to clean, or even dismantle the old facilities, leaving our island and its surrounding waters a gigantic junkyard ...","On the shore of the island, you meet an old man.\n You find out that the old factories have polluted the local environment and you need to clean it up.\n Having received from the UN the anti-hazardous suit and special containers, you decide to do it right away.\n");
-            Eastern_Island = new("\nThe eastern island.", "\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…","you talked with the locals");
-            Western_Island = new("\nThe western island.", "\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…","you talked with the locals");
-            Southern_Island = new("\nThe southern island.", "\nIt is the only island affected by more than one problem, and those happen to be the ones of ALL the other islands! And to make things even worse, it is exactly there where our biggest and most important coral reef is located! Somebody needs to do something before it dies off…","you talked with the locals");
+            Main_Island = new("Mæinø", "\nYou are on Mæinø, the centeral island of Økompleks.", "\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found. \nHere the consequences of all other problems, carry over.", "you talked with the locals");
+            Northern_Island = new("Nordø", "\nYou are on Nordø, the northern island.", "\nThis island suffers from extreme industrial waste, because it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. Ever since the latter fell, however, no one came to clean, or even dismantle the old facilities, leaving our island and its surrounding waters a gigantic junkyard ...","On the shore of the island, you meet an old man.\n You find out that the old factories have polluted the local environment and you need to clean it up.\n Having received from the UN the anti-hazardous suit and special containers, you decide to do it right away.\n");
+            Eastern_Island = new("Tokyø", "\nYou are on Tokyø, the eastern island.", "\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…","you talked with the locals");
+            Western_Island = new("Richardsø", "\nYou are on Richardsø, the western island.", "\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…","you talked with the locals");
+            Southern_Island = new("Sydnø", "\nYou are on Sydnø, the southern island.", "\nIt is the only island affected by more than one problem, and those happen to be the ones of ALL the other islands! And to make things even worse, it is exactly there where our biggest and most important coral reef is located! Somebody needs to do something before it dies off…","you talked with the locals");
 
             Main_Island.SetExits(Northern_Island, Eastern_Island, Southern_Island, Western_Island); // North, East, South, West
 
@@ -46,13 +42,15 @@ namespace OperationHav
         }
 
 
-
+        //Conditions (or estates), fx: when you're in the harbor, the 'harbor-estate' is activated
         bool beginning_of_game = true;
-    
+
         public bool harbor = false;
  
+        public bool minigame = false;
 
         public static int playerPoints = 0; // player score system, if (for example!) player will have 3 points, one for each completed mini game, he can enter coral reef
+
 
 
         public void Play()
@@ -64,15 +62,8 @@ namespace OperationHav
             string invalid_command = "\nInvalid. Type again.";
             while (continuePlaying)
             {
-                if(beginning_of_game == false)
-                {
-                    Console.WriteLine(currentIsland?.ShortDescription);
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("\n   > ");
-                    Console.ResetColor();
-                }
-
                 string? input = Console.ReadLine().ToLower();
+
 
                 if (string.IsNullOrEmpty(input))
                 {
@@ -80,7 +71,6 @@ namespace OperationHav
                     continue;
                 }
                 
-
                 Command? command = parser.GetCommand(input);
 
                 if (command == null)
@@ -89,31 +79,49 @@ namespace OperationHav
                     continue;
                 }
 
-                
+
+
+
+                if (beginning_of_game == true)
+                {
                     switch(command.Name)
                     {
+                        case "accept":
+                            beginning_of_game = false;
+                            Accepted();
+                            PrintHelpMain();
+                            break;
 
-                        case "look":
-                            if (beginning_of_game == false) //Solution for 'locking' the other cases when accept or refuse isn't typed in yet
+                        case "refuse":  //When refusing the offer, the game will end with a message giving the player a learning that he probably should try the game because it is needed SDG wise
+                            Console.WriteLine("You refused to help and therefore ignored the hiring. \nYou keep on with your everyday life. \nA few months later, you see in the news that ,,” has by now become completely uninhabitable, \nall of its surviving people having to be evacuated...");
+                            continuePlaying = false;
+                            break;
+
+                        default:
+                            Console.WriteLine(invalid_command);
+                            break;
+                    }
+                }
+                else if (beginning_of_game == false && minigame == false)
+                
+                    Console.WriteLine(currentIsland?.ShortDescription);
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write("\n   > ");
+                    Console.ResetColor();
+
+                    switch(command.Name)
+                    {
+                        case "look":  //Solution for 'locking' the other cases when accept or refuse isn't typed in yet
                                 Console.WriteLine(currentIsland?.LongDescription);
-                            else 
-                                Console.WriteLine(invalid_command);
-                            break; 
+                                break; 
 
                         case "harbor":
-                            if ((beginning_of_game == false) && (currentIsland.ShortDescription == "\nYou are on main island in the center of the archipelago."))
-                            {
                                 harbor = true;
-                                Console.WriteLine("\n Welcome to the harbor of ,,''! \nWhat direction do you want to ride to, Captain? \n(Type 'back' to leave)");
-                                
-                            }
-                            else 
-                                Console.WriteLine(invalid_command);
-                            break;
+                                Console.WriteLine($"\nWelcome to the harbor of {currentIsland?.Name}! \nWhat direction do you want to ride to, Captain? \n(Type 'back' to leave)");
+                                break;
                         
 
                         case "locals": // adding locals
-                            if (beginning_of_game == false)
                             {
                                  if ( currentIsland is IslandIndustrial & playerPoints >= 1) // preventing the player from repeating the minigame
                                 {
@@ -128,10 +136,7 @@ namespace OperationHav
                                 {
                                 IslandIndustrial.Minigame(); // start the minigame
                                 } // here the minigame in industrial starts
-
                             }
-                            else
-                                Console.WriteLine(invalid_command);
                             break;
 
 
@@ -152,57 +157,25 @@ namespace OperationHav
                         case "south":
                         case "east" :
                         case "west":
-                            if ((beginning_of_game == false) && (harbor == true))   
-                            {                   
+                            if (harbor == true)                                       
                                 Move(command.Name);
-                                harbor = false;
-                            }
-                            else 
-                                Console.WriteLine(invalid_command);
+                                harbor = false;                         
                             break;
 
 
                         case "quit":
-                            if (beginning_of_game == false)
                                 Console.WriteLine("\nThank you for playing Operation Hav!");
                                 continuePlaying = false;
-                            break;
-
-                        case "refuse": //When refusing the offer, the game will end with a message giving the player a learning that he probably should try the game because it is needed SDG wise
-                            if (beginning_of_game == true)
-                            {
-                                Console.WriteLine("You refused to help and therefore ignored the hiring. \nYou keep on with your everyday life. \nA few months later, you see in the news that ,,” has by now become completely uninhabitable, \nall of its surviving people having to be evacuated...");
-                                continuePlaying = false;
-                            }
-                            else 
-                                Console.WriteLine(invalid_command);
-                            break;
-                        
-
-                        case "accept": //When accepting the offer, the real part of the game begins
-                            if (beginning_of_game == true)
-                            {  
-                                beginning_of_game = false;
-                                Accepted();
-                                PrintHelp();
-                            }
-                            else 
-                                Console.WriteLine(invalid_command);
-                            break;
-
+                                break;
 
                         case "help": //printing the print help (direction info)
-                            if (beginning_of_game == false)
-                                PrintHelp();
-                            else 
-                                Console.WriteLine(invalid_command);
-                            break;
-
+                                PrintHelpMain();
+                                break;
 
                         default:
                             Console.WriteLine(invalid_command);
                             break;
-                    }
+                     }
             }
 
             
@@ -229,7 +202,7 @@ namespace OperationHav
             Console.ForegroundColor = ConsoleColor.Yellow; //also for visibility, were the current terminal output starts
             Console.WriteLine("Welcome to Operation Hav!\n");
             Console.ResetColor();
-            Console.WriteLine("The United Nations are urgently hiring you, to save the sea waters surrounding pacific archipelago IslandComplex, which consists of five islands. \nEach islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by mankind. (wait)");
+            Console.WriteLine("The United Nations are urgently hiring you, to save the sea waters surrounding pacific archipelago ,,Økompleks'', which consists of five islands colonized by Denmark. \nEach islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by mankind. (wait)");
             Thread.Sleep(5000);
             Console.WriteLine("\nDo you accept the invitation to save IslandComplex? (type accept or refuse) \n");
             
@@ -247,7 +220,7 @@ namespace OperationHav
             Thread.Sleep(2500);
         }
 
-        private static void PrintHelp()
+        private static void PrintHelpMain()
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("\n\nYou now have the following options:\n");
