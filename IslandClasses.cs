@@ -84,6 +84,7 @@ namespace OperationHav
                 
             if (minigamePoints < 3)
             {
+
                 Console.WriteLine("You scored less than 5 points.");
                 Thread.Sleep(3000);
                 Game.GameOver();// Quit the game
