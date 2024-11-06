@@ -117,7 +117,7 @@ namespace OperationHav
                             {
                                  if ( currentIsland is IslandIndustrial & playerPoints >= 1) // preventing the player from repeating the minigame
                                 {
-                                    Console.WriteLine("You have already completed the minigame");
+                                    Console.WriteLine("You have already cleaned the island from industrial waste. There is no industrial waste left anymore.");
                                     currentIsland = previousIsland;
                                 }
                                 else 

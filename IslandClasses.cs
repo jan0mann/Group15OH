@@ -69,18 +69,18 @@ namespace OperationHav
                 }
                 else
                 {
-                    Console.WriteLine("Incorrect. Try again.\n");
+                    Console.WriteLine("Incorrect. That was the wrong bin.\n");
                 }
             }
                 
             if (minigamePoints < 3)
             {
-                Console.WriteLine("You scored less than 5 points. Game over.");
+                Console.WriteLine("You scored less than 5 points. You failed to sort the waste properly. That is Game over for you!.");
                 Environment.Exit(0);// Quit the game
             }
             else
             {
-                Console.WriteLine("You have successfully completed the minigame.");
+                Console.WriteLine("You have successfully cleaned the island from industrial waste!");
                 Game.playerPoints++; // Player earns a point after completing the minigame
             }
 
