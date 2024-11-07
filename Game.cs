@@ -122,7 +122,11 @@ namespace OperationHav
                                 InvalidCommand();
                             else
                                 harbor = true;
-                                Console.WriteLine($"\nWelcome to the harbor of {currentIsland?.Name}! \nWhat direction do you want to ride to, Captain? \n(Type 'back' to leave)");
+                                Console.Write($"\nWelcome to the harbor of {currentIsland?.Name}! \nWhat ");
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.Write("direction");
+                                Console.ResetColor();
+                                Console.Write(" do you want to ride to, Captain? \n(type 'back' to leave)");
                             break;
 
                         case "locals":  
