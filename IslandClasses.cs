@@ -12,13 +12,20 @@ namespace OperationHav
 
         public Dictionary<string, Island> Exits { get; set; } = new();
 
-        public Island(string name, string shortDesc, string longDesc, bool minigameWon)
+        public Island(string name, string shortDesc, bool minigameWon)
         {
-            ShortDescription = shortDesc;
-            LongDescription = longDesc;
             Name = name;
+            ShortDescription = shortDesc;
             MinigameWon = minigameWon;
         }
+
+         public static void Main_Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
+        {
+            Console.WriteLine("\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found. \nHere the consequences of all other problems, carry over.");
+        }
+
+
+
 
         public void SetExits(Island? north, Island? east, Island? south, Island? west)
         {
@@ -44,16 +51,20 @@ namespace OperationHav
     //Bartek and Noah, please use this class for your island/minigame
     public class IslandIndustrial : Island 
     {   
-        public IslandIndustrial(string name, string shortDesc, string longDesc, bool minigameWon) : base (name, shortDesc, longDesc, minigameWon)
+        public IslandIndustrial(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
-            ShortDescription = shortDesc;
-            LongDescription = longDesc;
             Name = name;
+            ShortDescription = shortDesc;
             MinigameWon = minigameWon;
         }
 
+        public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
+        {
+            Console.WriteLine("\nThis island suffers from extreme industrial waste, \nbecause it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. \nEver since the latter fell, however, no one came to clean, or even dismantle the old facilities, \nleaving our island and its surrounding waters a gigantic junkyard ...");
+        }
+
         //You might wanne use this method here for the minigame itself
-        public static void StoryMinigame()
+        public static void Story_Minigame()
         {
             Console.WriteLine("On the shore of the island, you meet an old man.\n You find out that the old factories have polluted the local environment and you need to clean it up.\n Having received from the UN the anti-hazardous suit and special containers, you decide to do it right away.\n");
             Thread.Sleep(4000);
@@ -103,16 +114,19 @@ namespace OperationHav
         //Marcel and Jan, please use this class for your island/minigame
        public class IslandOil : Island 
     {   
-        public IslandOil(string name, string shortDesc, string longDesc, bool minigameWon) : base(name, shortDesc, longDesc, minigameWon)
+        public IslandOil(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
-            ShortDescription = shortDesc;
-            LongDescription = longDesc;
             Name = name;
+            ShortDescription = shortDesc;
             MinigameWon = minigameWon;
+        }
+        public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
+        {
+            Console.WriteLine("\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…");
         }
 
         //You might wanne use this method here for the minigame itself
-        public static void Minigame()
+        public static void Story_Minigame()
         {
 
         }
@@ -123,16 +137,20 @@ namespace OperationHav
         //serafeim and Darius, please use this class for your island/minigame
        public class IslandPlastic : Island 
     {   
-        public IslandPlastic(string name, string shortDesc, string longDesc, bool minigameWon) : base(name, shortDesc, longDesc, minigameWon)
+        public IslandPlastic(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
-            ShortDescription = shortDesc;
-            LongDescription = longDesc;
             Name = name;
+            ShortDescription = shortDesc;
             MinigameWon = minigameWon;
         }
 
+        public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
+        {
+            Console.WriteLine("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…");
+        }
+
         //You might wanne use this method here for the minigame itself
-        public static void Minigame()
+        public static void Story_Minigame()
         {
 
         }
@@ -143,16 +161,20 @@ namespace OperationHav
      //On this island/minigame, we all work together (Darius can create the maze for this game now, of course)
        public class IslandCoral : Island 
     {   
-        public IslandCoral(string name, string shortDesc, string longDesc, bool minigameWon) : base(name, shortDesc, longDesc, minigameWon)
+        public IslandCoral(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
-            ShortDescription = shortDesc;
-            LongDescription = longDesc;
             Name = name;
+            ShortDescription = shortDesc;
             MinigameWon = minigameWon;
         }
 
+        public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
+        {
+            Console.WriteLine("\nIt is the only island affected by more than one problem, and those happen to be the ones of ALL the other islands! And to make things even worse, it is exactly there where our biggest and most important coral reef is located! Somebody needs to do something before it dies off…");
+        }
+
         //We might wanne use this method here for the minigame itself
-        public static void Minigame()
+        public static void Story_Minigame()
         {
 
         }

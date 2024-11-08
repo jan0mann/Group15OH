@@ -25,11 +25,11 @@ namespace OperationHav
 
         public void CreateIslands()
         {
-            Main_Island = new("Mæinø", "Mæinø, the centeral island of Økompleks.", "\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found. \nHere the consequences of all other problems, carry over.", false);
-            Northern_Island = new("Oslø", "Oslø, the northern island.", "\nThis island suffers from extreme industrial waste, because it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. Ever since the latter fell, however, no one came to clean, or even dismantle the old facilities, leaving our island and its surrounding waters a gigantic junkyard ...", false);
-            Eastern_Island = new("Tokyø", "Tokyø, the eastern island.", "\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…", false);
-            Western_Island = new("Såndiægø", "Såndiægø, the western island.", "\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…", false);
-            Southern_Island = new("Sydnø", "Sydnø, the southern island.", "\nIt is the only island affected by more than one problem, and those happen to be the ones of ALL the other islands! And to make things even worse, it is exactly there where our biggest and most important coral reef is located! Somebody needs to do something before it dies off…", false);
+            Main_Island = new("Mæinø", "Mæinø, the centeral island of Økompleks.", false);
+            Northern_Island = new("Oslø", "Oslø, the northern island.", false);
+            Eastern_Island = new("Tokyø", "Tokyø, the eastern island.", false);
+            Western_Island = new("Såndiægø", "Såndiægø, the western island.", false);
+            Southern_Island = new("Sydnø", "Sydnø, the southern island.", false);
 
             Main_Island.SetExits(Northern_Island, Eastern_Island, Southern_Island, Western_Island); // North, East, South, West
 
@@ -50,7 +50,7 @@ namespace OperationHav
 
         public bool harbor = false;
  
-        public bool minigame = false;
+        public static bool minigame = false;
 
 
         public static bool continuePlaying = true;
@@ -114,59 +114,70 @@ namespace OperationHav
                 else if (continuePlaying == true && beginning_of_game == false && minigame == false)
                     switch(command.Name)
                     {
-                        //case "check":
-                        //    break;
+                        case "check":
+                            break;
                         
                         case "harbor":
                             if (harbor == true)
                                 InvalidCommand();
                             else
                                 harbor = true;
-                                Console.Write($"\nWelcome to the harbor of {currentIsland?.Name}! \nWhat ");
-                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.Write("direction");
-                                Console.ResetColor();
-                                Console.Write(" do you want to ride to, Captain? \n(type 'back' to leave)");
+                                Harbor();
                             break;
 
                         case "locals":  
-                                Console.WriteLine(currentIsland?.LongDescription);
+                            switch(currentIsland)
+                            {
+                                case IslandIndustrial:
+                                    IslandIndustrial.Locals();
+                                    break;
+                                case IslandOil:
+                                    IslandOil.Locals();
+                                    break;
+                                case IslandPlastic:
+                                    IslandPlastic.Locals();
+                                    break;
+                                case IslandCoral:
+                                    IslandCoral.Locals();
+                                    break;
+                                default:
+                                    Island.Main_Locals();
+                                    break; 
+                                }
                             break;
 
-                        //case "map":
-                        //    break;    
+                        case "map":
+                            break;    
 
                         case "start": // starting the minigame
+                                minigame = true;
                                 switch(currentIsland) 
-                                    {
+                                {
                                         case IslandIndustrial:  // making the minigame start only in IslandIndustrial
                                             if(IslandIndustrial.MinigameWon)
                                                 AlreadyDone();
                                             else
-                                                IslandIndustrial.StoryMinigame(); // here the minigame in industrial starts
+                                                IslandIndustrial.Story_Minigame(); // here the minigame in industrial starts
                                             break;
-
-                                        //case IslandOil:
-                                        //    if(IslandOil.MinigameWon)
-                                        //        AlreadyDone();
-                                        //    else
-                                        //        IslandOil.Minigame(); 
-                                        //    break;
-                                        
-                                        //case IslandPlastic:
-                                        //    if(IslandPlastic.MinigameWon)
-                                        //        AlreadyDone();
-                                        //    else
-                                        //        IslandPlastic.Minigame(); 
-                                        //    break;
-
-                                        //case IslandCoral:
-                                        //    if(IslandCoral.MinigameWon)
-                                        //        AlreadyDone();
-                                        //    else
-                                        //        IslandCoral.Minigame(); 
-                                        //    break;
-                                    }   
+                                        case IslandOil:
+                                            if(IslandOil.MinigameWon)
+                                                AlreadyDone();
+                                            else
+                                               IslandOil.Story_Minigame(); 
+                                            break;
+                                        case IslandPlastic:
+                                            if(IslandPlastic.MinigameWon)
+                                                AlreadyDone();
+                                            else
+                                                IslandPlastic.Story_Minigame(); 
+                                            break;
+                                        case IslandCoral:
+                                            if(IslandCoral.MinigameWon)
+                                                AlreadyDone();
+                                            else
+                                                IslandCoral.Story_Minigame(); 
+                                            break;
+                                }   
                                 break;
 
                         case "back": //going back from where you came from
@@ -175,7 +186,7 @@ namespace OperationHav
                                 Console.WriteLine("\nYou left the harbor.");
                                 harbor = false;
                             }   
-                            else if (previousIsland == null)
+                            else if(previousIsland == null)
                                 InvalidCommand();
                             else
                                 currentIsland = previousIsland;
@@ -188,7 +199,6 @@ namespace OperationHav
                             if (harbor == true)
                             {                                     
                                 Move(command.Name);
-                                harbor = false;
                             }
                             else
                                 InvalidCommand();                       
@@ -223,10 +233,13 @@ namespace OperationHav
                 previousIsland = currentIsland;
                 currentIsland = currentIsland?.Exits[direction];
                 Console.WriteLine($"\nAlright, we take off towards {currentIsland?.Name}!");
+                Thread.Sleep(3000);
+                harbor = false;
             }
             else
             {
-                Console.WriteLine($"\nYou can't go {direction}!");
+                Console.WriteLine($"\nYou can't go {direction}! \n(type 'back' to leave the harbor)");
+                Thread.Sleep(2000);
             }
         }
 
@@ -243,12 +256,11 @@ namespace OperationHav
             Console.WriteLine("The United Nations are urgently hiring you, to save the sea waters surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands. \nEach islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by mankind. (wait)");
             Thread.Sleep(5000);
             Console.WriteLine("\nDo you accept the invitation to save Økompleks? (type accept or refuse)");
-            
         }
 
         private void Accepted()
         {   
-            Console.WriteLine("\nAmazing!\n");
+            Console.WriteLine("\nAmazing!");
             Thread.Sleep(1500);
             Console.WriteLine("\nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you. \nUnsure, you head to the airport... \n");
             Thread.Sleep(5000);
@@ -307,11 +319,11 @@ namespace OperationHav
             Console.Write(". It will display the archipelago and tell you your current location.\n");
             Thread.Sleep(1000);
 
-            Console.Write("\nIf you're on an island that still has a problem, you might want to "); 
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("\nType "); 
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("start");
             Console.ResetColor();
-            Console.Write(" solving it for good.\n");
+            Console.Write(" if you're ready to save the island you're on.\n");
             Thread.Sleep(1000);
 
             Console.Write("\n(Type");
@@ -323,7 +335,7 @@ namespace OperationHav
             Thread.Sleep(1000);
 
             Console.Write("(Type");
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.Write(" quit");
             Console.ResetColor();
             Console.Write(" to exit the game.)\n");
@@ -334,6 +346,19 @@ namespace OperationHav
             Console.ResetColor();
             Console.Write(" (type the colored word)\n");
 
+        }
+
+        private static void Harbor()
+        {
+            Console.Write($"\nWelcome to the harbor of {currentIsland?.Name}!");
+            Thread.Sleep(1500);
+            Console.Write("\nWhat");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("direction");
+            Console.ResetColor();
+            Console.Write(" do you want to ride to, Captain?");
+            Thread.Sleep(2000);
+            Console.WriteLine("(type 'back' to leave)"); 
         }
 
         public static void MinigameVictory()
@@ -348,6 +373,7 @@ namespace OperationHav
         public static void AlreadyDone()
         {
             Console.WriteLine("\nYou have already completed the minigame, and therefore returned to Mæinø. \nThere are more islands to save out there!");
+            minigame = false;
             currentIsland = previousIsland;
         }
 
