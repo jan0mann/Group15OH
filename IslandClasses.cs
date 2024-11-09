@@ -73,9 +73,19 @@ namespace OperationHav
         public static void Story_Minigame()
         {
             // STORY/INTRODUCTION
-            Game.Text("\nYou go to meet with the local UN referant, who has been analysing the situation.", 3);
-            Game.Text("\nHaving received an anti-hazardous suit from the UN, as well as special containers provided directly by the spot, you decide to do it right away.", 5);
-            Game.Text("\nWatch the color of the waste! \nYellow belongs to 'plastic'! \nGrey to 'metal'! \nGreen to 'atomic'! \nBlue to 'rubber'! \nAnd magenta to 'hardware'! \n\nGood luck!", 7);
+            Game.Text("\nYou go to meet with the local UN referant at the biggest factory, who has been analysing the situation.", 3);
+            Game.Text("\nHe speaks to you:", 1);
+            Game.Text("\nWelcome! Thank you so much for agreeing to help!", 2, ConsoleColor.DarkCyan);
+            Game.Text("\nThe UN supplied us with anti-hazardous suits, as well as special containers, which are provided directly by the spot.", 3, ConsoleColor.DarkCyan);
+            Game.Text("\nYou put on the suit and you two walk straight into the old rusty facility...", 2);
+            Game.Text("\nAll of a sudden, the building starts to shake!", 2);
+            Game.Text("\nThe referant, who is still standing outside, shouts:", 2);
+            Game.Text("\nDon't panik! I'll get you help! But you need to put the waste in the correct container in there!", 3, ConsoleColor.DarkCyan);
+            Game.Text("\nRemember: \nYellow belongs to 'plastic'! \nGrey to 'metal'! \nGreen to 'atomic'! \nBlue to 'rubber'! \nAnd magenta to 'hardware'! \n\nGood luck!", 5, ConsoleColor.DarkCyan);
+            Game.Text("\n You look around...", 2);
+            Game.Text("\nSort the waste? Now??", 2 , ConsoleColor.Cyan);
+
+
 
 
             //GAME START
@@ -121,10 +131,12 @@ namespace OperationHav
                 {
                     Game.Text("\nNo! \nThats the wrong container!", 2);
                 }
+                else
+                    Game.InvalidCommand();
                 
             }
                 
-            if (minigamePoints < 5)
+            if (minigamePoints < 7)
             {
                 Game.Text("\n...", 2);
                 Game.Text("\nYou've put too much waste in the wrong containers...", 0);

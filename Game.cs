@@ -319,12 +319,12 @@ namespace OperationHav
         }
 
         public static void MinigameVictory()
-        {           
-            Text($"\nCongratulations! \nYou have completed the task and saved {currentIsland?.Name}!", 3);
-            Text($"\nYou returned to Mæinø. \n{4 - playerPoints} islands remain!", 3);
+        {   
             playerPoints++; // Player earns a point after completing the minigame
             currentIsland = previousIsland;
-            minigame = false;
+            minigame = false;        
+            Text($"\nCongratulations! \nYou have completed the task and saved {currentIsland?.Name}!", 3);
+            Text($"\nYou returned to Mæinø. \n{4 - playerPoints} islands remain!", 3);
         }
 
         public static void AlreadyDone()
@@ -351,7 +351,7 @@ namespace OperationHav
         {
             Console.ForegroundColor = color;
             Console.Write(text);
-            Thread.Sleep(readtime);
+            Thread.Sleep(readtime*1000);
             Console.ResetColor();
         }
         public static void Text(string text, int readtime)
