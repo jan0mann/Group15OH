@@ -1,4 +1,6 @@
-using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading;
+using System.Threading.Tasks;
 using OperationHav;
 
 namespace OperationHav
@@ -21,7 +23,7 @@ namespace OperationHav
 
          public static void Main_Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
-            Console.WriteLine("\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found. \nHere the consequences of all other problems, carry over.");
+            Game.Text("\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found.", 4);
         }
 
 
@@ -60,44 +62,72 @@ namespace OperationHav
 
         public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
-            Console.WriteLine("\nThis island suffers from extreme industrial waste, \nbecause it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War. \nEver since the latter fell, however, no one came to clean, or even dismantle the old facilities, \nleaving our island and its surrounding waters a gigantic junkyard ...");
+            Game.Text("\nNear the shore you meet an old man, who used to work in the factories.", 3);
+            Game.Text("\nYou start asking him about those old factories, which litter the entire island in trash.\nHe explains:", 1);
+            Game.Text("\nOslø has been suffering for decades now from extreme industrial waste, \nbecause it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War.", 3, ConsoleColor.DarkGreen);
+            Game.Text("\nEver since the latter fell, however, no one came to clean, or even dismantle all those facilities, \nleaving our island and its surrounding waters a gigantic junkyard ...", 3, ConsoleColor.DarkGreen);
         }
+    
 
         //You might wanne use this method here for the minigame itself
         public static void Story_Minigame()
         {
-            Console.WriteLine("On the shore of the island, you meet an old man.\n You find out that the old factories have polluted the local environment and you need to clean it up.\n Having received from the UN the anti-hazardous suit and special containers, you decide to do it right away.\n");
-            Thread.Sleep(4000);
+            // STORY/INTRODUCTION
+            Game.Text("\nYou go to meet with the local UN referant, who has been analysing the situation.", 3);
+            Game.Text("\nHaving received an anti-hazardous suit from the UN, as well as special containers provided directly by the spot, you decide to do it right away.", 5);
+            Game.Text("\nWatch the color of the waste! \nYellow belongs to 'plastic'! \nGrey to 'metal'! \nGreen to 'atomic'! \nBlue to 'rubber'! \nAnd magenta to 'hardware'! \n\nGood luck!", 7);
 
+
+            //GAME START
             int minigamePoints = 0;
 
-            Random random = new Random();
+            Random random = new();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
-                string[] wasteTypes = {"plastic", "metal", "radioactive"};
+                string[] wasteTypes = ["plastic", "metal", "atomic", "rubber", "hardware"];
                 string pickedWaste = wasteTypes[random.Next(wasteTypes.Length)];
 
-                Console.WriteLine($"You have picked up {pickedWaste} waste. \nWhich container will you put it in? (plastic, metal, radioactive):\n");
-                var container = Console.ReadLine()?.ToLower();
 
+                Game.Text("\nYou have picked up some ", 0);
+                switch(pickedWaste)
+                {
+                    case "plastic":
+                        Game.Text("waste", 0, ConsoleColor.DarkYellow);
+                        break;
+                    case "metal":
+                        Game.Text("waste", 0, ConsoleColor.DarkGray);
+                        break;
+                    case "atomic":
+                        Game.Text("waste", 0, ConsoleColor.Green);
+                        break;
+                    case "rubber":
+                        Game.Text("waste", 0, ConsoleColor.DarkBlue);
+                        break;
+                    case "hardware":
+                        Game.Text("waste", 0, ConsoleColor.DarkMagenta);
+                        break;
+                }
+                Game.Text(". Which container does it belong to? (type the word):\n", 0);
+
+                var container = Console.ReadLine()?.ToLower();
+                
                 if (container == pickedWaste)
                 {
-                    Console.WriteLine("Correct! You have placed the waste in the right container.\n");
-                    Thread.Sleep(2000);
+                    Game.Text("\nCorrect! \nYou have placed the waste in the right container.", 2);
                     minigamePoints++;
                 }
-                else
+                else if(container != pickedWaste)
                 {
-                    Game.InvalidCommand();
+                    Game.Text("\nNo! \nThats the wrong container!", 2);
                 }
+                
             }
                 
-            if (minigamePoints < 3)
+            if (minigamePoints < 5)
             {
-
-                Console.WriteLine("You scored less than 5 points.");
-                Thread.Sleep(3000);
+                Game.Text("\n...", 2);
+                Game.Text("\nYou've put too much waste in the wrong containers...", 0);
                 Game.GameOver();// Quit the game
             }
             else
@@ -122,7 +152,7 @@ namespace OperationHav
         }
         public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
-            Console.WriteLine("\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…");
+            Game.Text("\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…", 4);
         }
 
         //You might wanne use this method here for the minigame itself
@@ -146,7 +176,7 @@ namespace OperationHav
 
         public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
-            Console.WriteLine("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…");
+            Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…", 3);
         }
 
         //You might wanne use this method here for the minigame itself
@@ -170,7 +200,7 @@ namespace OperationHav
 
         public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
-            Console.WriteLine("\nIt is the only island affected by more than one problem, and those happen to be the ones of ALL the other islands! And to make things even worse, it is exactly there where our biggest and most important coral reef is located! Somebody needs to do something before it dies off…");
+            Game.Text("\nIt is the only island affected by more than one problem, and those happen to be the ones of ALL the other islands! And to make things even worse, it is exactly there where our biggest and most important coral reef is located! Somebody needs to do something before it dies off…", 7);
         }
 
         //We might wanne use this method here for the minigame itself
