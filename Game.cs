@@ -53,6 +53,7 @@ namespace OperationHav
  
         public static bool minigame = false;
 
+        public static bool gameOver = false;
 
         public static bool continuePlaying = true;
 
@@ -106,6 +107,21 @@ namespace OperationHav
                             Refused();
                             break;
 
+                        default:
+                            InvalidCommand();
+                            break;
+                    }
+                }
+                if (gameOver == true)
+                {
+                    switch(command.Name)
+                    {
+                        case "accept":
+                            
+                            break;
+                        case "refuse":
+                            Environment.Exit(0);
+                            break;
                         default:
                             InvalidCommand();
                             break;
@@ -340,8 +356,12 @@ namespace OperationHav
             Console.BackgroundColor = ConsoleColor.Red;
             Text("GAME OVER", 0, ConsoleColor.Black);
             Text("\n\n\n", 2);
-            Environment.Exit(0);
+            Text("Do you want to try again? \n\n (accept or refuse) ", 1);
+            gameOver = true;
         }
+
+
+
         public static void InvalidCommand()
         {
             Text("\nInvalid. Type again.", 1);
