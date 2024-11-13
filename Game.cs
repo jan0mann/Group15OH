@@ -53,6 +53,7 @@ namespace OperationHav
  
         public static bool minigame = false;
 
+        public static bool gameOver = false;
 
         public static bool continuePlaying = true;
 
@@ -106,6 +107,21 @@ namespace OperationHav
                             Refused();
                             break;
 
+                        default:
+                            InvalidCommand();
+                            break;
+                    }
+                }
+                if (gameOver == true)
+                {
+                    switch(command.Name)
+                    {
+                        case "accept":
+                            
+                            break;
+                        case "refuse":
+                            Environment.Exit(0);
+                            break;
                         default:
                             InvalidCommand();
                             break;
@@ -178,6 +194,9 @@ namespace OperationHav
                                             else
                                                 IslandCoral.Story_Minigame(); 
                                             break;
+                                        default:
+                                            Text("No problem here!", 1);
+                                            break;
                                 }   
                                 break;
 
@@ -218,10 +237,14 @@ namespace OperationHav
                                 InvalidCommand();
                             break;
                      }
-                    
-            Text($"\nYou find yourself on {currentIsland?.ShortDescription}.", 0);
-            Text("For further instructions, type 'help'.", 0);
-            Text("To leave the game, type 'quit'.", 0);
+
+            if(beginning_of_game==false) 
+            {       
+                Text($"\nYou find yourself on {currentIsland?.ShortDescription}.", 1);
+                Text("\nFor further instructions, type 'help'.", 1);
+                Text("\nTo leave the game, type 'quit'.", 1);
+            }
+
             }
         }
 
@@ -279,6 +302,7 @@ namespace OperationHav
             Text("\nYou keep on with your everyday life.", 3);
             Text("\nA few months later, you see in the news that Økomplex has by now become completely uninhabitable, \nall of its surviving people having to be evacuated...", 0);
             GameOver();
+            Environment.Exit(0);
         }
 
 
@@ -321,9 +345,10 @@ namespace OperationHav
         public static void MinigameVictory()
         {   
             playerPoints++; // Player earns a point after completing the minigame
-            currentIsland = previousIsland;
             minigame = false;        
-            Text($"\nCongratulations! \nYou have completed the task and saved {currentIsland?.Name}!", 3);
+            Text("\nCongratulations!", 1, ConsoleColor.Yellow);
+            Text($"\nYou have completed the task and saved {currentIsland?.Name}!", 3);
+            currentIsland = previousIsland;
             Text($"\nYou returned to Mæinø. \n{4 - playerPoints} islands remain!", 3);
         }
 
@@ -333,14 +358,12 @@ namespace OperationHav
             minigame = false;
             currentIsland = previousIsland;
         }
-
         public static void GameOver()
         {
             Text("\n\n", 4);
             Console.BackgroundColor = ConsoleColor.Red;
             Text("GAME OVER", 0, ConsoleColor.Black);
             Text("\n\n\n", 2);
-            Environment.Exit(0);
         }
         public static void InvalidCommand()
         {
