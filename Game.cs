@@ -26,7 +26,7 @@ namespace OperationHav
 
         public void CreateIslands()
         {
-            Main_Island = new("Mæinø", "Mæinø, the centeral island of Økompleks", false);
+            Main_Island = new("Mæinø", "Mæinø, the central island of Økompleks", false);
             Northern_Island = new("Oslø", "Oslø, the northern island", false);
             Eastern_Island = new("Tokyø", "Tokyø, the eastern island", false);
             Western_Island = new("Såndiægø", "Såndiægø, the western island", false);
@@ -71,7 +71,6 @@ namespace OperationHav
 
             while (continuePlaying)
             {
-
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Text("\n   > ", 0);
                 string? input = Console.ReadLine()?.ToLower();
@@ -225,7 +224,7 @@ namespace OperationHav
                             break;
 
                         case "quit":
-                                Text("\nThank you for playing Operation Hav!\n", 0);
+                                Text($"\nThank you for playing Operation Hav!\nWe hope you have learnt something about the SDG 17 regarding 'Life below Water'.\nWe are sorry to see you go already, but therefore we will sum up the most important knowledge for you:\n- 1factblablabla\n- 2factblablablabla\n- 3factblablablass\n- lastfactamigo\n\n", 0, ConsoleColor.DarkMagenta);
                                 Environment.Exit(0);
                             break;
 
@@ -281,8 +280,11 @@ namespace OperationHav
         {
             Text("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", 0); //only for visibility
             Text("Welcome to Operation Hav!\n", 3, ConsoleColor.DarkYellow);
-            Text("The United Nations are urgently hiring you, to save the sea waters surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands.", 3);
+            Text("The United Nations are urgently hiring you, to save life below water surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands.", 3);
             Text("Each islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by man.", 3);
+            Text("\nIt is now up to if you either accept the hiring and take on the challenge to work with the UN to stay on track for the goals regarding sustainable goal 14!",0,ConsoleColor.Blue);
+            Text("\nYou will get help along the way from locals on each island if you call for them. Elsewise it could get tough to complete all challenges that you will meet along the way.",0,ConsoleColor.Blue);
+            Text("\nIf you choose to refuse it would be a huge mess. You are the UN's and locals last hope for a change for the better. Therefore please try to do your best for the people, for the future!",0,ConsoleColor.Blue);
             Text("\nWhat will you do? ", 0, ConsoleColor.Yellow);
             Text("(type accept or refuse)", 0);
         }
@@ -290,6 +292,7 @@ namespace OperationHav
         private void Accepted()
         {   
             Text("\nAmazing!", 1);
+            Console.Clear();
             Text("\nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you. \nUnsure, you head to the airport...", 3);
             Text("\n\n\n... you arrive on the island of Mæinø, which lies in the center of Økompleks.", 3);
             Text("\n.", 3);
