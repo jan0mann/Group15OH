@@ -26,7 +26,7 @@ namespace OperationHav
 
         public void CreateIslands()
         {
-            Main_Island = new("Mæinø", "Mæinø, the centeral island of Økompleks", false);
+            Main_Island = new("Mæinø", "Mæinø, the central island of Økompleks", false);
             Northern_Island = new("Oslø", "Oslø, the northern island", false);
             Eastern_Island = new("Tokyø", "Tokyø, the eastern island", false);
             Western_Island = new("Såndiægø", "Såndiægø, the western island", false);
@@ -71,7 +71,6 @@ namespace OperationHav
 
             while (continuePlaying)
             {
-
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Text("\n   > ", 0);
                 string? input = Console.ReadLine()?.ToLower();
@@ -103,7 +102,7 @@ namespace OperationHav
                             Instructions();
                             break;
 
-                        case "refuse":  //When refusing the offer, the game will end with a message giving the player a learning that he probably should try the game because it is needed SDG wise
+                        case "refuse":  //When refusing the offer, a message will be displayed giving the player a learning that he probably should try the game once more because it is needed SDG wise
                             Refused();
                             break;
 
@@ -132,6 +131,10 @@ namespace OperationHav
                     switch(command.Name)
                     {
                         case "check":
+                            if (playerPoints > 0)
+                                Text($"You so far have saved {playerPoints} out of 4 Islands!\n", 0);
+                            else
+                                Text("You haven't made any progress yet.\n", 0);
                             break;
                         
                         case "harbor":
@@ -195,7 +198,7 @@ namespace OperationHav
                                                 IslandCoral.Story_Minigame(); 
                                             break;
                                         default:
-                                            Text("No problem here!", 1);
+                                            Text("No problem here!\n", 1);
                                             break;
                                 }   
                                 break;
@@ -225,7 +228,11 @@ namespace OperationHav
                             break;
 
                         case "quit":
-                                Text("\nThank you for playing Operation Hav!\n", 0);
+                                Text($"\nThank you for playing Operation Hav!\nWe hope you have learnt something about the SDG 14 regarding 'Life below Water'.\nWe are sorry to see you go already, but therefore we will sum up the most important knowledge for you:\n", 0);
+                                Text("\n- Biodiversity Preservation: Oceans house over 80% of Earth’s species, making them essential for maintaining ecological balance and preventing mass extinctions.\n", 0, ConsoleColor.DarkMagenta);
+                                Text("- Climate Regulation: Oceans act as a carbon sink, absorbing CO₂ and moderating global temperatures, but their capacity depends on healthy ecosystems like coral reefs and seagrass meadows.\n", 0, ConsoleColor.DarkMagenta);
+                                Text("- Food Security: Over 3 billion people rely on seafood as their primary protein source; protecting marine life ensures sustainable fisheries for future generations.\n", 0, ConsoleColor.DarkMagenta);
+                                Text("- Disaster Mitigation: Healthy ecosystems like coral reefs and mangroves buffer coastal areas from storms and rising sea levels, safeguarding communities from devastation.\n\n", 0, ConsoleColor.DarkMagenta);
                                 Environment.Exit(0);
                             break;
 
@@ -241,8 +248,8 @@ namespace OperationHav
             if(beginning_of_game==false) 
             {       
                 Text($"\nYou find yourself on {currentIsland?.ShortDescription}.", 1);
-                Text("\nFor further instructions, type 'help'.", 1);
-                Text("\nTo leave the game, type 'quit'.", 1);
+                Text("\nFor further instructions, type 'help'.", 1, ConsoleColor.DarkGray);
+                Text("\nTo leave the game, type 'quit'.", 1, ConsoleColor.DarkGray);
             }
 
             }
@@ -258,7 +265,7 @@ namespace OperationHav
             {   
                 previousIsland = currentIsland;
                 currentIsland = currentIsland?.Exits[direction];
-                Text($"\nAlright, we take off towards {currentIsland?.Name}!", 3);
+                Text($"\nAlright, we take off towards {currentIsland?.Name}! Lets get you to work!\n", 3);
                 harbor = false;
             }
             else
@@ -279,28 +286,33 @@ namespace OperationHav
         //Text - Methods !!
         private void PrintWelcome()
         {
-            Text("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", 0); //only for visibility
+            Console.Clear();
+            //Text("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", 0); //only for visibility
             Text("Welcome to Operation Hav!\n", 3, ConsoleColor.DarkYellow);
-            Text("The United Nations are urgently hiring you, to save the sea waters surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands.", 3);
-            Text("Each islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by man.", 3);
+            Text("The United Nations are urgently hiring you, to save life below water surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands.", 3);
+            Text("Each islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by man.\n", 3);
+            Text("\nIt is now up to if you either accept the hiring and take on the challenge to work with the UN to stay on track for the goals regarding sustainable goal 14!",0,ConsoleColor.Blue);
+            Text("\nYou will get help along the way from locals on each island if you call for them. Elsewise it could get tough to complete all challenges that you will meet along the way.",0,ConsoleColor.Blue);
+            Text("\nIf you choose to refuse it would be a huge mess. You are the UN's and locals last hope for a change to the better. Therefore please try to do your best for the people, for the future!\n",0,ConsoleColor.Blue);
             Text("\nWhat will you do? ", 0, ConsoleColor.Yellow);
             Text("(type accept or refuse)", 0);
         }
 
         private void Accepted()
         {   
-            Text("\nAmazing!", 1);
+            Text("\nAmazing!", 2);
+            Console.Clear();
             Text("\nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you. \nUnsure, you head to the airport...", 3);
             Text("\n\n\n... you arrive on the island of Mæinø, which lies in the center of Økompleks.", 3);
-            Text("\n.", 3);
+            Text("\n", 3);
             Text("\nIt is here, where you get to choose your next step.", 3);
         }
         
         private void Refused()
         {
             Text("\nYou refused to help and therefore ignored the hiring.", 3);
-            Text("\nYou keep on with your everyday life.", 3);
-            Text("\nA few months later, you see in the news that Økomplex has by now become completely uninhabitable, \nall of its surviving people having to be evacuated...", 0);
+            Text("\nYou visit the Økompleks for a short period of time and aftwerards keep on with your everyday life.", 3);
+            Text("\n\nYears later, the news flashes grim headlines: \nØkomplex, once a vibrant coastal community, was now completely uninhabitable. Rising seas had swallowed the last homes, and saltwater intrusion made the land barren. You watch in silence, remembering the coral reefs and bustling harbors of the Island Kompleks you once had the chance to save. Then, you turned down the offer not expecting much to happen. You were so wrong!! Dismissing efforts to protect life below water resultet in a ghost town — a monument to humanity’s neglect.", 0, ConsoleColor.DarkRed);
             GameOver();
             Environment.Exit(0);
         }
@@ -339,17 +351,25 @@ namespace OperationHav
             Text("\nWhat ", 0);
             Text("direction", 0, ConsoleColor.Yellow);
             Text(" do you want to ride to, Captain?", 2);
-            Text("(type 'back' to leave)", 1); 
+            Text("\n\n 'north' ", 0, ConsoleColor.Yellow);
+            Text("for Oslø,", 0); 
+            Text("'east'" , 0, ConsoleColor.Yellow);
+            Text("for Tokyø,", 0); 
+            Text("'south' ", 0, ConsoleColor.Yellow); 
+            Text("for Sydnø and ", 0); 
+            Text("'west' ", 0, ConsoleColor.Yellow); 
+            Text("for Såndiægø ", 0);
+            Text("(type 'back' to leave)\n", 1); 
         }
 
         public static void MinigameVictory()
         {   
             playerPoints++; // Player earns a point after completing the minigame
             minigame = false;        
-            Text("\nCongratulations!", 1, ConsoleColor.Yellow);
+            Text("\n\nCongratulations!\n", 1, ConsoleColor.Yellow);
             Text($"\nYou have completed the task and saved {currentIsland?.Name}!", 3);
             currentIsland = previousIsland;
-            Text($"\nYou returned to Mæinø. \n{4 - playerPoints} islands remain!", 3);
+            Text($"\nYou returned to Mæinø. \n{4 - playerPoints} islands remain!\n", 3);
         }
 
         public static void AlreadyDone()
