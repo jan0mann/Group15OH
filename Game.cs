@@ -72,9 +72,10 @@ namespace OperationHav
             while (continuePlaying)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Text("\n   > ", 0);
+                Text("\n\n   > ", 0);
                 string? input = Console.ReadLine()?.ToLower();
                 Console.ResetColor();
+                Console.Clear();
 
                 if (string.IsNullOrEmpty(input))
                 {
@@ -111,7 +112,7 @@ namespace OperationHav
                             break;
                     }
                 }
-                if (gameOver == true)
+                else if (gameOver == true)
                 {
                     switch(command.Name)
                     {
@@ -163,10 +164,11 @@ namespace OperationHav
                                 default:
                                     Island.Main_Locals();
                                     break; 
-                                }
+                            }
                             break;
 
                         case "map":
+                            Visual.Map();
                             break;    
 
                         case "start": // starting the minigame
@@ -196,9 +198,6 @@ namespace OperationHav
                                                 AlreadyDone();
                                             else
                                                 IslandCoral.Story_Minigame(); 
-                                            break;
-                                        case Island:
-                                            AlreadyDoneMainø();
                                             break;
                                         default:
                                             Text("No problem here!\n", 1);
@@ -231,12 +230,7 @@ namespace OperationHav
                             break;
 
                         case "quit":
-                                Text($"\nThank you for playing Operation Hav!\nWe hope you have learnt something about the SDG 14 regarding 'Life below Water'.\nWe are sorry to see you go already, but therefore we will sum up the most important knowledge for you:\n", 0);
-                                Text("\n- Biodiversity Preservation: Oceans house over 80% of Earth’s species, making them essential for maintaining ecological balance and preventing mass extinctions.\n", 0, ConsoleColor.DarkMagenta);
-                                Text("- Climate Regulation: Oceans act as a carbon sink, absorbing CO₂ and moderating global temperatures, but their capacity depends on healthy ecosystems like coral reefs and seagrass meadows.\n", 0, ConsoleColor.DarkMagenta);
-                                Text("- Food Security: Over 3 billion people rely on seafood as their primary protein source; protecting marine life ensures sustainable fisheries for future generations.\n", 0, ConsoleColor.DarkMagenta);
-                                Text("- Disaster Mitigation: Healthy ecosystems like coral reefs and mangroves buffer coastal areas from storms and rising sea levels, safeguarding communities from devastation.\n\n", 0, ConsoleColor.DarkMagenta);
-                                Environment.Exit(0);
+                                Quitted();
                             break;
 
                         case "help": //printing the print help (direction info)
@@ -290,7 +284,6 @@ namespace OperationHav
         private void PrintWelcome()
         {
             Console.Clear();
-            //Text("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", 0); //only for visibility
             Text("Welcome to Operation Hav!\n", 3, ConsoleColor.DarkYellow);
             Text("The United Nations are urgently hiring you, to save life below water surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands.", 3);
             Text("Each islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by man.\n", 3);
@@ -307,15 +300,23 @@ namespace OperationHav
             Console.Clear();
             Text("\nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you. \nUnsure, you head to the airport...", 3);
             Text("\n\n\n... you arrive on the island of Mæinø, which lies in the center of Økompleks.", 3);
-            Text("\n", 3);
             Text("\nIt is here, where you get to choose your next step.", 3);
+            Console.Clear();
         }
         
         private void Refused()
         {
             Text("\nYou refused to help and therefore ignored the hiring.", 3);
-            Text("\nYou visit the Økompleks for a short period of time and aftwerards keep on with your everyday life.", 3);
-            Text("\n\nYears later, the news flashes grim headlines: \nØkomplex, once a vibrant coastal community, was now completely uninhabitable. Rising seas had swallowed the last homes, and saltwater intrusion made the land barren. You watch in silence, remembering the coral reefs and bustling harbors of the Island Kompleks you once had the chance to save. Then, you turned down the offer not expecting much to happen. You were so wrong!! Dismissing efforts to protect life below water resultet in a ghost town — a monument to humanity’s neglect.", 0, ConsoleColor.DarkRed);
+            Text("\nYou keep on with your everyday life.", 3);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Text("\n\nYears later, the news flashes grim headlines:", 2);
+            Text("\nØkomplex, once a vibrant coastal community, was now completely uninhabitable. ", 2);
+            Text("\nRising seas had swallowed the last homes, and saltwater intrusion made the land barren. ", 2);
+            Text("\nYou watch in silence, remembering the coral reefs and bustling harbors of the Island Kompleks you once had the chance to save. ", 2);
+            Text("\nThen, you turned down the offer not expecting much to happen. You were so wrong!! ", 2);
+            Text("\nDismissing efforts to protect life below water resultet in a ghost town — ", 2);
+            Text("\nA monument to humanity’s neglect.", 2);
+            Console.ResetColor();
             GameOver();
             Environment.Exit(0);
         }
@@ -323,7 +324,7 @@ namespace OperationHav
 
         private static void Instructions()
         {
-            Text("\n\nWhat are you doing?\n", 1, ConsoleColor.DarkYellow);
+            Text("What are you doing?\n", 1, ConsoleColor.DarkYellow);
 
             Text("Check", 0, ConsoleColor.Yellow);
             Text(" the current local situation. By doing that, you'll find out your progress and performance.\n", 1); 
@@ -354,7 +355,7 @@ namespace OperationHav
             Text("\nWhat ", 0);
             Text("direction", 0, ConsoleColor.Yellow);
             Text(" do you want to ride to, Captain?", 2);
-            Text("\n\n 'north' ", 0, ConsoleColor.Yellow);
+            Text("\n\n'north' ", 0, ConsoleColor.Yellow);
             Text("for Oslø,", 0); 
             Text("'east'" , 0, ConsoleColor.Yellow);
             Text("for Tokyø,", 0); 
@@ -382,11 +383,20 @@ namespace OperationHav
             currentIsland = previousIsland;
         }
 
-        public static void AlreadyDoneMainø()
+        public static void Quitted()
         {
-            Text("On Mainø there are no problems to tackle! But for sure other islands have problems ahead for you.\n", 0);
-            minigame = false;
+            Console.Clear();
+            Text("\nThank you for playing Operation Hav!",3);
+            Text("\nWe hope you have learnt something about the SDG 14 regarding 'Life below Water'.", 3);
+            Text("\nWe are sorry to see you go already, but therefore we will sum up the most important knowledge for you:\n", 3);
+            Text("\n- Biodiversity Preservation: Oceans house over 80% of Earth’s species, making them essential for maintaining ecological balance and preventing mass extinctions.\n", 3, ConsoleColor.DarkMagenta);
+            Text("- Climate Regulation: Oceans act as a carbon sink, absorbing CO₂ and moderating global temperatures, but their capacity depends on healthy ecosystems like coral reefs and seagrass meadows.\n", 3, ConsoleColor.DarkMagenta);
+            Text("- Food Security: Over 3 billion people rely on seafood as their primary protein source; protecting marine life ensures sustainable fisheries for future generations.\n", 3, ConsoleColor.DarkMagenta);
+            Text("- Disaster Mitigation: Healthy ecosystems like coral reefs and mangroves buffer coastal areas from storms and rising sea levels, safeguarding communities from devastation.\n\n", 3, ConsoleColor.DarkMagenta);
+            Console.Clear();
+            Environment.Exit(0);
         }
+
         public static void GameOver()
         {
             Text("\n\n", 4);
