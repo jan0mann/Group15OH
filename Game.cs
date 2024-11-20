@@ -197,6 +197,9 @@ namespace OperationHav
                                             else
                                                 IslandCoral.Story_Minigame(); 
                                             break;
+                                        case Island:
+                                            AlreadyDoneMainø();
+                                            break;
                                         default:
                                             Text("No problem here!\n", 1);
                                             break;
@@ -377,6 +380,12 @@ namespace OperationHav
             Text("\nYou have already completed the minigame, and therefore returned to Mæinø. \nThere are more islands to save out there!", 0);
             minigame = false;
             currentIsland = previousIsland;
+        }
+
+        public static void AlreadyDoneMainø()
+        {
+            Text("On Mainø there are no problems to tackle! But for sure other islands have problems ahead for you.\n", 0);
+            minigame = false;
         }
         public static void GameOver()
         {
