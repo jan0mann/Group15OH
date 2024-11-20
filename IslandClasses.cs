@@ -142,6 +142,7 @@ namespace OperationHav
                 Game.Text("\n...", 2);
                 Game.Text("\nYou've put too much waste in the wrong containers...", 0);
                 Game.GameOver();
+                Console.Clear();
                 Game.Text("Do you want to retry? (y/n)\n", 1);
                 string? yN = Console.ReadLine()?.ToLower();
                 switch(yN)
@@ -150,6 +151,7 @@ namespace OperationHav
                         Story_Minigame();
                         break;
                     case "n":
+                        Console.Clear();
                         Environment.Exit(0);
                         break;
                     default:
