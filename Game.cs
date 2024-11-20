@@ -199,6 +199,9 @@ namespace OperationHav
                                             else
                                                 IslandCoral.Story_Minigame(); 
                                             break;
+                                        case Island:
+                                            AlreadyDoneMaino();
+                                            break;
                                         default:
                                             Text("No problem here!\n", 1);
                                             break;
@@ -383,6 +386,11 @@ namespace OperationHav
             currentIsland = previousIsland;
         }
 
+        public static void AlreadyDoneMaino()
+        {
+            Text("On Mainø there are no problems to tackle! But for sure other islands have problems ahead for you.\n", 1);
+            minigame = false;
+        }
         public static void Quitted()
         {
             Console.Clear();
