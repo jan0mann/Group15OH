@@ -9,9 +9,9 @@ namespace OperationHav
     public class Island // ==> this is the headclass for every island; every class of each island inherits from this class
     {
         public string ShortDescription { get; set; }
-        public string LongDescription { get; set;}
-        public string Name { get; set;}
-        public static bool MinigameWon { get; set;}
+        public string LongDescription { get; set; }
+        public string Name { get; set; }
+        public static bool MinigameWon { get; set; }
 
         public Dictionary<string, Island> Exits { get; set; } = new();
 
@@ -22,7 +22,7 @@ namespace OperationHav
             MinigameWon = minigameWon;
         }
 
-         public static void Main_Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
+        public static void Main_Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
             Game.Text("\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found.", 4);
         }
@@ -52,8 +52,8 @@ namespace OperationHav
 
 
     //Bartek and Noah, please use this class for your island/minigame
-    public class IslandIndustrial : Island 
-    {   
+    public class IslandIndustrial : Island
+    {
         public IslandIndustrial(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
             Name = name;
@@ -68,7 +68,7 @@ namespace OperationHav
             Game.Text("\nOslø has been suffering for decades now from extreme industrial waste, \nbecause it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War.", 3, ConsoleColor.DarkGreen);
             Game.Text("\nEver since the latter fell, however, no one came to clean, or even dismantle all those facilities, \nleaving our island and its surrounding waters a gigantic junkyard ...", 3, ConsoleColor.DarkGreen);
         }
-    
+
 
         //You might wanne use this method here for the minigame itself
         public static void Story_Minigame()
@@ -81,10 +81,10 @@ namespace OperationHav
             Game.Text("\nYou put on the suit and you two walk straight into the old rusty facility...", 2);
             Game.Text("\nAll of a sudden, the building starts to shake!", 2);
             Game.Text("\nThe referant, who is still standing outside, shouts:", 2);
-            Game.Text("\nDon't panik! I'll get you help! But you need to put the waste in the correct container in there!", 3, ConsoleColor.DarkGreen);
+            Game.Text("\nDon't panic! I'll get you help! But you need to put the waste in the correct container in there!", 3, ConsoleColor.DarkGreen);
             Game.Text("\nRemember: \nYellow belongs to 'plastic'! \nGrey to 'metal'! \nGreen to 'atomic'! \nBlue to 'rubber'! \nAnd magenta to 'hardware'! \n\nGood luck!", 5, ConsoleColor.DarkGreen);
             Game.Text("\n You look around...", 2);
-            Game.Text("\nSort the waste? Now??", 2 , ConsoleColor.Cyan);
+            Game.Text("\nSort the waste? Now??", 2, ConsoleColor.Cyan);
 
 
 
@@ -101,7 +101,7 @@ namespace OperationHav
 
 
                 Game.Text("\nYou have picked up some ", 0);
-                switch(pickedWaste)
+                switch (pickedWaste)
                 {
                     case "plastic":
                         Game.Text("waste", 0, ConsoleColor.DarkYellow);
@@ -122,21 +122,21 @@ namespace OperationHav
                 Game.Text(". Which container does it belong to? (type the word):\n", 0);
 
                 string? container = Console.ReadLine()?.ToLower();
-                
+
                 if (container == pickedWaste)
                 {
                     Game.Text("\nCorrect! \nYou have placed the waste in the right container.", 2);
                     minigamePoints++;
                 }
-                else if(container != pickedWaste)
+                else if (container != pickedWaste)
                 {
                     Game.Text("\nNo! \nThats the wrong container!", 2);
                 }
                 else
                     Game.InvalidCommand();
-                
+
             }
-                
+
             if (minigamePoints < 7)
             {
                 Game.Text("\n...", 2);
@@ -144,7 +144,7 @@ namespace OperationHav
                 Game.GameOver();
                 Game.Text("Do you want to retry? (y/n)\n", 1);
                 string? yN = Console.ReadLine()?.ToLower();
-                switch(yN)
+                switch (yN)
                 {
                     case "y":
                         Story_Minigame();
@@ -156,7 +156,7 @@ namespace OperationHav
                         Game.InvalidCommand();
                         break;
                 }
-                
+
             }
             else
             {
@@ -169,9 +169,9 @@ namespace OperationHav
 
 
 
-        //Marcel and Jan, please use this class for your island/minigame
-       public class IslandOil : Island 
-    {   
+    //Marcel and Jan, please use this class for your island/minigame
+    public class IslandOil : Island
+    {
         public IslandOil(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
             Name = name;
@@ -192,9 +192,9 @@ namespace OperationHav
 
 
 
-        //serafeim and Darius, please use this class for your island/minigame
-       public class IslandPlastic : Island 
-    {   
+    //serafeim and Darius, please use this class for your island/minigame
+    public class IslandPlastic : Island
+    {
         public IslandPlastic(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
             Name = name;
@@ -205,20 +205,34 @@ namespace OperationHav
         public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
             Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…", 3);
+            Game.Text("\nIn the recent history of this insular republic, two parties have been fighting for the balance of power:", 3);
+            Game.Text("The corporations ", 1, ConsoleColor.Red); Game.Text("and the ", 1); Game.Text("environmentalists.", 1, ConsoleColor.Green);
+            Game.Text("\nCorporations' goals are to make money, the health of the ecosystem is not in their agenda.", 3);
+            Game.Text("\nTheir view on the environmentalists is, that they are a group of fearmongerers that are overreacting on the small damage done and that the ecosystem will eventually fix itself.", 5);
+            Game.Text("\nThe environmentalists strive to mitigate the damage done to the ecosystem and plan to reverse some of its negative consequences.", 4);
+            Game.Text("\nThose people hate the corporations will all their heart. They think they are blinded by their greediness and that their goals are futile, since no one takes their wealth to their grave.", 5);
+
         }
 
         //You might wanne use this method here for the minigame itself
         public static void Story_Minigame()
         {
+            Game.Text("\nIn this minigame you are called to make decisions for the future of the island.", 3);
+            Game.Text("\nWith your succeess over the improvement of the situation on the other islands, you have gained the trust of the locals.", 4);
+            Game.Text("\nThe citizens will follow your guidance and example.", 3);
+            Game.Text("\nEach of the two parties exerts influence on the island and its people.", 3);
+            Game.Text("\nWith your choices, you change the balance of power by taking actions that support each party.", 3);
+            Game.Text("\nThe party that has the most support of the population, damages the other party's reputation, thus decreasing its influence.", 4);
+            Game.Text("\nWho will you support?", 3, ConsoleColor.Blue);
 
         }
     }
 
 
 
-     //On this island/minigame, we all work together (Darius can create the maze for this game now, of course)
-       public class IslandCoral : Island 
-    {   
+    //On this island/minigame, we all work together (Darius can create the maze for this game now, of course)
+    public class IslandCoral : Island
+    {
         public IslandCoral(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
             Name = name;
