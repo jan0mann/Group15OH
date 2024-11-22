@@ -115,79 +115,78 @@ namespace OperationHav
                 {
                     case "plastic":
                         Game.Text("waste", 0, ConsoleColor.DarkYellow);
-                        if (wasteCount[pickedWaste] == 1) // game chceks how many times plastic was picked
-                        {
-                            Game.Text("\nHere will be some facts", 0); // adding facts after we picked plastic once
-                        }
-
-                        if (wasteCount[pickedWaste] == 2) // same thing, second fact
-                        {
-                            Game.Text("Here will be some facts", 0);
-                        }
-
                         break;
-
                     case "metal":
                         Game.Text("waste", 0, ConsoleColor.DarkGray);
-                        if (wasteCount[pickedWaste] == 1) // same as above, I implemented it for every waste type
-                        {
-                            Game.Text("\nHere will be some facts", 0);
-                        }
-
-                        if (wasteCount[pickedWaste] == 2)
-                        {
-                            Game.Text("Here will be some facts", 0);
-                        }
-
                         break;
                     case "atomic":
                         Game.Text("waste", 0, ConsoleColor.Green);
-                        if (wasteCount[pickedWaste] == 1)
-                        {
-                            Game.Text("\nHere will be some facts", 0);
-                        }
-
-                        if (wasteCount[pickedWaste] == 2)
-                        {
-                            Game.Text("Here will be some facts", 0);
-                        }
-
                         break;
                     case "rubber":
                         Game.Text("waste", 0, ConsoleColor.DarkBlue);
-                        if (wasteCount[pickedWaste] == 1)
-                        {
-                            Game.Text("\nHere will be some facts", 0);
-                        }
-
-                        if (wasteCount[pickedWaste] == 2)
-                        {
-                            Game.Text("Here will be some facts", 0);
-                        }
-
                         break;
                     case "hardware":
                         Game.Text("waste", 0, ConsoleColor.DarkMagenta);
-                        if (wasteCount[pickedWaste] == 1)
-                        {
-                            Game.Text("\nHere will be some facts", 0);
-                        }
-
-                        if (wasteCount[pickedWaste] == 2)
-                        {
-                            Game.Text("Here will be some facts", 0);
-                        }
-
                         break;
                 }
-                Game.Text(".\n Which container does it belong to? (type the word):\n", 0);
+                Game.Text(". Which container does it belong to? (type the word):\n", 0);
 
                 string? container = Console.ReadLine()?.ToLower();
 
                 if (container == pickedWaste)
                 {
-                    Game.Text("\nCorrect! \nYou have placed the waste in the right container.\n", 2);
+                    Game.Text("\nCorrect! \nYou have placed the waste in the right container.", 2);
                     minigamePoints++;
+
+                    if (pickedWaste == "plastic" && wasteCount[pickedWaste] == 1) // adding the text after correctly typed waste
+                    {
+                        Game.Text("\n It is very important to clean up this plastic. 100,000 marine animals die from plastic pollution every year,\n so by picking this up we contribute to reducing these numbers. ", 2, ConsoleColor.DarkYellow);
+                    }
+
+                    if (pickedWaste == "plastic" && wasteCount[pickedWaste] == 2)
+                    {
+                        Game.Text("\n We need to remember that 1 in 3 fish caught for human consumption contains plastic.\n This may lead to very serious health issues so we need to make sure all of this is cleaned.  ", 2, ConsoleColor.DarkYellow);
+                    }
+
+                    if (pickedWaste == "metal" && wasteCount[pickedWaste] == 1)
+                    {
+                        Game.Text("\n Good job picking up this copper. Its very toxic to marine organisms.", 2, ConsoleColor.DarkGray);
+                    }
+
+                    if (pickedWaste == "metal" && wasteCount[pickedWaste] == 2)
+                    {
+                        Game.Text("\n You removed all the lead from the water!.\n It is highly toxic to marine life and affects the reproduction, you did very good job finding and removing it.", 2, ConsoleColor.DarkGray);
+                    }
+
+                    if (pickedWaste == "atomic" && wasteCount[pickedWaste] == 1)
+                    {
+                        Game.Text("\nsome text", 2, ConsoleColor.Green);
+                    }
+
+                    if (pickedWaste == "atomic" && wasteCount[pickedWaste] == 2)
+                    {
+                        Game.Text("\nsome text", 2, ConsoleColor.Green);
+                    }
+
+                    if (pickedWaste == "rubber" && wasteCount[pickedWaste] == 1)
+                    {
+                        Game.Text("\nsome text", 2, ConsoleColor.DarkBlue);
+                    }
+
+                    if (pickedWaste == "rubber" && wasteCount[pickedWaste] == 2)
+                    {
+                        Game.Text("\nsome text", 2, ConsoleColor.DarkBlue);
+                    }
+
+                    if (pickedWaste == "hardware" && wasteCount[pickedWaste] == 1)
+                    {
+                        Game.Text("\nsome text", 2, ConsoleColor.DarkMagenta);
+                    }
+
+                    if (pickedWaste == "hardware" && wasteCount[pickedWaste] == 2)
+                    {
+                        Game.Text("\nsome text", 2, ConsoleColor.DarkMagenta);
+                    }
                 }
                 else
                 {
