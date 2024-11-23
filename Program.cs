@@ -80,7 +80,7 @@ namespace OperationHav
 {
     public class Program
     {
-        public static void SetConsoleBufferSize()
+       /* public static void SetConsoleBufferSize()
         {
             try
             {
@@ -100,12 +100,12 @@ namespace OperationHav
                 Console.WriteLine($"Details: {ex.Message}");
                 Environment.Exit(1); // Exit the program if configuration fails
             }
-        }
+        }*/
         
         public static void Main()
         {
             
-            SetConsoleBufferSize();
+            
             Game game = new();
             game.Play();
         }

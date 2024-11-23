@@ -387,7 +387,7 @@ namespace OperationHav
             // Game ends when the score reaches maxScore
             Console.SetCursorPosition(0, areaTop + areaHeight + 2);
             Console.WriteLine("Congratulations! You've collected all the items!");
-            Program.SetConsoleBufferSize();
+            
         }
 
     }
