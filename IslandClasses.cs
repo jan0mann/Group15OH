@@ -172,7 +172,7 @@ namespace OperationHav
 
 
         //Marcel and Jan, please use this class for your island/minigame
-       public class IslandOil : Island 
+     public class IslandOil : Island 
     {   
         public IslandOil(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
@@ -186,6 +186,30 @@ namespace OperationHav
         }
 
         //You might wanne use this method here for the minigame itself
+        // Define the dimensions and position of the display area
+        private static int areaTop = 5;
+        private static int areaHeight = 10;
+        private static int areaWidth = 40;
+
+        private static List<string> displayArea = new List<string>();
+
+        // Position of the character
+        private static int charX = 0;
+        private static int charY = 0;
+
+        // Random generator
+        private static Random random = new Random();
+
+        // Special characters and their positions
+        private static Dictionary<(int x, int y), char> specialCharacters = new Dictionary<(int x, int y), char>();
+
+        // Score counter
+        private static int score = 0;
+        private const int maxScore = 20;
+
+        // Movement delay
+        private const int movementDelay = 10; // Milliseconds
+
         public static void Story_Minigame()
         {   Game.minigame = true;
             Console.Clear();
