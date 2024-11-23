@@ -358,8 +358,9 @@ namespace OperationHav
                 }
                 Thread.Sleep(movementDelay); // Limit the movement speed
             }
+
             MinigameWon = true;
-            Game.minigame = false;
+            Game.MinigameVictory();
             // Game ends when the score reaches maxScore
             Console.SetCursorPosition(0, areaTop + areaHeight + 2);
             Console.WriteLine("Congratulations! You've collected all the items!");
