@@ -209,7 +209,7 @@ namespace OperationHav
             Game.Text("\nYou greet each other and he tells you that he was a teacher on this island, before it was made a plastic wasteland. He comes here when he needs some time alone to think.", 6);
             Game.Text("\nYou ask him if there is anything to be done for the island to gain its former glory. He gives you some insight:", 1);
             Game.Text("\nIn the recent history of this insular republic, two parties have been fighting for the balance of power:", 3);
-            Game.Text("\nThe corporations ", 1, ConsoleColor.Red);
+            Game.Text("\nThe corporations ", 1, ConsoleColor.Yellow);
             Game.Text("and the ", 1);
             Game.Text("environmentalists.", 1, ConsoleColor.Green);
             Game.Text("\nCorporations' goals are to make money, the health of the ecosystem is not in their agenda.", 3);
@@ -228,9 +228,65 @@ namespace OperationHav
             Game.Text("\nThe citizens will follow your guidance and example.", 3);
             Game.Text("\nEach of the two parties exerts influence on the island and its people.", 3);
             Game.Text("\nWith your choices, you change the balance of power by taking actions that support each party.", 3);
-            Game.Text("\nThe party that has the most support of the population, damages the other party's reputation, thus decreasing its influence.", 4);
+            Game.Text("\nThe side that has the most support of the population, will decide the republics policies.", 4);
             Game.Text("\nWho will you support?", 3, ConsoleColor.Blue);
 
+            Corporations corporations = new("Industrial Assosiation", 0);
+            Environmentalists environmentalists = new("Green Syndicate", 0);
+            for (int i = 0; 1 < 5; i++)
+            {
+                if (i == 0)
+                {
+                    Game.Text("\nYou have been invited for an interview at the biggest broadcasting channel on the island", 3);
+                    Game.Text("\nAt some point the interviewer asks you about your opinion on plastic", 3);
+                    Game.Text("\nYou can either ", 1);
+                    Game.Text("\nadmit ", 0, ConsoleColor.Yellow);
+                    Game.Text("\nthat plastic does not pose that much of a threat or ", 0);
+                    Game.Text("\nadvise ", 0);
+                    Game.Text("\nit's use with caution.", 3, ConsoleColor.Green);
+                    string answer = Console.ReadLine();
+
+                    if (answer == "admit")
+                    {
+                        corporations.Influence = 1;
+                    }
+                    else if (answer == "advise")
+                    {
+                        environmentalists.Influence = 1;
+                    }
+                    else
+                    {
+                        Game.InvalidCommand();
+                    }
+
+                }
+
+                if (i == 1)
+                {
+
+                }
+
+                if (i == 2)
+                {
+
+                }
+
+                if (i == 3)
+                {
+
+                }
+
+                if (i == 4)
+                {
+
+                }
+
+            }
+
+            if (corporations.Influence > environmentalists.Influence)
+            {
+
+            }
 
 
         }
