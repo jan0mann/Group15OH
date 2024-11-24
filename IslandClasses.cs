@@ -9,9 +9,9 @@ namespace OperationHav
     public class Island // ==> this is the headclass for every island; every class of each island inherits from this class
     {
         public string ShortDescription { get; set; }
-        public string LongDescription { get; set;}
-        public string Name { get; set;}
-        public static bool MinigameWon { get; set;}
+        public string LongDescription { get; set; }
+        public string Name { get; set; }
+        public static bool MinigameWon { get; set; }
 
         public Dictionary<string, Island> Exits { get; set; } = new();
 
@@ -22,7 +22,7 @@ namespace OperationHav
             MinigameWon = minigameWon;
         }
 
-         public static void Main_Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
+        public static void Main_Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
             Game.Text("\nOnce a beautiful paradise, now it is on the brink of becoming a wasteland. \nThere is a harbor nearby, as well as the markedplace, where the locals and their knowledge can be found.", 4);
         }
@@ -52,8 +52,8 @@ namespace OperationHav
 
 
     //Bartek and Noah, please use this class for your island/minigame
-    public class IslandIndustrial : Island 
-    {   
+    public class IslandIndustrial : Island
+    {
         public IslandIndustrial(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
             Name = name;
@@ -68,7 +68,7 @@ namespace OperationHav
             Game.Text("\nOslø has been suffering for decades now from extreme industrial waste, \nbecause it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War.", 3, ConsoleColor.DarkGreen);
             Game.Text("\nEver since the latter fell, however, no one came to clean, or even dismantle all those facilities, \nleaving our island and its surrounding waters a gigantic junkyard ...", 3, ConsoleColor.DarkGreen);
         }
-    
+
 
         //You might wanne use this method here for the minigame itself
         public static void Story_Minigame()
@@ -84,24 +84,34 @@ namespace OperationHav
             Game.Text("\nDon't panik! I'll get you help! But you need to put the waste in the correct container in there!", 3, ConsoleColor.DarkGreen);
             Game.Text("\nRemember: \nYellow belongs to 'plastic'! \nGrey to 'metal'! \nGreen to 'atomic'! \nBlue to 'rubber'! \nAnd magenta to 'hardware'! \n\nGood luck!", 5, ConsoleColor.DarkGreen);
             Game.Text("\n You look around...", 2);
-            Game.Text("\nSort the waste? Now??", 2 , ConsoleColor.Cyan);
+            Game.Text("\nSort the waste? Now??", 2, ConsoleColor.Cyan);
 
 
 
 
             //GAME START
             int minigamePoints = 0;
-
             Random random = new();
+            Dictionary<string, int> wasteCount = new() // implementing the dictionary to see how many times each waste type was selected
+{
+    { "plastic", 0 },
+    { "metal", 0 },
+    { "atomic", 0 },
+    { "rubber", 0 },
+    { "hardware", 0 }
+};
 
             for (int i = 0; i < 10; i++)
             {
-                string[] wasteTypes = ["plastic", "metal", "atomic", "rubber", "hardware"];
-                string pickedWaste = wasteTypes[random.Next(wasteTypes.Length)];
+                // Filter out waste types that have been selected twice
+                var availableWasteTypes = wasteCount.Where(w => w.Value < 2).Select(w => w.Key).ToArray(); // for now this removes waste from pool after it was generated twice but i dont know how it exactly works( used AI)
 
+
+                string pickedWaste = availableWasteTypes[random.Next(availableWasteTypes.Length)];
+                wasteCount[pickedWaste]++; // counting the waste
 
                 Game.Text("\nYou have picked up some ", 0);
-                switch(pickedWaste)
+                switch (pickedWaste)
                 {
                     case "plastic":
                         Game.Text("waste", 0, ConsoleColor.DarkYellow);
@@ -122,21 +132,68 @@ namespace OperationHav
                 Game.Text(". Which container does it belong to? (type the word):\n", 0);
 
                 string? container = Console.ReadLine()?.ToLower();
-                
+
                 if (container == pickedWaste)
                 {
                     Game.Text("\nCorrect! \nYou have placed the waste in the right container.", 2);
                     minigamePoints++;
-                }
-                else if(container != pickedWaste)
-                {
-                    Game.Text("\nNo! \nThats the wrong container!", 2);
+
+                    if (pickedWaste == "plastic" && wasteCount[pickedWaste] == 1) // adding the text after correctly typed waste
+                    {
+                        Game.Text("\n It is very important to clean up this plastic. 100,000 marine animals die from plastic pollution every year,\n so by picking this up we contribute to reducing these numbers. ", 2, ConsoleColor.DarkYellow);
+                    }
+
+                    if (pickedWaste == "plastic" && wasteCount[pickedWaste] == 2)
+                    {
+                        Game.Text("\n We need to remember that 1 in 3 fish caught for human consumption contains plastic.\n This may lead to very serious health issues so we need to make sure all of this is cleaned.  ", 2, ConsoleColor.DarkYellow);
+                    }
+
+                    if (pickedWaste == "metal" && wasteCount[pickedWaste] == 1)
+                    {
+                        Game.Text("\n Good job picking up this copper. Its very toxic to marine organisms.", 2, ConsoleColor.DarkGray);
+                    }
+
+                    if (pickedWaste == "metal" && wasteCount[pickedWaste] == 2)
+                    {
+                        Game.Text("\n You removed all the lead from the water!.\n It is highly toxic to marine life and affects the reproduction, you did very good job finding and removing it.", 2, ConsoleColor.DarkGray);
+                    }
+
+                    if (pickedWaste == "atomic" && wasteCount[pickedWaste] == 1)
+                    {
+                        Game.Text("\nsome text", 2, ConsoleColor.Green);
+                    }
+
+                    if (pickedWaste == "atomic" && wasteCount[pickedWaste] == 2)
+                    {
+                        Game.Text("\nsome text", 2, ConsoleColor.Green);
+                    }
+
+                    if (pickedWaste == "rubber" && wasteCount[pickedWaste] == 1)
+                    {
+                        Game.Text("\nsome text", 2, ConsoleColor.DarkBlue);
+                    }
+
+                    if (pickedWaste == "rubber" && wasteCount[pickedWaste] == 2)
+                    {
+                        Game.Text("\nsome text", 2, ConsoleColor.DarkBlue);
+                    }
+
+                    if (pickedWaste == "hardware" && wasteCount[pickedWaste] == 1)
+                    {
+                        Game.Text("\nsome text", 2, ConsoleColor.DarkMagenta);
+                    }
+
+                    if (pickedWaste == "hardware" && wasteCount[pickedWaste] == 2)
+                    {
+                        Game.Text("\nsome text", 2, ConsoleColor.DarkMagenta);
+                    }
                 }
                 else
-                    Game.InvalidCommand();
-                
+                {
+                    Game.Text("\nNo! \nThat's the wrong container!", 2);
+                }
             }
-                
+
             if (minigamePoints < 7)
             {
                 Game.Text("\n...", 2);
@@ -145,7 +202,7 @@ namespace OperationHav
                 Console.Clear();
                 Game.Text("Do you want to retry? (y/n)\n", 1);
                 string? yN = Console.ReadLine()?.ToLower();
-                switch(yN)
+                switch (yN)
                 {
                     case "y":
                         Story_Minigame();
@@ -158,16 +215,15 @@ namespace OperationHav
                         Game.InvalidCommand();
                         break;
                 }
-                
             }
             else
             {
                 Game.MinigameVictory();
                 MinigameWon = true;
             }
-
         }
     }
+
 
 
 
@@ -395,9 +451,9 @@ namespace OperationHav
 
 
 
-        //serafeim and Darius, please use this class for your island/minigame
-       public class IslandPlastic : Island 
-    {   
+    //serafeim and Darius, please use this class for your island/minigame
+    public class IslandPlastic : Island
+    {
         public IslandPlastic(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
             Name = name;
@@ -419,9 +475,9 @@ namespace OperationHav
 
 
 
-     //On this island/minigame, we all work together (Darius can create the maze for this game now, of course)
-       public class IslandCoral : Island 
-    {   
+    //On this island/minigame, we all work together (Darius can create the maze for this game now, of course)
+    public class IslandCoral : Island
+    {
         public IslandCoral(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
             Name = name;
