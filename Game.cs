@@ -26,11 +26,11 @@ namespace OperationHav
 
         public void CreateIslands()
         {
-            Main_Island = new("Mæinø", "Mæinø, the central island of Økompleks", false);
-            Northern_Island = new("Oslø", "Oslø, the northern island", false);
-            Eastern_Island = new("Tokyø", "Tokyø, the eastern island", false);
-            Western_Island = new("Såndiægø", "Såndiægø, the western island", false);
-            Southern_Island = new("Sydnø", "Sydnø, the southern island", false);
+            Main_Island = new("Mæinø", "Mæinø, the central island of Økompleks");
+            Northern_Island = new("Oslø", "Oslø, the northern island");
+            Eastern_Island = new("Tokyø", "Tokyø, the eastern island");
+            Western_Island = new("Såndiægø", "Såndiægø, the western island");
+            Southern_Island = new("Sydnø", "Sydnø, the southern island");
 
             Main_Island.SetExits(Northern_Island, Eastern_Island, Southern_Island, Western_Island); // North, East, South, West
 
@@ -176,34 +176,31 @@ namespace OperationHav
                                 switch(currentIsland) 
                                 {
                                         case IslandIndustrial:  // making the minigame start only in IslandIndustrial
-                                            if(IslandIndustrial.MinigameWon)
+                                            if(IslandIndustrial.MinigameWon == true)
                                                 AlreadyDone();
                                             else
                                                 IslandIndustrial.Story_Minigame(); // here the minigame in industrial starts
                                             break;
                                         case IslandOil:
-                                            if(IslandOil.MinigameWon)
+                                            if(IslandOil.MinigameWon == true)
                                                 AlreadyDone();
                                             else
                                                IslandOil.Story_Minigame(); 
                                             break;
                                         case IslandPlastic:
-                                            if(IslandPlastic.MinigameWon)
+                                            if(IslandPlastic.MinigameWon == true)
                                                 AlreadyDone();
                                             else
                                                 IslandPlastic.Story_Minigame(); 
                                             break;
                                         case IslandCoral:
-                                            if(IslandCoral.MinigameWon)
+                                            if(IslandCoral.MinigameWon == true)
                                                 AlreadyDone();
                                             else
                                                 IslandCoral.Story_Minigame(); 
                                             break;
-                                        case Island:
-                                            AlreadyDoneMaino();
-                                            break;
                                         default:
-                                            Text("No problem here!\n", 1);
+                                            NoProblemHere();
                                             break;
                                 }   
                                 break;
@@ -386,9 +383,9 @@ namespace OperationHav
             currentIsland = previousIsland;
         }
 
-        public static void AlreadyDoneMaino()
+        public static void NoProblemHere()
         {
-            Text("On Mainø there are no problems to tackle! But for sure other islands have problems ahead for you.\n", 1);
+            Text("There are no problems here to tackle! But for sure other islands have problems ahead for you.\n", 1);
             minigame = false;
         }
         public static void Quitted()
@@ -401,7 +398,6 @@ namespace OperationHav
             Text("- Climate Regulation: Oceans act as a carbon sink, absorbing CO₂ and moderating global temperatures, but their capacity depends on healthy ecosystems like coral reefs and seagrass meadows.\n", 3, ConsoleColor.DarkMagenta);
             Text("- Food Security: Over 3 billion people rely on seafood as their primary protein source; protecting marine life ensures sustainable fisheries for future generations.\n", 3, ConsoleColor.DarkMagenta);
             Text("- Disaster Mitigation: Healthy ecosystems like coral reefs and mangroves buffer coastal areas from storms and rising sea levels, safeguarding communities from devastation.\n\n", 3, ConsoleColor.DarkMagenta);
-            Console.Clear();
             Environment.Exit(0);
         }
 
@@ -421,13 +417,13 @@ namespace OperationHav
         {
             Console.ForegroundColor = color;
             Console.Write(text);
-            Thread.Sleep(readtime*1000);
+            Thread.Sleep(readtime*000);
             Console.ResetColor();
         }
         public static void Text(string text, int readtime)
         {
             Console.Write(text);
-            Thread.Sleep(readtime*1000);
+            Thread.Sleep(readtime*000);
         }
     }
 }

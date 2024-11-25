@@ -14,7 +14,7 @@ namespace OperationHav
 
         public static void NPC1()
         {
-            Console.WriteLine("         --------");
+            Console.WriteLine("\n         --------");
             Console.WriteLine("        !        !");
             Console.WriteLine("       |----------|");
             Console.WriteLine("   |---|          |---|");
@@ -42,7 +42,7 @@ namespace OperationHav
             Console.WriteLine("     (-----/ (----/");
             Console.WriteLine("      -   |   |  --");
             Console.WriteLine("     --(- |   | -/--");
-            Console.WriteLine("    /------   ------(");
+            Game.Text("    /------   ------(", 4);
         }
       
     } 
