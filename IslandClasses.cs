@@ -227,9 +227,9 @@ namespace OperationHav
 
 
 
-        //Marcel and Jan, please use this class for your island/minigame
-     public class IslandOil : Island 
-    {   
+    //Marcel and Jan, please use this class for your island/minigame
+    public class IslandOil : Island
+    {
         public IslandOil(string name, string shortDesc, bool minigameWon) : base(name, shortDesc, minigameWon)
         {
             Name = name;
@@ -267,7 +267,8 @@ namespace OperationHav
         private const int movementDelay = 10; // Milliseconds
 
         public static void Story_Minigame()
-        {   Game.minigame = true;
+        {
+            Game.minigame = true;
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear(); // Ensure background is fully colored
@@ -444,7 +445,7 @@ namespace OperationHav
             // Game ends when the score reaches maxScore
             Console.SetCursorPosition(0, areaTop + areaHeight + 2);
             Console.WriteLine("Congratulations! You've collected all the items!");
-            
+
         }
 
     }
@@ -464,11 +465,209 @@ namespace OperationHav
         public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
             Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…", 3);
+            Game.Text("\nAfter reaching the shore and walking around a bit, you spot a figure not far away. You approach a man that looks more sophisticated than the average citizen. ", 5);
+            Game.Text("\nYou greet each other and he tells you that he was a teacher on this island, before it was made a plastic wasteland. He comes here when he needs some time alone to think.", 6);
+            Game.Text("\nYou ask him if there is anything to be done for the island to gain its former glory. He gives you some insight:", 1);
+            Game.Text("\nIn the recent history of this insular republic, two parties have been fighting for the balance of power:", 3);
+            Game.Text("\nThe corporations ", 1, ConsoleColor.Yellow);
+            Game.Text("and the ", 1);
+            Game.Text("environmentalists.", 1, ConsoleColor.Green);
+            Game.Text("\nCorporations' goals are to make money, the health of the ecosystem is not in their agenda.", 3);
+            Game.Text("\nTheir view on the environmentalists is, that they are a group of fearmongerers that are overreacting on the small damage done and that the ecosystem will eventually fix itself.", 5);
+            Game.Text("\nThe environmentalists strive to mitigate the damage done to the ecosystem and plan to reverse some of its negative consequences.", 4);
+            Game.Text("\nThose people hate the corporations with all their heart. They think they are blinded by their greediness and that their goals are futile, since no one takes their wealth to their grave.", 5);
+            Game.Text("\nWe must act quickly and support the correct side of history before it's too late. You know what to do...", 1);
+
+
         }
 
         //You might wanne use this method here for the minigame itself
         public static void Story_Minigame()
         {
+            Game.Text("\n\n\nYou are now called to make decisions for the future of the island.", 3);
+            Game.Text("\nWith your succeess over the improvement of the situation on the other islands, you have gained the trust of the locals.", 4);
+            Game.Text("\nThe citizens will follow your guidance and example.", 3);
+            Game.Text("\nEach of the two parties exerts influence on the island and its people.", 3);
+            Game.Text("\nWith your choices, you change the balance of power by taking actions that support each party.", 3);
+            Game.Text("\nThe side that has the most support of the population, will decide the republics policies.", 4);
+            Game.Text("\nWho will you support?", 3, ConsoleColor.Blue);
+
+            Corporations corporations = new("Industrial Assosiation", 0);
+            Environmentalists environmentalists = new("Green Syndicate", 0);
+            for (int i = 0; i < 5; i++)
+            {
+                if (i == 0)
+                {
+                    Game.Text("\nYou have been invited for an interview at the biggest broadcasting channel on the island", 3);
+                    Game.Text("\nAt some point the interviewer asks you about your opinion on plastic", 3);
+                    Game.Text("\nYou can either ", 1);
+                    Game.Text("\nadmit ", 0, ConsoleColor.Yellow);
+                    Game.Text("\nthat plastic does not pose that much of a threat or ", 0);
+                    Game.Text("\nadvise ", 0);
+                    Game.Text("\nit's use with caution.", 3, ConsoleColor.Green);
+                    string? answer = Console.ReadLine()?.ToLower();
+
+                    if (string.IsNullOrEmpty(answer))
+                    {
+                        Game.Text("\nPlease enter a command:", 0);
+                        continue;
+                    }
+
+                    Parser parser = new();
+                    Command? command = parser.GetCommand(answer);
+
+                    if (command == null)
+                    {
+                        Game.InvalidCommand();
+                        continue;
+                    }
+
+
+
+
+                    if (answer == "admit")
+                    {
+                        corporations.Influence = corporations.Influence + 1;
+                        Game.Text("\nYou admit that plastic doesn't cause as big issues on the environment as some people think. Industries can continue producing it in big numbers", 5);
+                        Game.Text("\nFun Fact: this is incorrect because, --fact-- ", 0);
+
+                    }
+                    else if (answer == "advise")
+                    {
+                        environmentalists.Influence = environmentalists.Influence + 1;
+                        Game.Text("\nYou advise that plastic can be very harmful if used thoughtlessly. The industry must limit the production of plastic and search for alternatives.", 0);
+                        Game.Text("\nFun fact: Some alternatives can be: ", 0);
+                    }
+                    else
+                    {
+                        Game.InvalidCommand();
+                    }
+
+                }
+
+                if (i == 1)
+                {
+
+                    Game.Text("\nYou woke up today and it was warm and sunny, so you decided to go swimming at a nearby beach.", 3);
+                    Game.Text("\nWhile you are relaxing and sunbathing, you watch a group of teenagers leaving the beach. It annoys you that they have left their plastic bottles and bags behind.", 5);
+                    Game.Text("\nYou think about talking to them and", 0);
+                    Game.Text("\nsuggest ", 0, ConsoleColor.Green);
+                    Game.Text("\npicking up their trash together. But you could just .", 0);
+                    Game.Text("\ncontinue ", 0, ConsoleColor.Yellow);
+                    Game.Text("\nenjoying the sun", 0);
+
+
+
+                    string? answer = Console.ReadLine()?.ToLower();
+
+                    if (answer == "continue")
+                    {
+                        corporations.Influence = corporations.Influence + 1;
+                        Game.Text("\nYou ignore your consciousness, sunbathing was too pleasant to abandon. The beach stays littered and the teenagers will probably do it again.", 0);
+                        Game.Text("\nFun Fact: Each one of us should take responsibility of our actions. Protecting the environment is not something only a trash man should do, it's a personal responsibility", 0);
+
+                    }
+                    else if (answer == "suggest")
+                    {
+                        environmentalists.Influence = environmentalists.Influence + 1;
+                    }
+                    else
+                    {
+                        Game.InvalidCommand();
+                    }
+                }
+
+                if (i == 2)
+                {
+
+
+                    string? answer = Console.ReadLine()?.ToLower();
+
+                    if (answer == "admit")
+                    {
+                        corporations.Influence = 1;
+
+                    }
+                    else if (answer == "advise")
+                    {
+                        environmentalists.Influence = 1;
+                    }
+                    else
+                    {
+                        Game.InvalidCommand();
+                    }
+                }
+
+                if (i == 3)
+                {
+
+
+                    string? answer = Console.ReadLine()?.ToLower();
+
+                    if (answer == "admit")
+                    {
+                        corporations.Influence = 1;
+
+                    }
+                    else if (answer == "advise")
+                    {
+                        environmentalists.Influence = 1;
+                    }
+                    else
+                    {
+                        Game.InvalidCommand();
+                    }
+                }
+
+                if (i == 4)
+                {
+
+
+                    string? answer = Console.ReadLine()?.ToLower();
+
+                    if (answer == "admit")
+                    {
+                        corporations.Influence = 1;
+
+                    }
+                    else if (answer == "advise")
+                    {
+                        environmentalists.Influence = 1;
+                    }
+                    else
+                    {
+                        Game.InvalidCommand();
+                    }
+                }
+
+            }
+
+            if (corporations.Influence < environmentalists.Influence)
+            {
+                Game.MinigameVictory();
+                MinigameWon = true;
+            }
+            else
+            {
+                Game.Text("\n...", 2);
+                Game.Text("\nWith your help, the corporations got to pass their policies. After some time, the situation on the island gets worse. It gets abandoned and never recovers.", 0);
+                Game.GameOver();
+                Game.Text("Do you want to retry? (y/n)\n", 1);
+                string? yN = Console.ReadLine()?.ToLower();
+                switch (yN)
+                {
+                    case "y":
+                        Story_Minigame();
+                        break;
+                    case "n":
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Game.InvalidCommand();
+                        break;
+                }
+
+            }
 
         }
     }
