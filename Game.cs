@@ -23,7 +23,7 @@ namespace OperationHav
         {
             CreateIslands();
         }
-
+    
         public void CreateIslands()
         {
             Main_Island = new("Mæinø", "Mæinø, the central island of Økompleks");
@@ -374,6 +374,7 @@ namespace OperationHav
             Text($"\nYou have completed the task and saved {currentIsland?.Name}!", 3);
             currentIsland = previousIsland;
             Text($"\nYou returned to Mæinø. \n{4 - playerPoints} islands remain!\n", 3);
+            Console.Clear();
         }
 
         public static void AlreadyDone()
@@ -417,13 +418,13 @@ namespace OperationHav
         {
             Console.ForegroundColor = color;
             Console.Write(text);
-            Thread.Sleep(readtime*000);
+            Thread.Sleep(readtime*1000);
             Console.ResetColor();
         }
         public static void Text(string text, int readtime)
         {
             Console.Write(text);
-            Thread.Sleep(readtime*000);
+            Thread.Sleep(readtime*1000);
         }
     }
 }

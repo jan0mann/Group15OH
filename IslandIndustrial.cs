@@ -17,25 +17,32 @@ namespace OperationHav
             Game.Text("\nEver since the latter fell, however, no one came to clean, or even dismantle all those facilities, \nleaving our island and its surrounding waters a gigantic junkyard ...", 3, ConsoleColor.DarkGreen);
         }
 
-
+        
         //You might wanne use this method here for the minigame itself
         public static void Story_Minigame()
         {
             // STORY/INTRODUCTION
-            Game.Text("\nYou go to meet with the local UN referant at the biggest factory, who has been analysing the situation.", 3);
-            Game.Text("\nHe speaks to you:", 1);
-            Game.Text("\nWelcome! Thank you so much for agreeing to help!", 2, ConsoleColor.DarkGreen);
+            Game.Text("\nYou go to meet with the local UN referant, who has been analysing the situation.", 3);
+            Game.Text("\n\nHe speaks to you:", 1);
+            Game.Text("\n\nWelcome! Thank you so much for agreeing to help!", 2, ConsoleColor.DarkGreen);
             Game.Text("\nThe UN supplied us with anti-hazardous suits, as well as special containers, which are provided directly by the spot.", 3, ConsoleColor.DarkGreen);
-            Game.Text("\nYou put on the suit and you two walk straight into the old rusty facility...", 2);
-            Game.Text("\nAll of a sudden, the building starts to shake!", 2);
-            Game.Text("\nThe referant, who is still standing outside, shouts:", 2);
-            Game.Text("\nDon't panik! I'll get you help! But you need to put the waste in the correct container in there!", 3, ConsoleColor.DarkGreen);
-            Game.Text("\nRemember: \nYellow belongs to 'plastic'! \nGrey to 'metal'! \nGreen to 'atomic'! \nBlue to 'rubber'! \nAnd magenta to 'hardware'! \n\nGood luck!", 5, ConsoleColor.DarkGreen);
-            Game.Text("\n You look around...", 2);
-            Game.Text("\nSort the waste? Now??", 2, ConsoleColor.Cyan);
-
-
-
+            Game.Text("\n\nYou put on the suit and you two walk straight into the old rusty facility...", 2);
+            Game.Text("\n\nAll of a sudden, the building starts to shake!", 3, ConsoleColor.Red);
+            Game.Text("\n\nThe referant, who is still standing outside, shouts:", 2);
+            Game.Text("\n\nDon't panik! I'll get you help! But you need to put the waste in the correct container in there!", 5, ConsoleColor.DarkGreen);
+            Game.Text("\nRemember: \nYellow stuff belongs to ", 0, ConsoleColor.DarkGreen);
+            Game.Text("'plastic'! ", 1, ConsoleColor.DarkYellow);
+            Game.Text("\nGray stuff to ", 0, ConsoleColor.DarkGreen);
+            Game.Text("'metal'!", 1, ConsoleColor.DarkGray);
+            Game.Text("\nGreen to ", 0, ConsoleColor.DarkGreen); 
+            Game.Text("'atomic'! ", 1, ConsoleColor.Green);
+            Game.Text("\nBlue to ", 0, ConsoleColor.DarkGreen); 
+            Game.Text("'rubber'! ", 1, ConsoleColor.DarkBlue);
+            Game.Text("\nAnd magenta to ", 0, ConsoleColor.DarkGreen); 
+            Game.Text("'hardware'!", 2, ConsoleColor.DarkMagenta);
+            Game.Text("\n\nYou got it? Good luck!", 2, ConsoleColor.DarkGreen);
+            Game.Text("\n You look around, as the entrance to the facility is entirely blocked...", 5);
+            Game.Text("\n\nSort the waste? Now??", 3, ConsoleColor.Cyan);
 
             //GAME START
             int minigamePoints = 0;
@@ -58,6 +65,8 @@ namespace OperationHav
                 string pickedWaste = availableWasteTypes[random.Next(availableWasteTypes.Length)];
                 wasteCount[pickedWaste]++; // counting the waste
 
+                Console.Clear();
+
                 Game.Text("\nYou have picked up some ", 0);
                 switch (pickedWaste)
                 {
@@ -77,12 +86,14 @@ namespace OperationHav
                         Game.Text("waste", 0, ConsoleColor.DarkMagenta);
                         break;
                 }
-                Game.Text(". Which container does it belong to? (type the word):\n", 0);
+                Game.Text(". Which container does it belong to? (type the word):\n", 2);
 
                 string? container = Console.ReadLine()?.ToLower();
 
                 if (container == pickedWaste)
                 {
+                    Console.Clear();
+
                     Game.Text("\nCorrect! \nYou have placed the waste in the right container.", 2);
                     minigamePoints++;
 
@@ -136,14 +147,23 @@ namespace OperationHav
                         Game.Text("\nsome text", 2, ConsoleColor.DarkMagenta);
                     }
                 }
+                else if (string.IsNullOrEmpty(container))
+                {
+                    Game.Text("\nPlease enter a command:", 0);
+                    continue;
+                }
                 else
                 {
+                    Console.Clear();
+
                     Game.Text("\nNo! \nThat's the wrong container!", 2);
                 }
             }
 
             if (minigamePoints < 7)
             {
+                Console.Clear();
+
                 Game.Text("\n...", 2);
                 Game.Text("\nYou've put too much waste in the wrong containers...", 0);
                 Game.GameOver();
