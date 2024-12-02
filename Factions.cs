@@ -16,7 +16,7 @@ namespace OperationHav
         }
 
 
-        public override string ToString() => $"{Name} - Influence:{Influence}";
+        public override string ToString() => $"{Name} - Influence: {Influence}";
 
 
 
