@@ -53,15 +53,14 @@ namespace OperationHav
                     Game.Text("\nAt some point the interviewer asks you about your opinion on plastic", 3);
                     Game.Text("\nYou can either ", 1);
                     Game.Text("\nadmit ", 0, ConsoleColor.Yellow);
-                    Game.Text("\nthat plastic does not pose that much of a threat or ", 0);
-                    Game.Text("\nadvise ", 0);
-                    Game.Text("\nit's use with consideration.", 3, ConsoleColor.Green);
+                    Game.Text("that plastic does not pose that much of a threat or ", 0);
+                    Game.Text("\nadvise ", 0, ConsoleColor.Green);
+                    Game.Text("it's use with consideration.\n", 3);
                     string? answer = Console.ReadLine()?.ToLower();
 
                     if (string.IsNullOrEmpty(answer))
                     {
                         Game.Text("\n\nPlease enter a command:", 0);
-                        continue;
                     }
 
                     Parser parser = new();
@@ -70,7 +69,6 @@ namespace OperationHav
                     if (command == null)
                     {
                         Game.InvalidCommand();
-                        continue;
                     }
 
 
@@ -78,23 +76,30 @@ namespace OperationHav
 
                     if (answer == "admit")
                     {
-                        corporations.Influence = corporations.Influence ++;
+                        corporations.Influence ++;
                         Game.Text("\n\nYou admit that plastic doesn't cause as big issues on the environment as some people think. Industries can continue producing it in big numbers", 5);
                         Game.Text("\nFun Fact: this is incorrect, because fish, seabirds, sea turtles, and marine mammals can become entangled in or ingest plastic debris, causing suffocation, starvation, and drowning ", 0);
-                        Game.Text("\nFun fact: Some alternatives can be: bamboo straws, bags made of fabric or even fishing nets made from micro-algae, making them biodegradable.", 0);
-                        corporations.ToString();
-                        environmentalists.ToString();
+                        Game.Text("\nFun fact: Some alternatives can be: bamboo straws, bags made of fabric or even fishing nets made from micro-algae, making them biodegradable.\n", 0);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine(corporations.ToString());
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(environmentalists.ToString());
+                        Console.ResetColor();
 
 
                     }
                     else if (answer == "advise")
                     {
-                        environmentalists.Influence = environmentalists.Influence ++;
+                        environmentalists.Influence ++;
                         Game.Text("\n\nYou advise that plastic can be very harmful if used thoughtlessly. The industry must limit the production of plastic and search for alternatives.", 0);
                         Game.Text("\nFun Fact: your advise is correct, because fish, seabirds, sea turtles, and marine mammals can become entangled in or ingest plastic debris, causing suffocation, starvation, and drowning ", 0);
-                        Game.Text("\nFun fact: Some alternatives can be: bamboo straws, bags made of fabric or even fishing nets made from micro-algae, making them biodegradable. ", 0);
+                        Game.Text("\nFun fact: Some alternatives can be: bamboo straws, bags made of fabric or even fishing nets made from micro-algae, making them biodegradable.\n", 0);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine(corporations.ToString());
-                        environmentalists.ToString();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(environmentalists.ToString());
+                        Console.ResetColor();
+
                     }
                     else
                     {
@@ -110,9 +115,9 @@ namespace OperationHav
                     Game.Text("\nWhile you are relaxing and sunbathing, you watch a group of teenagers leaving the beach. It annoys you that they have left their plastic bottles and bags behind.", 5);
                     Game.Text("\nYou think about talking to them and", 0);
                     Game.Text("\nteach ", 0, ConsoleColor.Green);
-                    Game.Text("\nthem about responsibility by picking up their trash together. But you could just .", 0);
+                    Game.Text("them about responsibility by picking up their trash together. But you could just .", 0);
                     Game.Text("\ncontinue ", 0, ConsoleColor.Yellow);
-                    Game.Text("\nenjoying the sun. You supose that someone will collect the trash at some point.", 0);
+                    Game.Text("enjoying the sun. You supose that someone will collect the trash at some point.\n", 0);
 
 
 
@@ -135,21 +140,27 @@ namespace OperationHav
 
                     if (answer == "teach")
                     {
-                        environmentalists.Influence = environmentalists.Influence ++;
+                        environmentalists.Influence ++;
                         Game.Text("\n\nYou catch up to the youngsters and politely try to make them see sense. You teach them what practises are good and bad and then you help them dispose of their trash. Motivated by your words, the teens go on and clean the whole beach", 7);
-                        Game.Text("\nFun Fact: Seas and oceans belong to all of us, they are part of the earth which is our home. It should be our responsibility to keep them clean and healthy.", 5);                      
-                        corporations.ToString();
-                        environmentalists.ToString();
+                        Game.Text("\nFun Fact: Seas and oceans belong to all of us, they are part of the earth which is our home. It should be our responsibility to keep them clean and healthy.\n", 5);                      
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine(corporations.ToString());
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(environmentalists.ToString());
+                        Console.ResetColor();
                         
 
                     }
                     else if (answer == "continue")
                     {
-                        corporations.Influence = corporations.Influence ++;
+                        corporations.Influence ++;
                         Game.Text("\n\nYou ignore your consciousness, sunbathing was too pleasant to abandon. The beach stays littered and the teenagers will probably do it again.", 0);
-                        Game.Text("\nFun Fact: Seas and oceans belong to all of us, they are part of the earth which is our home. It should be our responsibility to keep them clean and healthy.", 5);                 
-                        corporations.ToString();
-                        environmentalists.ToString();
+                        Game.Text("\nFun Fact: Seas and oceans belong to all of us, they are part of the earth which is our home. It should be our responsibility to keep them clean and healthy.\n", 5);                 
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine(corporations.ToString());
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(environmentalists.ToString());
+                        Console.ResetColor();
                     }
                     else
                     {
@@ -168,8 +179,8 @@ namespace OperationHav
                     Game.Text("\nYou stop a think for a bit.", 0);
                     Game.Text("\nWill you ", 0);
                     Game.Text("\nbuy ", 0, ConsoleColor.Yellow);
-                    Game.Text("\nthe bottles or search for an ", 0);
-                    Game.Text("\nalternative?", 0,ConsoleColor.Green);
+                    Game.Text("the bottles ", 0);
+                    Game.Text("\nor search for an alternative?\n", 0, ConsoleColor.Green);
 
 
                     string? answer = Console.ReadLine()?.ToLower();
@@ -192,25 +203,31 @@ namespace OperationHav
 
                     if (answer == "buy")
                     {
-                        corporations.Influence = 1;
-                        Game.Text("\nYou tell the woman that you are an adult and your desicions are your own", 0);
+                        corporations.Influence ++;
+                        Game.Text("\nYou tell the woman that you are an adult and your desicions are your own.The man congratulates you, he will spread the word of your actions. The woman remains disappointed.", 0);
                         Game.Text("\nFun Fact: Plastic bottles can accumulate in sensitive coastal ecosystems and coral reefs.", 0);
                         Game.Text("\nOver time, plastic bottles break down into smaller particles, releasing harmful chemicals into the water", 0);
-                        Game.Text("\nBetter alternatives to plastic bottles are: glass bottles, stainless steel bottles, aluminum bottles. They can be used for long periods of time.", 0);
-                        corporations.ToString();
-                        environmentalists.ToString();
+                        Game.Text("\nBetter alternatives to plastic bottles are: glass bottles, stainless steel bottles, aluminum bottles. They can be used for long periods of time.\n", 0);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine(corporations.ToString());
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(environmentalists.ToString());
+                        Console.ResetColor();
 
                     }
                     else if (answer == "alternative")
                     {
-                        environmentalists.Influence = 1;
-                        Game.Text("\nYou tell the man that facts say otherwise. Plastic bottles can indeed pose a serious threat to our seas.", 0);
+                        environmentalists.Influence ++;
+                        Game.Text("\nYou tell the man that facts say otherwise. Plastic bottles can indeed pose a serious threat to our seas. The woman congratulates you, she will spread the word of your actions. The man tried to suppress his anger.", 0);
                         Game.Text("\nFun Fact: Plastic bottles can accumulate in sensitive coastal ecosystems and coral reefs.", 0);
                         Game.Text("\nOver time, plastic bottles break down into smaller particles, releasing harmful chemicals into the water", 0);
-                        Game.Text("\nBetter alternatives to plastic bottles are: glass bottles, stainless steel bottles, aluminum bottles. They can be used for long periods of time.", 0);
+                        Game.Text("\nBetter alternatives to plastic bottles are: glass bottles, stainless steel bottles, aluminum bottles. They can be used for long periods of time.\n", 0);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine(corporations.ToString());
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(environmentalists.ToString());
+                        Console.ResetColor();
 
-                        corporations.ToString();
-                        environmentalists.ToString();
                     }
                     else
                     {
@@ -221,11 +238,16 @@ namespace OperationHav
                 if (i == 3)
                 {
 
-                    Game.Text("\n", 0);
-                    Game.Text("\n", 0);
-                    Game.Text("\n", 0);
-                    Game.Text("\n", 0);
-                    Game.Text("\n", 0);
+                    Game.Text("\nThe next day begins with loud voices out of your window. ", 0);
+                    Game.Text("\nYou have totally forgotten about the demonstration calling to stop the production of single-use plastic in such numbers.", 0);
+                    Game.Text("\nThe people need a strong and prestigious individual to help them with their cause.", 0);
+                    Game.Text("\nYou could certainly ", 0);
+                    Game.Text("join ", 0, ConsoleColor.Green);
+                    Game.Text("them. Their demands are noble.", 0);
+                    Game.Text("\nAnother course of action would be to", 0);
+                    Game.Text("ridicule", 0, ConsoleColor.Yellow);
+                    Game.Text("them on social media. Their requests are unbased.\n", 0);
+
                     string? answer = Console.ReadLine()?.ToLower();
 
                     if (string.IsNullOrEmpty(answer))
@@ -245,26 +267,31 @@ namespace OperationHav
 
 
 
-                    if (answer == "admit")
+                    if (answer == "join")
                     {
-                        corporations.Influence = 1;
-                        Game.Text("\n", 0);
-                        Game.Text("\n", 0);
-                        Game.Text("\n", 0);
-
-                        corporations.ToString();
-                        environmentalists.ToString();
+                        corporations.Influence ++;
+                        Game.Text("\nSeeing you join them, the already outraged crowd gets more fervorous.", 0);
+                        Game.Text("\nMore and more people follow your example and join the protest", 0);
+                        Game.Text("\nOne thing is sure, such an effort will not be ingored by the people in power.", 0);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine(corporations.ToString());
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(environmentalists.ToString());
+                        Console.ResetColor();
 
                     }
-                    else if (answer == "advise")
+                    else if (answer == "ridicule")
                     {
-                        environmentalists.Influence = 1;
-                        Game.Text("\n", 0);
-                        Game.Text("\n", 0);
-                        Game.Text("\n", 0);
+                        environmentalists.Influence ++;
+                        Game.Text("\nSo much struggle for such a topic seems unfounded to you.", 0);
+                        Game.Text("\nWatching your posts and your negative attitude, people reconsider about joining the demostration and those already there scatter in a matter of minutes.", 0);
+                        Game.Text("\nPeople in power will not care about unserious demonstration attempts.", 0);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine(corporations.ToString());
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(environmentalists.ToString());
+                        Console.ResetColor();
 
-                        corporations.ToString();
-                        environmentalists.ToString();
                     }
                     else
                     {
@@ -295,18 +322,25 @@ namespace OperationHav
 
                     if (answer == "admit")
                     {
-                        corporations.Influence = 1;
+                        corporations.Influence ++;
 
-                        corporations.ToString();
-                        environmentalists.ToString();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine(corporations.ToString());
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(environmentalists.ToString());
+                        Console.ResetColor();
 
                     }
                     else if (answer == "advise")
                     {
-                        environmentalists.Influence = 1;
+                        environmentalists.Influence ++;
 
-                        corporations.ToString();
-                        environmentalists.ToString();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine(corporations.ToString());
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(environmentalists.ToString());
+                        Console.ResetColor();
+
                     }
                     else
                     {
