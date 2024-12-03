@@ -8,7 +8,7 @@ namespace OperationHav
             ShortDescription = shortDesc;
         }
         public static bool MinigameWon = false;
-        
+
         public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
             Game.Text("\nNear the shore you meet an old man, who used to work in the factories.", 3);
@@ -17,7 +17,7 @@ namespace OperationHav
             Game.Text("\nEver since the latter fell, however, no one came to clean, or even dismantle all those facilities, \nleaving our island and its surrounding waters a gigantic junkyard ...", 3, ConsoleColor.DarkGreen);
         }
 
-        
+
         //You might wanne use this method here for the minigame itself
         public static void Story_Minigame()
         {
@@ -26,22 +26,23 @@ namespace OperationHav
             Game.Text("\n\nHe speaks to you:", 1);
             Game.Text("\n\nWelcome! Thank you so much for agreeing to help!", 2, ConsoleColor.DarkGreen);
             Game.Text("\nThe UN supplied us with anti-hazardous suits, as well as special containers, which are provided directly by the spot.", 3, ConsoleColor.DarkGreen);
-            Game.Text("\n\nYou put on the suit and you two walk straight into the old rusty facility...", 2);
-            Game.Text("\n\nAll of a sudden, the building starts to shake!", 3, ConsoleColor.Red);
+            Game.Text("\n\nYou put on the suit and you walk straight into the old rusty facility...", 2);
+            Game.Text("\n\nThe building looks really old, so you think it's a good idea to hurry up.", 3, ConsoleColor.Red);
             Game.Text("\n\nThe referant, who is still standing outside, shouts:", 2);
-            Game.Text("\n\nDon't panik! I'll get you help! But you need to put the waste in the correct container in there!", 5, ConsoleColor.DarkGreen);
+            Game.Text("\n\nThis place can fall apart in any moment. If another storm or hurricane happens, the buillding will surely collapse and all of the waste will end up in the water\n You need to pick up all the waste from this place and put it in correct containers.", 4, ConsoleColor.DarkGreen);
+            Game.Text("\nRemember to sort it properly, otherwise it can have negative impact for environment and can pose safety risks to workers at recycling facilities\n I don't have proper equipment to help but I installed a little camera in your suit so I can see your progress. We will stay in contact through the radio.\n Now, let's get to work.", 5, ConsoleColor.DarkGreen);
             Game.Text("\nRemember: \nYellow stuff belongs to ", 0, ConsoleColor.DarkGreen);
             Game.Text("'plastic'! ", 1, ConsoleColor.DarkYellow);
             Game.Text("\nGray stuff to ", 0, ConsoleColor.DarkGreen);
             Game.Text("'metal'!", 1, ConsoleColor.DarkGray);
-            Game.Text("\nGreen to ", 0, ConsoleColor.DarkGreen); 
+            Game.Text("\nGreen to ", 0, ConsoleColor.DarkGreen);
             Game.Text("'atomic'! ", 1, ConsoleColor.Green);
-            Game.Text("\nBlue to ", 0, ConsoleColor.DarkGreen); 
+            Game.Text("\nBlue to ", 0, ConsoleColor.DarkGreen);
             Game.Text("'rubber'! ", 1, ConsoleColor.DarkBlue);
-            Game.Text("\nAnd magenta to ", 0, ConsoleColor.DarkGreen); 
+            Game.Text("\nAnd magenta to ", 0, ConsoleColor.DarkGreen);
             Game.Text("'hardware'!", 2, ConsoleColor.DarkMagenta);
             Game.Text("\n\nYou got it? Good luck!", 2, ConsoleColor.DarkGreen);
-            Game.Text("\n You look around, as the entrance to the facility is entirely blocked...", 5);
+            Game.Text("\n\n You look around, as the entrance to the facility is entirely blocked...", 5);
             Game.Text("\n\nSort the waste? Now??", 3, ConsoleColor.Cyan);
 
             //GAME START
@@ -119,32 +120,32 @@ namespace OperationHav
 
                     if (pickedWaste == "atomic" && wasteCount[pickedWaste] == 1)
                     {
-                        Game.Text("\nsome text", 2, ConsoleColor.Green);
+                        Game.Text("\n Oh, you found some radioactive waste. We need to be sure that all of it is removed from the water\n because it increases cancer rates and causes birth defects.", 2, ConsoleColor.Green);
                     }
 
                     if (pickedWaste == "atomic" && wasteCount[pickedWaste] == 2)
                     {
-                        Game.Text("\nsome text", 2, ConsoleColor.Green);
+                        Game.Text("\n Good job on removing all of the radioactive waste. It could have been the cause of the alterations to marine species DNA's.\n Also, remember to never remove it without special equipment designed for this.\n", 2, ConsoleColor.Green);
                     }
 
                     if (pickedWaste == "rubber" && wasteCount[pickedWaste] == 1)
                     {
-                        Game.Text("\nsome text", 2, ConsoleColor.DarkBlue);
+                        Game.Text("\n I can see you have found some old tires. We need to remove them from the water too\n because they are partially made from microplastics which accounts for up to 10% of\n microplastic waste in the world's oceans.", 2, ConsoleColor.DarkBlue);
                     }
 
                     if (pickedWaste == "rubber" && wasteCount[pickedWaste] == 2)
                     {
-                        Game.Text("\nsome text", 2, ConsoleColor.DarkBlue);
+                        Game.Text("Rubber waste can decompose in the water what may lead to oxygen level in water being reduced and cause harm to marine life.\n It's great that you managed to remove all of it. ", 2, ConsoleColor.DarkBlue);
                     }
 
                     if (pickedWaste == "hardware" && wasteCount[pickedWaste] == 1)
                     {
-                        Game.Text("\nsome text", 2, ConsoleColor.DarkMagenta);
+                        Game.Text("\n If we don't remove this hardware, the heavy metals it contains will leach into water sources and might cause some health issues. Make sure that you will find all of it.", 2, ConsoleColor.DarkMagenta);
                     }
 
                     if (pickedWaste == "hardware" && wasteCount[pickedWaste] == 2)
                     {
-                        Game.Text("\nsome text", 2, ConsoleColor.DarkMagenta);
+                        Game.Text("\n You have managed to remove all the hardware. It's important to remember that toxic substances from it can accumulate in tissues of marine organisms\n causing harm to people who consume these contaminated fish.", 2, ConsoleColor.DarkMagenta);
                     }
                 }
                 else if (string.IsNullOrEmpty(container))
