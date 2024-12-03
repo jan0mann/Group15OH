@@ -11,7 +11,14 @@ namespace OperationHav
 
         public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
-            Game.Text("\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…", 4);
+            if (MinigameWon)
+            {
+
+            }
+            else
+            {
+                Game.Text("\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…", 4);
+            }
         }
 
         //You might wanne use this method here for the minigame itself
