@@ -66,7 +66,7 @@ namespace OperationHav
 
             Parser parser = new();
             
-    
+            StartScreen();
             PrintWelcome();
 
             while (continuePlaying)
@@ -281,10 +281,16 @@ namespace OperationHav
 
 
         //Text - Methods !!
+        private void StartScreen()
+        {
+            Console.Clear();
+            Text("OpHav", 5);
+        }
+
         private void PrintWelcome()
         {
             Console.Clear();
-            Text("Welcome to Operation Hav!\n", 3, ConsoleColor.DarkYellow);
+            Text("Welcome to Operation Hav!\n", 3);
             Text("The United Nations are urgently hiring you, to save life below water surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands.", 3);
             Text("Each islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by man.\n", 3);
             Text("\nIt is now up to if you either accept the hiring and take on the challenge to work with the UN to stay on track for the goals regarding sustainable goal 14!",0,ConsoleColor.Blue);
@@ -368,6 +374,7 @@ namespace OperationHav
 
         public static void MinigameVictory()
         {   
+            Console.Clear();
             playerPoints++; // Player earns a point after completing the minigame
             minigame = false;        
             Text("\n\nCongratulations!\n", 1, ConsoleColor.Yellow);
@@ -379,14 +386,14 @@ namespace OperationHav
 
         public static void AlreadyDone()
         {
-            Text("\nYou have already completed the minigame, and therefore returned to Mæinø. \nThere are more islands to save out there!", 0);
+            Text($"\nYou have already completed the minigame, and therefore returned to Mæinø. \nThere are {4 - playerPoints} more islands to save out there!", 3);
             minigame = false;
             currentIsland = previousIsland;
         }
 
         public static void NoProblemHere()
         {
-            Text("There are no problems here to tackle! But for sure other islands have problems ahead for you.\n", 1);
+            Text("There are no problems here to tackle! But for sure other islands have problems ahead for you.\n", 3);
             minigame = false;
         }
         public static void Quitted()
@@ -395,7 +402,7 @@ namespace OperationHav
             Text("\nThank you for playing Operation Hav!",3);
             Text("\nWe hope you have learnt something about the SDG 14 regarding 'Life below Water'.", 3);
             Text("\nWe are sorry to see you go already, but therefore we will sum up the most important knowledge for you:\n", 3);
-            Text("\n- Biodiversity Preservation: Oceans house over 80% of Earth’s species, making them essential for maintaining ecological balance and preventing mass extinctions.\n", 3, ConsoleColor.DarkMagenta);
+            Text("\n- Biodiversity Preservation: Oceans house over 80% of Earth's species, making them essential for maintaining ecological balance and preventing mass extinctions.\n", 3, ConsoleColor.DarkMagenta);
             Text("- Climate Regulation: Oceans act as a carbon sink, absorbing CO₂ and moderating global temperatures, but their capacity depends on healthy ecosystems like coral reefs and seagrass meadows.\n", 3, ConsoleColor.DarkMagenta);
             Text("- Food Security: Over 3 billion people rely on seafood as their primary protein source; protecting marine life ensures sustainable fisheries for future generations.\n", 3, ConsoleColor.DarkMagenta);
             Text("- Disaster Mitigation: Healthy ecosystems like coral reefs and mangroves buffer coastal areas from storms and rising sea levels, safeguarding communities from devastation.\n\n", 3, ConsoleColor.DarkMagenta);
