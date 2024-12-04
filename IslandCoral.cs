@@ -1,3 +1,6 @@
+using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
+
 namespace OperationHav
 {
     public class IslandCoral : Island
@@ -36,7 +39,8 @@ namespace OperationHav
             // Maze setup (1 = wall, 0 = free space)
             int[,] maze = {
                 { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1 },
-                { 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+                { 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
                 { 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1 },
                 { 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
                 { 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1 },
@@ -45,23 +49,33 @@ namespace OperationHav
                 { 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1 },
                 { 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
                 { 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1 },
-                { 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1 },
+                { 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
                 { 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1 },
                 { 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
                 { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }};
 
             // Player starting position
             int playerX = 1;
-            int playerY = 12;
+            int playerY = 13;
 
             // Game loop
-            while (true)
+            bool loop = true;
+            while (loop)
             {
                 Console.Clear();
                 DisplayMaze(maze, playerX, playerY); // Render the maze
 
                 ConsoleKey key = Console.ReadKey(true).Key; // Read user input
                 MovePlayer(ref playerX, ref playerY, key, maze); // Update player position
+
+                if (playerX == 15 && playerY == 1)
+                {
+                    loop = false;
+                    Console.Clear();
+                    Game.Text("Great! You made it out!", 2);
+                    Game.MinigameVictory();
+                    MinigameWon = true;
+                }
             }
         }
 
@@ -73,23 +87,15 @@ namespace OperationHav
                 for (int x = 0; x < maze.GetLength(1); x++)
                 {
                     if (x == playerX && y == playerY)
-                        Game.Text(" * ", 0, ConsoleColor.Yellow); // Player position
+                        Game.Text(" * ", 0, ConsoleColor.Cyan); // Player position
                     else if (maze[y, x] == 1)
-                        Game.Text(" # ", 0, ConsoleColor.DarkCyan); // Wall
+                        Game.Text(" # ", 0, ConsoleColor.DarkGreen); // Wall
                     else
                         Game.Text("   ", 0); // Free space
                 }
                 Console.WriteLine();
             }
             Visuals.MazeVisual2();
-
-            if (playerX == 15 && playerY == 0)
-            {
-                Console.Clear();
-                Game.Text("Great! You made it out!", 2);
-                Game.MinigameVictory();
-                MinigameWon = true;
-            }
         }
 
         static void MovePlayer(ref int playerX, ref int playerY, ConsoleKey key, int[,] maze)
@@ -109,12 +115,6 @@ namespace OperationHav
                 playerX = newX;
                 playerY = newY;
             }
-        
-        
-
-
-
-            MinigameWon = true;
         }
     }
 }
