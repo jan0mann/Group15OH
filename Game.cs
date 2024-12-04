@@ -238,7 +238,8 @@ namespace OperationHav
                         case "east" :
                         case "west":
                             if (harbor == true)
-                            {                                     
+                            {
+                                Console.Clear();                                     
                                 Move(command.Name);
                             }
                             else

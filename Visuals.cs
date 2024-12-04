@@ -58,13 +58,13 @@ namespace OperationHav
         public static void MazeVisual2()
         {
             Game.Text("\n\n       /)", 0, ConsoleColor.DarkYellow);
-            Game.Text("\n      {.-}                              O  o", 0, ConsoleColor.Green);
+            Game.Text("\n      {.-}                              O  o", 0, ConsoleColor.DarkCyan);
             Game.Text("\n     ;_.-')                        _]_   o ", 0, ConsoleColor.DarkYellow);
-            Game.Text("\n    {    _.}_            >('>   ])/  o) .", 0, ConsoleColor.Green);
+            Game.Text("\n    {    _.}_            >('>   ])/  o) .", 0, ConsoleColor.DarkCyan);
             Game.Text("\n     (.-' /  `,                 //(___=", 0, ConsoleColor.DarkYellow);
-            Game.Text("\n      (  |    /                    ''", 0, ConsoleColor.Green);
+            Game.Text("\n      (  |    /                    ''", 0, ConsoleColor.DarkCyan);
             Game.Text("\n       ( |  ,/", 0, ConsoleColor.DarkYellow);
-            Game.Text("\n        (|_/\n\n", 0, ConsoleColor.Green);
+            Game.Text("\n        (|_/\n\n", 0, ConsoleColor.DarkCyan);
         }
     } 
 }
