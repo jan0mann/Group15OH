@@ -47,6 +47,8 @@ namespace OperationHav
 
 
         //Conditions (or estates), fx: when you're in the harbor, the 'harbor-estate' is activated
+
+        bool startscreen = true;
         bool beginning_of_game = true;
 
         public bool harbor = false;
@@ -63,13 +65,27 @@ namespace OperationHav
 
         public void Play()
         {
-
             Parser parser = new();
-            
-            StartScreen();
-            PrintWelcome();
 
-            while (continuePlaying)
+            //Just for testing!!
+                //IslandCoral.Story_Minigame();
+                //IslandIndustrial.Story_Minigame();
+                //IslandOil.Story_Minigame();
+                //IslandPlastic.Story_Minigame();
+
+            StartScreen();
+
+            ConsoleKey start = Console.ReadKey(true).Key;
+
+            if (start == ConsoleKey.Spacebar) 
+            {
+                PrintWelcome();
+                startscreen = false;
+            }
+            else
+                Play();
+
+            while (continuePlaying && startscreen == false)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Text("\n\n   > ", 0);
@@ -168,7 +184,7 @@ namespace OperationHav
                             break;
 
                         case "map":
-                            Visual.Map();
+                            Visuals.Map();
                             break;    
 
                         case "start": // starting the minigame
@@ -285,6 +301,7 @@ namespace OperationHav
         {
             Console.Clear();
             Text("OpHav", 5);
+            Text("Please press 'space' to start", 0);
         }
 
         private void PrintWelcome()
