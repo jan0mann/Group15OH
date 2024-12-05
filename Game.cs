@@ -299,17 +299,35 @@ namespace OperationHav
 
 
         //Text - Methods !!
-        /*private void StartScreen()
+        private void StartScreen()
         {
             Console.Clear();
-            Text("OpHav", 5);
-            Text("Please press 'space' to start", 0);
-        }*/
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n\n\n\n\n Please enter the game in full screen of your choosen device! \n Press Tab to continue \n\n\n\n\n\n",0);
+            while (true)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.Tab)
+                    break; // Exit the loop when Tab is pressed
+            }
+            
+            Visuals.TitleScreen();
+            while (true)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    Console.ResetColor();
+                    break; // Exit the loop when Tab is pressed
+                }
+            }
+        }
 
         private void PrintWelcome()
         {
             Console.Clear();
-            Text("Welcome to Operation Hav!\n", 3);
+            Text("Welcome!\n", 3);
             Text("The United Nations are urgently hiring you, to save life below water surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands.", 3);
             Text("Each islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by man.\n", 3);
             Text("\nIt is now up to if you either accept the hiring and take on the challenge to work with the UN to stay on track for the goals regarding sustainable goal 14!",0,ConsoleColor.Blue);
@@ -453,59 +471,13 @@ namespace OperationHav
             Thread.Sleep(readtime*1000);
         }
 
-        static void center(string message)
+        public static void center(string message)
         {
-        int screenWidth = Console.WindowWidth;
-	    int stringWidth = message.Length;
-	    int spaces = (screenWidth / 2) + (stringWidth / 2);
+            int screenWidth = Console.WindowWidth;
+	        int stringWidth = message.Length;
+	        int spaces = (screenWidth / 2) + (stringWidth / 2);
 
-	    Console.WriteLine(message.PadLeft(spaces));
-        }
-         
-        public static void StartScreen()
-        {
-
-            Console.Clear();
-            Console.BackgroundColor = ConsoleColor.DarkGray;
-            Console.Clear();
-            Console.WriteLine("\n\n\n\n\n\n\n\n Please enter the game in full screen of your choosen device! \n Press Tab to continue \n\n\n\n\n\n",0);
-            while (true)
-            {
-            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-                if (keyInfo.Key == ConsoleKey.Tab)
-                    {
-                    break; // Exit the loop when Tab is pressed
-                    }
-            }
-            
-            Console.Clear();
-            Console.BackgroundColor = ConsoleColor.Blue;
-            Console.Clear();
-            center("\n\n\n\n\n\n");
-            center("Introducing the most enjoayable learning game on planet earth:");
-            center(@"................................");
-            center("");
-            center(@"                                    _                _                 ");
-            center(@"                               _   (_)              | |                ");
-            center(@"   ___  ____   ____  ____ ____| |_  _  ___  ____    | | _   ____ _   _ ");
-            center(@"  / _ \|  _ \ / _  )/ ___/ _  |  _)| |/ _ \|  _ \   | || \ / _  | | | |");
-            center(@" | |_| | | | ( (/ /| |  ( ( | | |__| | |_| | | | |  | | | ( ( | |\ V / ");
-            center(@"  \___/| ||_/ \____|_|   \_||_|\___|_|\___/|_| |_|  |_| |_|\_||_| \_/  ");
-            center(@"       |_|                                                             ");
-            center("\n\n");
-            center("................................");
-            center("fun fact: 'hav' is danish for ocean, and that is what the game is all about!");
-            center("Press 'Enter' key to start Operation Hav!");
-            center("\n\n\n\n\n\n");
-            while (true)
-            {
-            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-                if (keyInfo.Key == ConsoleKey.Enter)
-                    {
-                    Console.ResetColor();
-                    break; // Exit the loop when Tab is pressed
-                    }
-            }
+	        Console.WriteLine(message.PadLeft(spaces));
         }
     }
 }

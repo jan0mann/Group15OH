@@ -28,14 +28,24 @@ namespace OperationHav
         public static void Story_Minigame()
         {
             // STORY/INTRODUCTION
-            Game.Text("\nYou're driving out to the see, to get to the coral riff.", 3);
-            Game.Text("\nOn your arrival, the biologist says:", 2);
-            Game.Text("\n\nThis is where you must go alone. Good luck.", 2, ConsoleColor.DarkRed);
-            Game.Text("\n\nYou jump into the water and dive deep down into the riff...", 5);
+                Game.Text("\nYou're driving out to the see, to get to the coral riff.", 3);
+                Game.Text("\nOn your arrival, the biologist says:", 2);
+                Game.Text("\n\nThis is where you must go alone. Good luck.", 2, ConsoleColor.DarkRed);
+                Game.Text("\n\nYou jump into the water and dive deep down into the riff...", 5);
 
 
             //GAME START
+            MazeGame(); // first part of the minigame
 
+            Game.MinigameVictory();
+            MinigameWon = true;
+        }
+        
+
+
+
+        private static void MazeGame()
+        {
             // Maze setup (1 = wall, 0 = free space)
             int[,] maze = {
                 { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1 },
@@ -73,13 +83,11 @@ namespace OperationHav
                     loop = false;
                     Console.Clear();
                     Game.Text("Great! You made it out!", 2);
-                    Game.MinigameVictory();
-                    MinigameWon = true;
                 }
             }
         }
-
-        static void DisplayMaze(int[,] maze, int playerX, int playerY)
+        
+        public static void DisplayMaze(int[,] maze, int playerX, int playerY)
         {
             Visuals.MazeVisual1();
             for (int y = 0; y < maze.GetLength(0); y++)
@@ -97,7 +105,6 @@ namespace OperationHav
             }
             Visuals.MazeVisual2();
         }
-
         static void MovePlayer(ref int playerX, ref int playerY, ConsoleKey key, int[,] maze)
         {
             int newX = playerX;
@@ -116,5 +123,6 @@ namespace OperationHav
                 playerY = newY;
             }
         }
+        
     }
 }
