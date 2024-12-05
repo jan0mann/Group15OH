@@ -48,7 +48,7 @@ namespace OperationHav
 
         //Conditions (or estates), fx: when you're in the harbor, the 'harbor-estate' is activated
 
-        bool startscreen = true;
+        //bool startscreen = true;
         bool beginning_of_game = true;
 
         public bool harbor = false;
@@ -74,8 +74,9 @@ namespace OperationHav
                 //IslandPlastic.Story_Minigame();
 
             StartScreen();
+            PrintWelcome();
 
-            ConsoleKey start = Console.ReadKey(true).Key;
+            /*ConsoleKey start = Console.ReadKey(true).Key;
 
             if (start == ConsoleKey.Spacebar) 
             {
@@ -83,9 +84,9 @@ namespace OperationHav
                 startscreen = false;
             }
             else
-                Play();
+                Play();*/
 
-            while (continuePlaying && startscreen == false)
+            while (continuePlaying) //&& startscreen
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Text("\n\n   > ", 0);
@@ -298,12 +299,12 @@ namespace OperationHav
 
 
         //Text - Methods !!
-        private void StartScreen()
+        /*private void StartScreen()
         {
             Console.Clear();
             Text("OpHav", 5);
             Text("Please press 'space' to start", 0);
-        }
+        }*/
 
         private void PrintWelcome()
         {
@@ -450,6 +451,61 @@ namespace OperationHav
         {
             Console.Write(text);
             Thread.Sleep(readtime*1000);
+        }
+
+        static void center(string message)
+        {
+        int screenWidth = Console.WindowWidth;
+	    int stringWidth = message.Length;
+	    int spaces = (screenWidth / 2) + (stringWidth / 2);
+
+	    Console.WriteLine(message.PadLeft(spaces));
+        }
+         
+        public static void StartScreen()
+        {
+
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n\n\n\n\n Please enter the game in full screen of your choosen device! \n Press Tab to continue \n\n\n\n\n\n",0);
+            while (true)
+            {
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.Tab)
+                    {
+                    break; // Exit the loop when Tab is pressed
+                    }
+            }
+            
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.Clear();
+            center("\n\n\n\n\n\n");
+            center("Introducing the most enjoayable learning game on planet earth:");
+            center(@"................................");
+            center("");
+            center(@"                                    _                _                 ");
+            center(@"                               _   (_)              | |                ");
+            center(@"   ___  ____   ____  ____ ____| |_  _  ___  ____    | | _   ____ _   _ ");
+            center(@"  / _ \|  _ \ / _  )/ ___/ _  |  _)| |/ _ \|  _ \   | || \ / _  | | | |");
+            center(@" | |_| | | | ( (/ /| |  ( ( | | |__| | |_| | | | |  | | | ( ( | |\ V / ");
+            center(@"  \___/| ||_/ \____|_|   \_||_|\___|_|\___/|_| |_|  |_| |_|\_||_| \_/  ");
+            center(@"       |_|                                                             ");
+            center("\n\n");
+            center("................................");
+            center("fun fact: 'hav' is danish for ocean, and that is what the game is all about!");
+            center("Press 'Enter' key to start Operation Hav!");
+            center("\n\n\n\n\n\n");
+            while (true)
+            {
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.Enter)
+                    {
+                    Console.ResetColor();
+                    break; // Exit the loop when Tab is pressed
+                    }
+            }
         }
     }
 }
