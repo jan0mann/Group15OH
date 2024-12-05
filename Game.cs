@@ -66,7 +66,7 @@ namespace OperationHav
 
             Parser parser = new();
             
-    
+            
             PrintWelcome();
 
             while (continuePlaying)
@@ -274,15 +274,10 @@ namespace OperationHav
 
 
 
-
-
-
-
-
-
         //Text - Methods !!
         private void PrintWelcome()
         {
+            Console.ResetColor();
             Console.Clear();
             Text("Welcome to Operation Hav!\n", 3, ConsoleColor.DarkYellow);
             Text("The United Nations are urgently hiring you, to save life below water surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands.", 3);
@@ -426,5 +421,7 @@ namespace OperationHav
             Console.Write(text);
             Thread.Sleep(readtime*1000);
         }
+
+        
     }
 }
