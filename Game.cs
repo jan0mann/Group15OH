@@ -86,7 +86,7 @@ namespace OperationHav
             else
                 Play();*/
 
-            while (continuePlaying == false) //&& startscreen
+            while (continuePlaying) //&& startscreen
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Text("\n\n   > ", 0);
@@ -502,6 +502,7 @@ namespace OperationHav
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 if (keyInfo.Key == ConsoleKey.Enter)
                     {
+                    Console.ResetColor();
                     break; // Exit the loop when Tab is pressed
                     }
             }
