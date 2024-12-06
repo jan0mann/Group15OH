@@ -38,7 +38,42 @@ namespace OperationHav
     
         public static void Map()
         {
-
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 0);
+            Game.Text("\n", 2);
         }
 
         public static void NPC1()
