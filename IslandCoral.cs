@@ -47,12 +47,46 @@ namespace OperationHav
         private static void MazeGame()
         {
             // Maze setup (1 = wall, 0 = free space)
-            int[,] maze = {
-                { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1 },
-                { 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1 },
+            int[,] maze1 = {
+                { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1 },
+                { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1 },
                 { 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
                 { 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1 },
                 { 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
+                { 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1 },
+                { 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
+                { 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1 },
+                { 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1 },
+                { 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
+                { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }};
+
+                int[,] maze2 = {
+                { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+                { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1 },
+                { 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1 },
+                { 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
+                { 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1 },
+                { 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1 },
+                { 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1 },
+                { 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1 },
+                { 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }};
+
+                int[,] maze3 = {
+                { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1 },
+                { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1 },
+                { 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1 },
                 { 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1 },
                 { 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1 },
                 { 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1 },
@@ -69,20 +103,52 @@ namespace OperationHav
             int playerY = 13;
 
             // Game loop
-            bool loop = true;
-            while (loop)
+            bool loop1 = true;
+            while (loop1)
             {
                 Console.Clear();
-                DisplayMaze(maze, playerX, playerY); // Render the maze
+                DisplayMaze(maze1, playerX, playerY); // Render the maze
 
                 ConsoleKey key = Console.ReadKey(true).Key; // Read user input
-                MovePlayer(ref playerX, ref playerY, key, maze); // Update player position
+                MovePlayer(ref playerX, ref playerY, key, maze1); // Update player position
 
                 if (playerX == 15 && playerY == 1)
                 {
-                    loop = false;
+                    loop1 = false;
                     Console.Clear();
-                    Game.Text("Great! You made it out!", 2);
+                }
+            }
+
+            bool loop2 = true;
+            while (loop2)
+            {
+                Console.Clear();
+                DisplayMaze(maze2, playerX, playerY); // Render the maze
+
+                ConsoleKey key = Console.ReadKey(true).Key; // Read user input
+                MovePlayer(ref playerX, ref playerY, key, maze2); // Update player position
+
+                if (playerX == 1 && playerY == 13)
+                {
+                    loop2 = false;
+                    Console.Clear();
+                }
+            }
+
+            bool loop3 = true;
+            while (loop3)
+            {
+                Console.Clear();
+                DisplayMaze(maze3, playerX, playerY); // Render the maze
+
+                ConsoleKey key = Console.ReadKey(true).Key; // Read user input
+                MovePlayer(ref playerX, ref playerY, key, maze3); // Update player position
+
+                if (playerX == 15 && playerY == 1)
+                {
+                    loop3 = false;
+                    Console.Clear();
+                    Game.Text("Great! You collected all the scrap and made it out!", 3);
                 }
             }
         }
@@ -98,6 +164,8 @@ namespace OperationHav
                         Game.Text(" * ", 0, ConsoleColor.Cyan); // Player position
                     else if (maze[y, x] == 1)
                         Game.Text(" # ", 0, ConsoleColor.DarkGreen); // Wall
+                    else if (maze[y,x] == 2)
+                        Game.Text(" G ", 0, ConsoleColor.Black);
                     else
                         Game.Text("   ", 0); // Free space
                 }

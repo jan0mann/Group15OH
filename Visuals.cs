@@ -11,28 +11,28 @@ namespace OperationHav
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.Clear();
-            Game.center("\n\n\n\n\n\n");
-            Game.center("Introducing the most enjoayable learning game on planet earth:");
-            Game.center("\n\n");
+            Game.Center("\n\n\n\n\n\n");
+            Game.Center("Introducing the most enjoayable learning game on planet earth:");
+            Game.Center("\n\n");
             Thread.Sleep(2000);
-            Game.center(@"................................");
-            Game.center("");
-            Game.center(@"                                    _                _                 ");
-            Game.center(@"                               _   (_)              | |                ");
-            Game.center(@"   ___  ____   ____  ____ ____| |_  _  ___  ____    | | _   ____ _   _ ");
-            Game.center(@"  / _ \|  _ \ / _  )/ ___/ _  |  _)| |/ _ \|  _ \   | || \ / _  | | | |");
-            Game.center(@" | |_| | | | ( (/ /| |  ( ( | | |__| | |_| | | | |  | | | ( ( | |\ V / ");
-            Game.center(@"  \___/| ||_/ \____|_|   \_||_|\___|_|\___/|_| |_|  |_| |_|\_||_| \_/  ");
-            Game.center(@"       |_|                                                             ");
-            Game.center("\n\n");
-            Game.center("................................");
+            Game.Center(@"................................");
+            Game.Center("");
+            Game.Center(@"                                    _                _                 ");
+            Game.Center(@"                               _   (_)              | |                ");
+            Game.Center(@"   ___  ____   ____  ____ ____| |_  _  ___  ____    | | _   ____ _   _ ");
+            Game.Center(@"  / _ \|  _ \ / _  )/ ___/ _  |  _)| |/ _ \|  _ \   | || \ / _  | | | |");
+            Game.Center(@" | |_| | | | ( (/ /| |  ( ( | | |__| | |_| | | | |  | | | ( ( | |\ V / ");
+            Game.Center(@"  \___/| ||_/ \____|_|   \_||_|\___|_|\___/|_| |_|  |_| |_|\_||_| \_/  ");
+            Game.Center(@"       |_|                                                             ");
+            Game.Center("\n\n");
+            Game.Center("................................");
             Thread.Sleep(2000);
-            Game.center("\n\n");
-            Game.center("fun fact: 'hav' is danish for ocean, and that is what the game is all about!");
+            Game.Center("\n\n");
+            Game.Center("fun fact: 'hav' is danish for ocean, and that is what the game is all about!");
             Thread.Sleep(2000);
-            Game.center("\n\n");
-            Game.center("Press 'Enter' key to start Operation Hav!");
-            Game.center("\n\n\n\n\n\n");
+            Game.Center("\n\n");
+            Game.Center("Press 'Enter' key to start Operation Hav!");
+            Game.Center("\n\n\n\n\n\n");
         }
 
     
