@@ -65,26 +65,19 @@ namespace OperationHav
 
         public void Play()
         {
+
+            Console.Clear();
+
             Parser parser = new();
 
             //Just for testing!!
-                //IslandCoral.Story_Minigame();
+                IslandCoral.Story_Minigame();
                 //IslandIndustrial.Story_Minigame();
                 //IslandOil.Story_Minigame();
                 //IslandPlastic.Story_Minigame();
 
             StartScreen();
             PrintWelcome();
-
-            /*ConsoleKey start = Console.ReadKey(true).Key;
-
-            if (start == ConsoleKey.Spacebar) 
-            {
-                PrintWelcome();
-                startscreen = false;
-            }
-            else
-                Play();*/
 
             while (continuePlaying) //&& startscreen
             {
@@ -304,11 +297,11 @@ namespace OperationHav
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.DarkGray;
             Console.Clear();
-            Console.WriteLine("\n\n\n\n\n\n\n\n Please enter the game in full screen of your choosen device! \n Press Tab to continue \n\n\n\n\n\n",0);
+            Console.WriteLine("\n\n\n\n\n\n\n\n Please enter the game in full screen of your choosen device! \n Press Enter to continue \n\n\n\n\n\n",0);
             while (true)
             {
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-                if (keyInfo.Key == ConsoleKey.Tab)
+                if (keyInfo.Key == ConsoleKey.Enter)
                     break; // Exit the loop when Tab is pressed
             }
             
@@ -330,18 +323,23 @@ namespace OperationHav
             Text("Welcome!\n", 3);
             Text("The United Nations are urgently hiring you, to save life below water surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands.", 3);
             Text("Each islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by man.\n", 3);
-            Text("\nIt is now up to if you either accept the hiring and take on the challenge to work with the UN to stay on track for the goals regarding sustainable goal 14!",0,ConsoleColor.Blue);
-            Text("\nYou will get help along the way from locals on each island if you call for them. Elsewise it could get tough to complete all challenges that you will meet along the way.",0,ConsoleColor.Blue);
-            Text("\nIf you choose to refuse it would be a huge mess. You are the UN's and locals last hope for a change to the better. Therefore please try to do your best for the people, for the future!\n",0,ConsoleColor.Blue);
-            Text("\nWhat will you do? ", 0, ConsoleColor.Yellow);
-            Text("(type accept or refuse)", 0);
+            Text("\nIt is now up to if you either accept the hiring and take on the challenge to work with the UN to stay on track for the goals regarding sustainable goal 14!",3,ConsoleColor.Blue);
+            Text("\nYou will get help along the way from locals on each island if you call for them. Elsewise it could get tough to complete all challenges that you will meet along the way.",3,ConsoleColor.Blue);
+            Text("\nIf you choose to refuse it would be a huge mess. You are the UN's and locals last hope for a change to the better. Therefore please try to do your best for the people, for the future!\n",3,ConsoleColor.Blue);
+            Text("\nWill you ", 0);
+            Text("accept", 0, ConsoleColor.Yellow);
+            Text(" or ", 0);
+            Text("refuse", 0, ConsoleColor.Yellow);
+            Text("?", 2);
         }
 
         private void Accepted()
         {   
             Text("\nAmazing!", 2);
             Console.Clear();
-            Text("\nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you. \nUnsure, you head to the airport...", 3);
+            Text("\nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you.", 3);
+            Text("\nUnsure, you head to the airport...", 3);
+            Console.Clear();
             Text("\n\n\n... you arrive on the island of Mæinø, which lies in the center of Økompleks.", 3);
             Text("\nIt is here, where you get to choose your next step.", 3);
             Console.Clear();
@@ -367,28 +365,25 @@ namespace OperationHav
 
         private static void Instructions()
         {
-            Text("What are you doing?\n", 1, ConsoleColor.DarkYellow);
+            Text("You have the following options:", 1);
 
-            Text("Check", 0, ConsoleColor.Yellow);
-            Text(" the current local situation. By doing that, you'll find out your progress and performance.\n", 1); 
-
-            Text("Go to the ", 0);
+            Text("\n\nGo to the ", 0);
             Text("harbor", 0, ConsoleColor.Yellow);
-            Text(". From there, you can reach the other islands.\n", 1); 
+            Text(". From there, you can reach the other islands.", 1); 
 
-            Text("Talk to the ", 0);
+            Text("\n\nTalk to the ", 0);
             Text("locals", 0, ConsoleColor.Yellow);
-            Text(". They can tell you more about the island you're on, and it's problem.\n", 1);
+            Text(". They can tell you more about the island you're on, and it's problem.", 1);
 
-            Text("View the ", 0); 
+            Text("\n\nView the ", 0); 
             Text("map", 0, ConsoleColor.Yellow);
-            Text(". It will display an illustration of Økompleks, and your current location on it.\n", 1);
+            Text(". It will display an illustration of Økompleks, and your current location on it.", 1);
 
-            Text("\nType ", 0); 
+            Text("\n\nType ", 0); 
             Text("start", 0, ConsoleColor.Yellow);
-            Text(" if you're ready to save the island you're currently on.\n", 1);
+            Text(" if you're ready to save the island you're currently on.", 1);
 
-            Text("\n(type the colored word)\n", 1);
+            Text("\n\nWhat are you doing? (type the colored word)", 1);
 
         }
 
@@ -458,6 +453,9 @@ namespace OperationHav
             Text("\nInvalid. Type again.", 1);
         }
 
+
+
+        //Displaying methods
         public static void Text(string text, int readtime, ConsoleColor color)
         {
             Console.ForegroundColor = color;
@@ -471,7 +469,7 @@ namespace OperationHav
             Thread.Sleep(readtime*1000);
         }
 
-        public static void center(string message)
+        public static void Center(string message)
         {
             int screenWidth = Console.WindowWidth;
 	        int stringWidth = message.Length;
