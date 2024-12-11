@@ -33,19 +33,19 @@ namespace OperationHav
             }
             else
             {*/
-                Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…", 3);
-                Game.Text("\nAfter reaching the shore and walking around a bit, you spot a figure not far away. You approach a man that looks more sophisticated than the average citizen. ", 5);
-                Game.Text("\nYou greet each other and he tells you that he was a teacher on this island, before it was made a plastic wasteland. He comes here when he needs some time alone to think.", 6);
-                Game.Text("\nYou ask him if there is anything to be done for the island to gain its former glory. He gives you some insight:", 1);
-                Game.Text("\nIn the recent history of this insular republic, two parties have been fighting for the balance of power:", 3);
-                Game.Text("\nThe corporations ", 1, ConsoleColor.Yellow);
-                Game.Text("and the ", 1);
-                Game.Text("environmentalists.", 1, ConsoleColor.Green);
-                Game.Text("\nCorporations operate under the name 'Industrial Association'. Their goals are to make money, the health of the ecosystem is not in their agenda.", 3, ConsoleColor.Yellow);
-                Game.Text("\nTheir view on the environmentalists is, that they are a group of fearmongerers that are overreacting on the small damage done and that the ecosystem will eventually fix itself.", 5, ConsoleColor.Green);
-                Game.Text("\nThe environmentalists, aka. 'Green Syndicate', strive to mitigate the damage done to the ecosystem and plan to reverse some of its negative consequences.", 4);
-                Game.Text("\nThose people hate the corporations with all their heart. They think they are blinded by their greediness and that their goals are futile, since no one takes their wealth to their grave.", 5);
-                Game.Text("\nWe must act quickly and support the correct side of history before it's too late. You know what to do...", 1);
+            Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…", 3);
+            Game.Text("\nAfter reaching the shore and walking around a bit, you spot a figure not far away. You approach a man that looks more sophisticated than the average citizen. ", 5);
+            Game.Text("\nYou greet each other and he tells you that he was a teacher on this island, before it was made a plastic wasteland. He comes here when he needs some time alone to think.", 6);
+            Game.Text("\nYou ask him if there is anything to be done for the island to gain its former glory. He gives you some insight:", 1);
+            Game.Text("\nIn the recent history of this insular republic, two parties have been fighting for the balance of power:", 3);
+            Game.Text("\nThe corporations ", 1, ConsoleColor.Yellow);
+            Game.Text("and the ", 1);
+            Game.Text("environmentalists.", 1, ConsoleColor.Green);
+            Game.Text("\nCorporations operate under the name 'Industrial Association'. Their goals are to make money, the health of the ecosystem is not in their agenda.", 3, ConsoleColor.Yellow);
+            Game.Text("\nTheir view on the environmentalists is, that they are a group of fearmongerers that are overreacting on the small damage done and that the ecosystem will eventually fix itself.", 5);
+            Game.Text("\nThe environmentalists, aka. 'Green Syndicate', strive to mitigate the damage done to the ecosystem and plan to reverse some of its negative consequences.", 4, ConsoleColor.Green);
+            Game.Text("\nThose people hate the corporations with all their heart. They think they are blinded by their greediness and that their goals are futile, since no one takes their wealth to their grave.", 5);
+            Game.Text("\nWe must act quickly and support the correct side of history before it's too late. You know what to do...", 1);
             /*}*/
 
         }
