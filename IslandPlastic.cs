@@ -14,7 +14,7 @@ namespace OperationHav
 
         public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
-            if (MinigameWon)
+            /*if (MinigameWon)
             {
             Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…", 3);
             Game.Text("\nAfter reaching the shore of Såndiægø and walking around a bit, you spot a figure not far away. You approach a man that looks more sophisticated than the average citizen. ", 5);
@@ -32,7 +32,7 @@ namespace OperationHav
             Game.Text("\n\n   > ", 0, ConsoleColor.DarkCyan);
             }
             else
-            {
+            {*/
                 Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…", 3);
                 Game.Text("\nAfter reaching the shore and walking around a bit, you spot a figure not far away. You approach a man that looks more sophisticated than the average citizen. ", 5);
                 Game.Text("\nYou greet each other and he tells you that he was a teacher on this island, before it was made a plastic wasteland. He comes here when he needs some time alone to think.", 6);
@@ -46,7 +46,7 @@ namespace OperationHav
                 Game.Text("\nThe environmentalists, aka. 'Green Syndicate', strive to mitigate the damage done to the ecosystem and plan to reverse some of its negative consequences.", 4);
                 Game.Text("\nThose people hate the corporations with all their heart. They think they are blinded by their greediness and that their goals are futile, since no one takes their wealth to their grave.", 5);
                 Game.Text("\nWe must act quickly and support the correct side of history before it's too late. You know what to do...", 1);
-            }
+            /*}*/
 
         }
 
