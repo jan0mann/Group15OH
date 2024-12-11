@@ -41,8 +41,8 @@ namespace OperationHav
                 Game.Text("\nThe corporations ", 1, ConsoleColor.Yellow);
                 Game.Text("and the ", 1);
                 Game.Text("environmentalists.", 1, ConsoleColor.Green);
-                Game.Text("\nCorporations operate under the name 'Industrial Association'. Their goals are to make money, the health of the ecosystem is not in their agenda.", 3);
-                Game.Text("\nTheir view on the environmentalists is, that they are a group of fearmongerers that are overreacting on the small damage done and that the ecosystem will eventually fix itself.", 5);
+                Game.Text("\nCorporations operate under the name 'Industrial Association'. Their goals are to make money, the health of the ecosystem is not in their agenda.", 3, ConsoleColor.Yellow);
+                Game.Text("\nTheir view on the environmentalists is, that they are a group of fearmongerers that are overreacting on the small damage done and that the ecosystem will eventually fix itself.", 5, ConsoleColor.Green);
                 Game.Text("\nThe environmentalists, aka. 'Green Syndicate', strive to mitigate the damage done to the ecosystem and plan to reverse some of its negative consequences.", 4);
                 Game.Text("\nThose people hate the corporations with all their heart. They think they are blinded by their greediness and that their goals are futile, since no one takes their wealth to their grave.", 5);
                 Game.Text("\nWe must act quickly and support the correct side of history before it's too late. You know what to do...", 1);
