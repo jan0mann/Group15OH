@@ -14,25 +14,6 @@ namespace OperationHav
 
         public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
-            /*if (MinigameWon)
-            {
-            Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…", 3);
-            Game.Text("\nAfter reaching the shore of Såndiægø and walking around a bit, you spot a figure not far away. You approach a man that looks more sophisticated than the average citizen. ", 5);
-            Game.Text("\nYou greet each other and he tells you that he was a teacher on this island, before it was made a plastic wasteland. Now he is teaching on Mainø. He comes here when he needs some time alone to think.", 6);
-            Game.Text("\nYou ask him if there is anything to be done for the island to gain its former glory. He gives you some insight:", 1);
-            Game.Text("\nIn the recent history of this insular republic, two parties have been fighting for the balance of power:", 3);
-            Game.Text("\nThe corporations ", 1, ConsoleColor.Yellow);
-            Game.Text("and the ", 1);
-            Game.Text("environmentalists.", 1, ConsoleColor.Green);
-            Game.Text("\nCorporations operate under the name 'Industrial Association'. Their goals are to make money, the health of the ecosystem is not in their agenda.", 3, ConsoleColor.Yellow);
-            Game.Text("\nTheir view on the environmentalists is, that they are a group of fearmongerers that are overreacting on the small damage done and that the ecosystem will eventually fix itself.", 5);
-            Game.Text("\nThe environmentalists, aka. 'Green Syndicate', strive to mitigate the damage done to the ecosystem and plan to reverse some of its negative consequences.", 4, ConsoleColor.Green);
-            Game.Text("\nThose people hate the corporations with all their heart. They think they are blinded by their greediness and that their goals are futile, since no one takes their wealth to their grave.", 5);
-            Game.Text("\nWe must act quickly and support the correct side of history before it's too late. You know what to do...", 1);
-            Game.Text("\n\n   > ", 0, ConsoleColor.DarkCyan);
-            }
-            else
-            {*/
             Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…", 3);
             Game.Text("\nAfter reaching the shore and walking around a bit, you spot a figure not far away. You approach a man that looks more sophisticated than the average citizen. ", 5);
             Game.Text("\nYou greet each other and he tells you that he was a teacher on this island, before it was made a plastic wasteland. He comes here when he needs some time alone to think.", 6);
@@ -46,8 +27,7 @@ namespace OperationHav
             Game.Text("\nThe environmentalists, aka. 'Green Syndicate', strive to mitigate the damage done to the ecosystem and plan to reverse some of its negative consequences.", 4, ConsoleColor.Green);
             Game.Text("\nThose people hate the corporations with all their heart. They think they are blinded by their greediness and that their goals are futile, since no one takes their wealth to their grave.", 5);
             Game.Text("\nWe must act quickly and support the correct side of history before it's too late. You know what to do...", 1);
-            /*}*/
-
+            
         }
 
         //You might wanne use this method here for the minigame itself
@@ -66,7 +46,9 @@ namespace OperationHav
             Game.Text("\nWho will you support?", 3, ConsoleColor.Blue);
 
 
-            for (int i = 0; i < 5; i++)
+            int i=0;
+
+            while (i < 5)
             {
                 if (i == 0)
                 {
@@ -107,7 +89,7 @@ namespace OperationHav
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(environmentalists.ToString());
                         Console.ResetColor();
-
+                        i++;
 
                     }
                     else if (answer == "advise")
@@ -121,6 +103,7 @@ namespace OperationHav
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(environmentalists.ToString());
                         Console.ResetColor();
+                        i++;
 
                     }
                     else
@@ -170,7 +153,7 @@ namespace OperationHav
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(environmentalists.ToString());
                         Console.ResetColor();
-
+                        i++;
 
                     }
                     else if (answer == "continue")
@@ -183,6 +166,8 @@ namespace OperationHav
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(environmentalists.ToString());
                         Console.ResetColor();
+                        i++;
+
                     }
                     else
                     {
@@ -236,6 +221,7 @@ namespace OperationHav
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(environmentalists.ToString());
                         Console.ResetColor();
+                        i++;
 
                     }
                     else if (answer == "alternative")
@@ -250,6 +236,7 @@ namespace OperationHav
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(environmentalists.ToString());
                         Console.ResetColor();
+                        i++;
 
                     }
                     else
@@ -304,6 +291,7 @@ namespace OperationHav
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(environmentalists.ToString());
                         Console.ResetColor();
+                        i++;
 
                     }
                     else if (answer == "ridicule")
@@ -319,6 +307,7 @@ namespace OperationHav
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(environmentalists.ToString());
                         Console.ResetColor();
+                        i++;
 
                     }
                     else
@@ -378,6 +367,7 @@ namespace OperationHav
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(environmentalists.ToString());
                         Console.ResetColor();
+                        i++;
 
                     }
                     else if (answer == "videogame")
@@ -395,6 +385,7 @@ namespace OperationHav
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(environmentalists.ToString());
                         Console.ResetColor();
+                        i++;
 
                     }
                     else
