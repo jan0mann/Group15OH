@@ -209,7 +209,7 @@ namespace OperationHav
 }
 
         public static void NPC111()
-        {Console.WriteLine("                                                    ,'   ");
+        {   Console.WriteLine("                                                    ,'   ");
             Console.WriteLine("                                                  ,;     ");
             Console.WriteLine("                                                .'/      ");
             Console.WriteLine("           `-_                                .'.'       ");
