@@ -37,13 +37,17 @@ namespace OperationHav
             Corporations corporations = new("Industrial Assosiation", 0);
             Environmentalists environmentalists = new("Green Syndicate", 0);
 
-            Game.Text("\n\n\nYou are now called to make decisions for the future of the island.", 3);
+            Game.Text("\n\n\nYou are now called to make decisions for the future of the island and its marine life.", 3);
             Game.Text("\nWith your succeess over the improvement of the situation on the other islands, you have gained the trust of the locals.", 4);
             Game.Text("\nThe citizens will follow your guidance and example.", 3);
             Game.Text("\nEach of the two parties exerts influence on the island and its people.", 3);
             Game.Text("\nWith your choices, you change the balance of power by taking actions that support each party.", 3);
-            Game.Text("\nThe side that has the most support of the population, will help the president the republic's policies.", 4);
-            Game.Text("\nWho will you support?", 3, ConsoleColor.Blue);
+            Game.Text("\nThe mayor has announced, that by the end of this month, the side that has the most support of the population, will help the president the republic's policies.", 6);
+            Game.Text("\nWho will you support? Will you save the island's health and its life underwater?\n\n\n", 3, ConsoleColor.Blue);
+
+            Visuals.NPC1();
+            Game.Text("\n\n\nPress any key to continue.", 3);
+            Console.ReadLine();
 
 
             int i = 0;
@@ -404,8 +408,10 @@ namespace OperationHav
                 Game.Text("\nLoud cheering can be heard all around when the representative of the Green Syndicate comes to stand at the side of the president.", 4, ConsoleColor.Green);
                 Game.Text("\nWith your help, the president decides that the environmentalists got the support of the people and their policies are going to be implemented.", 4, ConsoleColor.Green);
                 Game.Text("\nIn the next days everyone gets to work. Many volunteers help clean up the island of Såndiægø and it becomes a paradise on earth.", 4);
-                Game.Text("\nYou feel proud of yourself, your actions helped the island polluted by plastic gain its former glory.", 3);
+                Game.Text("\nYou feel proud of yourself, your actions helped the island polluted by plastic gain its former glory. When you see the sea animals swimming happily in the distance, you get a new wave of hope for this world.\n\n\n", 6);
+                Visuals.NPC111();
 
+                Game.Text("\n\n\nPress any key to continue.", 3);
                 Console.ReadLine();
                 Game.MinigameVictory();
                 MinigameWon = true;
@@ -420,7 +426,10 @@ namespace OperationHav
                 Game.Text("\nYou failed to help the people with the topic of plastic pollution, they are going to learn about it the hard way.", 4, ConsoleColor.Yellow);
                 Game.Text("\nThe president decides that he will enforce the policies of the corporaitons. ", 0, ConsoleColor.Yellow);
                 Game.Text("\nAfter some time, the situation on Såndiægø gets worse. Even the people who tried the most give up and the western island never recovers.", 4);
-                Game.Text("\nYou feel guilty about the sequence of events.\n", 1);
+                Game.Text("\nAll the animals have either died or emigrated. You feel guilty about the sequence of events.\n\n\n", 3);
+                Visuals.NPC11();
+
+                Game.Text("\n\n\nPress any key to continue.", 3);
                 Game.GameOver();
                 Game.Text("Do you want to retry? (y/n)\n", 1);
                 string? yN = Console.ReadLine()?.ToLower();
