@@ -1,7 +1,7 @@
 namespace OperationHav
 {
-    public class IslandOil : Island 
-    {   
+    public class IslandOil : Island
+    {
         public IslandOil(string name, string shortDesc) : base(name, shortDesc)
         {
             Name = name;
@@ -17,7 +17,7 @@ namespace OperationHav
             }
             else
             {
-                Game.Text("\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…", 4);
+                Game.Text("\nDue to major trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…", 4);
             }
         }
 
@@ -47,7 +47,8 @@ namespace OperationHav
         private const int movementDelay = 10; // Milliseconds
 
         public static void Story_Minigame()
-        {   Game.minigame = true;
+        {
+            Game.minigame = true;
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear(); // Ensure background is fully colored
@@ -224,7 +225,7 @@ namespace OperationHav
             // Game ends when the score reaches maxScore
             Console.SetCursorPosition(0, areaTop + areaHeight + 2);
             Console.WriteLine("Congratulations! You've collected all the items!");
-            
+
         }
 
     }

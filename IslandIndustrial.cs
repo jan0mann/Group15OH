@@ -19,8 +19,8 @@ namespace OperationHav
             {
                 Game.Text("\nNear the shore you meet an old man, who used to work in the factories.", 3);
                 Game.Text("\nYou start asking him about those old factories, which litter the entire island in trash.\nHe explains:", 3);
-                Game.Text("\nOslø has been suffering for decades now from extreme industrial waste, \nbecause it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War.", 3, ConsoleColor.DarkGreen);
-                Game.Text("\nEver since the latter fell, however, no one came to clean, or even dismantle all those facilities, \nleaving our island and its surrounding waters a gigantic junkyard ...", 3, ConsoleColor.DarkGreen);
+                Game.Text("\nOslø has been suffering for decades now from extreme industrial waste, \nbecause it used to serve as a secret industrial outpost during the war.", 3, ConsoleColor.DarkGreen);
+                Game.Text("\nHowever, ever since the war ended, no one came to clean, or even dismantle all those facilities, \nleaving our island and its surrounding waters a gigantic junkyard ...", 3, ConsoleColor.DarkGreen);
             }
         }
 
@@ -37,9 +37,10 @@ namespace OperationHav
             Game.Text("\n\nThe building looks really old, so you think it's a good idea to hurry up.", 3, ConsoleColor.Red);
             Game.Text("\n\nThe referant, who is still standing outside, shouts:", 2);
             Game.Text("\n\nThis place can fall apart in any moment!", 3, ConsoleColor.DarkGreen);
-            Game.Text("\nIf another storm or hurricane happens, the buillding will surely collapse and all of the waste will end up in the water.", 5, ConsoleColor.DarkGreen);
-            Game.Text("\nYou need to pick up all the waste from this place and put it in correct containers.", 4, ConsoleColor.DarkGreen);
-            Game.Text("\nRemember to sort it properly, otherwise it can have negative impact for environment and can pose safety risks to workers at recycling facilities\n I don't have proper equipment to help but I installed a little camera in your suit so I can see your progress. We will stay in contact through the radio.\n Now, let's get to work.", 5, ConsoleColor.DarkGreen);
+            Game.Text("\nIf another storm or hurricane happens, the buillding will surely collapse and all of the waste will end up in the water.", 3, ConsoleColor.DarkGreen);
+            Game.Text("\nYou need to pick up all the waste from this place and put it in correct containers.", 3, ConsoleColor.DarkGreen);
+            Game.Text("\nRemember to sort it properly, otherwise it can have negative impact for environment and can pose safety risks to workers at recycling facilities.", 3, ConsoleColor.DarkGreen);
+            Game.Text("I don't have proper equipment to help but I installed a little camera in your suit so I can see your progress. We will stay in contact through the radio.\n Now, let's get to work.", 5, ConsoleColor.DarkGreen);
             Game.Text("\nRemember: \nYellow stuff belongs to ", 0, ConsoleColor.DarkGreen);
             Game.Text("'plastic'! ", 1, ConsoleColor.DarkYellow);
             Game.Text("\nGray stuff to ", 0, ConsoleColor.DarkGreen);
@@ -52,7 +53,7 @@ namespace OperationHav
             Game.Text("'hardware'!", 2, ConsoleColor.DarkMagenta);
             Game.Text("\n\nYou got it? Good luck!", 2, ConsoleColor.DarkGreen);
             Game.Text("\n\nYou look around, as the entrance to the facility is entirely blocked...", 5);
-            Game.Text("\n\nSort the waste? Now??", 3, ConsoleColor.Cyan);
+            Game.Text("\n\nSort the waste? Now??", 5, ConsoleColor.Cyan);
 
             //GAME START
             int minigamePoints = 0;
@@ -77,6 +78,13 @@ namespace OperationHav
 
                 Console.Clear();
 
+                if (minigamePoints == 5)
+                {
+                    Game.Text("\nAs you pick up the rubbish, parts of the roof suddenly start falling down, blocking the entrance to the building.", 4);
+                    Game.Text("\nYou can hear the referant speaking through the radio:", 3);
+                    Game.Text("\nDon't worry, I'll get some help, hurry up!", 3, ConsoleColor.DarkGreen);
+                }
+
                 Game.Text("\nYou have picked up some ", 0);
                 switch (pickedWaste)
                 {
@@ -95,6 +103,7 @@ namespace OperationHav
                     case "hardware":
                         Game.Text("waste", 0, ConsoleColor.DarkMagenta);
                         break;
+
                 }
                 Game.Text(". Which container does it belong to? (type the word):\n", 2);
 
@@ -209,7 +218,8 @@ namespace OperationHav
                 Game.Text("\n...", 3, ConsoleColor.DarkGreen);
                 Game.Text("\nLooks fantastic!", 2, ConsoleColor.DarkGreen);
                 Game.Text("\nYou've done a great job sorting the waste. Both my superiors and the locals will be happy to see this.", 5, ConsoleColor.DarkGreen);
-                Game.Text("\nThank you so much for your help!", 5, ConsoleColor.DarkGreen);
+                Game.Text("\nThank you so much for your help! From what I've heard, nearby Islands also need help.", 5, ConsoleColor.DarkGreen);
+                Game.Text("\nIf you haven't done it yet, I suggest you sail west or east, otherwise,\nyou should check if you can help save the southern island. Good luck!", 7, ConsoleColor.DarkGreen);
                 Game.MinigameVictory();
                 MinigameWon = true;
             }

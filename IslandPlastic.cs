@@ -17,7 +17,7 @@ namespace OperationHav
             }
             else
             {
-                Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of Chinese plastic waste…", 3);
+                Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of plastic waste…", 3);
                 Game.Text("\nAfter reaching the shore and walking around a bit, you spot a figure not far away. You approach a man that looks more sophisticated than the average citizen. ", 5);
                 Game.Text("\nYou greet each other and he tells you that he was a teacher on this island, before it was made a plastic wasteland. He comes here when he needs some time alone to think.", 6);
                 Game.Text("\nYou ask him if there is anything to be done for the island to gain its former glory. He gives you some insight:", 1);
@@ -356,13 +356,14 @@ namespace OperationHav
 
             if (corporations.Influence < environmentalists.Influence)
             {
+                Game.Text("With your help, the enviromentalits got to pass their policies.\n After some time, the situation on the island improves, people start paying more attention to plastic pollution,\n beaches and ocean start being cleaned.",6);
                 Game.MinigameVictory();
                 MinigameWon = true;
             }
             else
             {
                 Game.Text("\n\n\n...", 2);
-                Game.Text("\nWith your help, the corporations got to pass their policies. After some time, the situation on the island gets worse. It gets abandoned and never recovers.", 0);
+                Game.Text("\nWith your help, the corporations got to pass their policies\n After some time, the situation on the island gets worse. It gets abandoned and never recovers.", 3);
                 Game.GameOver();
                 Game.Text("Do you want to retry? (y/n)\n", 1);
                 string? yN = Console.ReadLine()?.ToLower();
