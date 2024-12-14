@@ -82,16 +82,16 @@ namespace OperationHav
 
                     if (string.IsNullOrEmpty(answer))
                     {
-                        Game.Text("\n\nPlease enter a command:", 0);
+                        Game.Text("\nPlease enter a command:", 0);
                     }
 
-                    Parser parser = new();
+                    /*Parser parser = new();
                     Command? command = parser.GetCommand(answer);
 
                     if (command == null)
                     {
                         Game.InvalidCommand();
-                    }
+                    }*/
 
 
 
