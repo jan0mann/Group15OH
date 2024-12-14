@@ -11,14 +11,13 @@ namespace OperationHav
 
         public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
         {
-            if (MinigameWon)
-            {
-
-            }
-            else
-            {
-                Game.Text("\nDue to major American trade routes near the island, a lot of spilled oil has gathered around the island, contaminating its waters…", 4);
-            }
+            
+                Game.Text("\nWe can see the water finally return to its once pristine blue color, a clear sign that your work is done.",3);
+                Game.Text("\nLet me also tell you a few interesting facts about the issue of oil spills.",3);
+                Game.Text("\nThe main way in which is harms the environment is by sticking to the animals, like birds and sea otters.",3);
+                Game.Text("\nMoreover, there's also the harm caused by the chemical compounds that enter the system of sea life like whales that come out for air.",3);
+                Game.Text("\nWe're grateful for your help, that much I can say in the name of everyone. Thank you.",3);
+            
         }
 
         //You might wanne use this method here for the minigame itself
@@ -47,7 +46,15 @@ namespace OperationHav
         private const int movementDelay = 10; // Milliseconds
 
         public static void Story_Minigame()
-        {   Game.minigame = true;
+        {   
+            Game.Text("\nThe sight surrounding the island is a horrendous reminder of the effect human activity has on the world. Where there was pristine",4);
+            Game.Text("\nblue water, now dark patches of oil float above the water, moving along with the waves, spreading more and more across the",4);
+            Game.Text("\nsurface. The situation is dire, and you're already presented with the items needed. With the help of the UN, the spill is contained",4);
+            Game.Text("\nwith special things called 'booms', floating objects that act as barriers to keep it within limits. The next part is where you come in.",4);
+            Game.Text("\nThey give you a special item called a 'skimmer', which is fixed to a boat, and you move around in the oily area, gathering it all up.",4);
+            Game.Text("\n(Make sure to use the W A S D keys to move around and clean up all the dark spots of oil in the water by coming into contact with them.)",4);
+            
+            Game.minigame = true;
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear(); // Ensure background is fully colored
@@ -235,7 +242,7 @@ namespace OperationHav
             Game.MinigameVictory();
             // Game ends when the score reaches maxScore
             Console.SetCursorPosition(0, areaTop + areaHeight + 2);
-            Console.WriteLine("Congratulations! You've collected all the items!");
+            Console.WriteLine("Congratulations! You've cleaned all the oil!");
             
         }
 
