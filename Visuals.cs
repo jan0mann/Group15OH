@@ -208,6 +208,27 @@ namespace OperationHav
             Console.WriteLine("                        `.^'                             ");
 }
 
+        public static void NPC111()
+        {   Console.WriteLine("                                                    ,'   ");
+            Console.WriteLine("                                                  ,;     ");
+            Console.WriteLine("                                                .'/      ");
+            Console.WriteLine("           `-_                                .'.'       ");
+            Console.WriteLine("             `;-_                           .' /         ");
+            Console.WriteLine("               `.-.        ,_.-'`'--'`'-._.` .'          ");
+            Console.WriteLine("                 `.`-.    /    .--.   _.   /             ");
+            Console.WriteLine("                   `. '-.'_.._/x ~ x |/`    ||           ");
+            Console.WriteLine("                     `.      |'-^Y^- |     //            ");
+            Console.WriteLine("                      (`|     |_.~._/|...-;..-.          ");
+            Console.WriteLine("                      `._'._,'` ```    _.:---''`         ");
+            Console.WriteLine("                         ;-....----'''`                  ");
+            Console.WriteLine("                        /   (                            ");
+            Console.WriteLine("                        |  (`                            ");
+            Console.WriteLine("                        `.^'                             ");
+           
+}
+
+        
+
         public static void NPC2()
         {
             Console.WriteLine("         |Y  /|                         ");
@@ -270,7 +291,37 @@ namespace OperationHav
 
         }
 
-        public static void NPC3()
+       
+
+         public static void NPC3()
+        {
+            Console.WriteLine("                                  _____                    ");
+            Console.WriteLine("                                 |     |                   ");
+            Console.WriteLine("                                 | X | |                   ");
+            Console.WriteLine("                                 |_____|                   ");
+            Console.WriteLine("                           ____ ___|_|___ ____             ");
+            Console.WriteLine("                          ()___)         ()___)            ");
+            Console.WriteLine("                          // /|           || ||            ");
+            Console.WriteLine("                         // / |           | | ||           ");
+            Console.WriteLine("                        (___) |___________| (___)          ");
+            Console.WriteLine("                          ||    (_______)   (___)          ");
+            Console.WriteLine("                          |       (___)     (___)          ");
+            Console.WriteLine("                                   |_|      (___)          ");
+            Console.WriteLine("                               ___/___|___   | |           ");
+            Console.WriteLine("                              |           |  | |           ");
+            Console.WriteLine("                              |___________| /___|          ");
+            Console.WriteLine("                               |||     ||| //   ||         ");
+            Console.WriteLine("                               |||     ||  ||   //         ");
+            Console.WriteLine("                               |||     |    || //          ");
+            Console.WriteLine("                              ()__)                        ");
+            Console.WriteLine("                              ///                          ");
+            Console.WriteLine("                             ///                           ");
+            Console.WriteLine("                           _///___                         ");
+            Console.WriteLine("                          |_______|                        ");
+
+        }
+
+ public static void NPC33()
         {
             Console.WriteLine("                                  _____                    ");
             Console.WriteLine("                                 |     |                   ");
@@ -297,8 +348,6 @@ namespace OperationHav
             Console.WriteLine("                          |_______|   |_______|            ");
 
         }
-
-
         public static void NPC4() 
         {
 
@@ -337,7 +386,6 @@ namespace OperationHav
             Console.WriteLine("       - . -~            -. _ . - ~ - _   - ~     ~--..__~ _,. /   Y  - ~"   );
             Console.WriteLine("              . __ ..                   ~-               ~~_. (  `"          );
             Console.WriteLine(")`. _ _               `-       ..  - .    . - ~ ~ .    |    ~-` ` `  `. _"   );
-            Console.WriteLine("");
         }
     } 
 }
