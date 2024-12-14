@@ -175,6 +175,18 @@ namespace OperationHav
                 case ConsoleKey.D: // Right
                     if (charX < areaWidth - 1) charX++;
                     break;
+                case ConsoleKey.UpArrow: // Up
+                    if (charY > 0) charY--;
+                    break;
+                case ConsoleKey.DownArrow: // Down
+                    if (charY < areaHeight - 1) charY++;
+                    break;
+                case ConsoleKey.LeftArrow: // Left
+                    if (charX > 0) charX--;
+                    break;
+                case ConsoleKey.RightArrow: // Right
+                    if (charX < areaWidth - 1) charX++;
+                    break;
             }
 
             MoveCharacter(charX, charY);
