@@ -244,7 +244,7 @@ namespace OperationHav
                         Game.Text(" O ", 0, ConsoleColor.Yellow); // Player position
                     else if (maze[y, x] == 1)
                         Game.Text(" # ", 0, ConsoleColor.DarkGreen); // Wall
-                    else if (maze[y,x] == 2)
+                    else if (maze[y, x] == 2)
                         Game.Text(" G ", 0, ConsoleColor.Black);
                     else
                         Game.Text("   ", 0); // Free space

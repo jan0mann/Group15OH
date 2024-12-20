@@ -1,7 +1,7 @@
 namespace OperationHav
 {
-    public class IslandOil : Island 
-    {   
+    public class IslandOil : Island
+    {
         public IslandOil(string name, string shortDesc) : base(name, shortDesc)
         {
             Name = name;

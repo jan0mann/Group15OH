@@ -80,6 +80,13 @@ namespace OperationHav
 
                 Console.Clear();
 
+                if (minigamePoints == 5)
+                {
+                    Game.Text("\nAs you pick up the rubbish, parts of the roof suddenly start falling down, blocking the entrance to the building.", 4);
+                    Game.Text("\nYou can hear the referant speaking through the radio:", 3);
+                    Game.Text("\nDon't worry, I'll get some help, hurry up!", 3, ConsoleColor.DarkGreen);
+                }
+
                 Game.Text("You've picked up some ", 0);
                 switch (pickedWaste)
                 {
@@ -98,6 +105,7 @@ namespace OperationHav
                     case "hardware":
                         Game.Text("waste", 0, ConsoleColor.DarkMagenta);
                         break;
+
                 }
                 Game.Text(". Which container does it belong to? (type the name):", 2);
 
