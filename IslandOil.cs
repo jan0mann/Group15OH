@@ -9,18 +9,8 @@ namespace OperationHav
         }
         public static bool MinigameWon = false;
 
-        public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
-        {
-            
-                Game.Text("\nWe can see the water finally return to its once pristine blue color, a clear sign that your work is done.",3);
-                Game.Text("\nLet me also tell you a few interesting facts about the issue of oil spills.",3);
-                Game.Text("\nThe main way in which is harms the environment is by sticking to the animals, like birds and sea otters.",3);
-                Game.Text("\nMoreover, there's also the harm caused by the chemical compounds that enter the system of sea life like whales that come out for air.",3);
-                Game.Text("\nWe're grateful for your help, that much I can say in the name of everyone. Thank you.",3);
-            
-        }
 
-        //You might wanne use this method here for the minigame itself
+
         // Define the dimensions and position of the display area
         private static int areaTop = 5;
         private static int areaHeight = 10;
@@ -40,35 +30,55 @@ namespace OperationHav
 
         // Score counter
         private static int score = 0;
-        private const int maxScore = 20;
+        private const int maxScore = 2;
 
         // Movement delay
         private const int movementDelay = 10; // Milliseconds
 
+
+
         public static void Story_Minigame()
         {   
-            Game.Text("\nThe sight surrounding the island is a horrendous reminder of the effect human activity has on the world. Where there was pristine",4);
-            Game.Text("\nblue water, now dark patches of oil float above the water, moving along with the waves, spreading more and more across the",4);
-            Game.Text("\nsurface. The situation is dire, and you're already presented with the items needed. With the help of the UN, the spill is contained",4);
-            Game.Text("\nwith special things called 'booms', floating objects that act as barriers to keep it within limits. The next part is where you come in.",4);
-            Game.Text("\nThey give you a special item called a 'skimmer', which is fixed to a boat, and you move around in the oily area, gathering it all up.",4);
-            Game.Text("\n(Make sure to use the W A S D keys to move around and clean up all the dark spots of oil in the water by coming into contact with them.)",4);
+            Game.Text("The sight surrounding the island is a horrendous reminder of the effect human activity has on the world. Where there was pristine,", 4);
+            Game.Text("\nblue water, now dark patches of oil float above the water, moving along with the waves, spreading more and more across the surface, ", 4);
+            Game.Text("\nmaking it harder even for the kids to play by the shore...", 4);
+            Visuals.NPC2();
+            Game.Text("The situation is dire, and you're already presented with the items needed. With the help of the UN, the spill is contained", 4);
+            Game.Text("\nwith special things called 'booms', floating objects that act as barriers to keep it within limits. The next part is where you come in:", 5);
+            Console.Clear();
+            Game.Text("We hereby give you our fastest boat. You were given a skimmer earlier, right?", 4, ConsoleColor.Magenta);
+            Game.Text("\nAttach that skimmer to the boat, and move around in the oily area to gather it all up.", 4, ConsoleColor.Magenta);
+            Game.Text("\nMake sure to use the", 0, ConsoleColor.Magenta);
+            Game.Text(" W A S D ", 0, ConsoleColor.Yellow);
+            Game.Text("keys to move around and clean up all the dark spots of oil in the water by coming into contact with them. Good luck.", 5, ConsoleColor.Magenta);
             
-            Game.minigame = true;
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear(); // Ensure background is fully colored
 
+
+            //GAMEPLAY
             InitializeDisplayArea();
 
-            // Place the character initially
-            MoveCharacter(charX, charY);
+            MoveCharacter(charX, charY);// Place the character initially
 
-            // Spawn initial special characters
-            SpawnSpecialCharacter();
+            SpawnSpecialCharacter();// Spawn initial special characters
 
-            // Start movement loop
-            MovementLoop();
+            MovementLoop();// Start movement loop
+
+
+            //CONCLUSION
+            Console.ResetColor();
+            Console.Clear();
+            Game.Text("Congratulations! You've cleaned all the oil!", 3, ConsoleColor.Magenta);
+            Game.Text("\nWe can see the water finally return to its once pristine blue color, a clear sign that your work is done.", 3, ConsoleColor.Magenta);
+            Game.Text("\nLet me also tell you a few interesting facts about the issue of oil spills:", 3, ConsoleColor.Magenta);
+            Game.Text("\n\nThe main way in which is harms the environment is by sticking to the animals, like birds and sea otters.", 4, ConsoleColor.Magenta);
+            Game.Text("\nMoreover, there's also the harm caused by the chemical compounds that enter the system of sea life like whales that come out for air.", 4, ConsoleColor.Magenta);
+            Game.Text("\n\nWe're grateful for your help, that much I can say on behalf of everyone living here. Thank you!", 5, ConsoleColor.Magenta);
+            Visuals.NPC22();
+            MinigameWon = true;
+            Game.MinigameVictory();
         }
 
         static void InitializeDisplayArea()
@@ -94,7 +104,7 @@ namespace OperationHav
                     }
                     else if (c == 'O')
                     {
-                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                     }
                     else if (c == '░')
                     {
@@ -106,7 +116,7 @@ namespace OperationHav
 
             // Display the score
             Console.SetCursorPosition(0, areaTop + areaHeight + 1);
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Score: {score}/{maxScore}".PadRight(areaWidth));
         }
 
@@ -171,27 +181,19 @@ namespace OperationHav
             switch (key)
             {
                 case ConsoleKey.W: // Up
+                case ConsoleKey.UpArrow:
                     if (charY > 0) charY--;
                     break;
                 case ConsoleKey.S: // Down
+                case ConsoleKey.DownArrow:
                     if (charY < areaHeight - 1) charY++;
                     break;
                 case ConsoleKey.A: // Left
+                case ConsoleKey.LeftArrow:
                     if (charX > 0) charX--;
                     break;
                 case ConsoleKey.D: // Right
-                    if (charX < areaWidth - 1) charX++;
-                    break;
-                case ConsoleKey.UpArrow: // Up
-                    if (charY > 0) charY--;
-                    break;
-                case ConsoleKey.DownArrow: // Down
-                    if (charY < areaHeight - 1) charY++;
-                    break;
-                case ConsoleKey.LeftArrow: // Left
-                    if (charX > 0) charX--;
-                    break;
-                case ConsoleKey.RightArrow: // Right
+                case ConsoleKey.RightArrow:
                     if (charX < areaWidth - 1) charX++;
                     break;
             }
@@ -237,15 +239,8 @@ namespace OperationHav
                 }
                 Thread.Sleep(movementDelay); // Limit the movement speed
             }
-
-            MinigameWon = true;
-            Game.MinigameVictory();
             // Game ends when the score reaches maxScore
             Console.SetCursorPosition(0, areaTop + areaHeight + 2);
-            Console.WriteLine("Congratulations! You've cleaned all the oil!");
-            
         }
-
     }
-
 }

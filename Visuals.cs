@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using OperationHav;
 
 namespace OperationHav
@@ -12,15 +15,15 @@ namespace OperationHav
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.Clear();
             Game.Center("\n\n\n\n\n\n");
-            Game.Center("Introducing the most enjoayable learning game on planet earth:");
+            Game.Center("Introducing the most enjoyable learning game on planet earth:");
             Game.Center("\n\n");
             Thread.Sleep(2000);
             Game.Center(@"................................");
             Game.Center("");
-            Game.Center(@"                                    _                _                 ");
-            Game.Center(@"                               _   (_)              | |                ");
-            Game.Center(@"   ___  ____   ____  ____ ____| |_  _  ___  ____    | | _   ____ _   _ ");
-            Game.Center(@"  / _ \|  _ \ / _  )/ ___/ _  |  _)| |/ _ \|  _ \   | || \ / _  | | | |");
+            Game.Center(@"   ___                              _                _   _             ");
+            Game.Center(@"  / _ \                        _   (_)              | | | |            ");
+            Game.Center(@" | | | |____   ____  ____ ____| |_  _  ___  ____    | |_| | ____ _   _ ");
+            Game.Center(@" | | | |  _ \ / _  )/ ___/ _  |  _)| |/ _ \|  _ \   |  _  |/ _  | | | |");
             Game.Center(@" | |_| | | | ( (/ /| |  ( ( | | |__| | |_| | | | |  | | | ( ( | |\ V / ");
             Game.Center(@"  \___/| ||_/ \____|_|   \_||_|\___|_|\___/|_| |_|  |_| |_|\_||_| \_/  ");
             Game.Center(@"       |_|                                                             ");
@@ -28,7 +31,7 @@ namespace OperationHav
             Game.Center("................................");
             Thread.Sleep(2000);
             Game.Center("\n\n");
-            Game.Center("fun fact: 'hav' is danish for ocean, and that is what the game is all about!");
+            Game.Center("fun fact: 'hav' is danish for ocean, and that is what the game is about!");
             Thread.Sleep(2000);
             Game.Center("\n\n");
             Game.Center("Press 'Enter' key to start Operation Hav!");
@@ -36,78 +39,93 @@ namespace OperationHav
         }
 
     
-        public static void Map()
+        public static void Map(Island? urhere)
         {
-            Console.WriteLine("                                                                                                                                                              ");
-            Console.WriteLine("                                                                                                                                                              ");
-            Console.WriteLine("                 /Y                                                                                                                                           ");
-            Console.WriteLine("                /Y/Y                                                         --- -Y                                       /--Y----------------Y--------Y      ");
-            Console.WriteLine("               _|/Y|_              -------  --Y                   ------  --/      -                                    /-    -Y     Y-        -Y       -Y    ");
-            Console.WriteLine("              |______|          --             --  -Y        --                      -Y                               |-        -      Y         -        -   ");
-            Console.WriteLine("               |Y/Y/|        --/                     --   --/                          -                     ------   |         |      |+- ___--+|        |   ");
-            Console.WriteLine("              Y|/Y/Y|   .''`/:                                                           --Y        -- -----/         |         |      || (0 0) ||        |   ");
-            Console.WriteLine("      :Y''.    Y`'. |  ||  /  :                                                             --   --/                  |         |      ||  |||  ||        |   ");
-            Console.WriteLine("      : Y ||   |Y |||  || /    o                                   ---Y                                               |  -/Y-   |      |+-------+|        |   ");
-            Console.WriteLine("      j _Y||__/__Y||_Y_||/___                            /- --   -/   --                                           /- --Y-Y/- /-       -         -        -   ");
-            Console.WriteLine("        |___________________|                          /----  Y---  -/             /Y                           /--      -- ----------/---------/--------/    ");
-            Console.WriteLine("         |  |   |   |   |  |                         ---/   -Y  /   /- -         /-  -Y                     / --                             Y                ");
-            Console.WriteLine("   ~~~~~~|~~|~~~|~~~|~~~|~~|~~~~~~                         |  -- ---    Y      /-      -Y                  /                                  -               ");
-            Console.WriteLine("                 -                                        / /-    Y----Y Y    -------------               -        --Y           /------ -     /              ");
-            Console.WriteLine("                  Y-                                      |-        | | --Y   |  -------  |                 ------/   -         /         Y-  -               ");
-            Console.WriteLine("                     -                                               Y Y   ---|  |     |  |Y                     /-   -----    -                              ");
-            Console.WriteLine("                    /                                                | |--/   |  |   0 |  | -Y                 /-          Y----                              ");
-            Console.WriteLine("                 --                                                ---Y Y     -------------   --Y             -                                               ");
-            Console.WriteLine("               -/                                             Y---/                              -Y          /-                                               ");
-            Console.WriteLine("               -                                               - --Y                               ---     --                                                 ");
-            Console.WriteLine("                Y                                                   ----Y                    -----/      /                                        O           ");
-            Console.WriteLine("                  _,.---.---.---.--.._                                   ----Y          ----/           -                                                     ");
-            Console.WriteLine("              _.-' `--.`---.`---'-. _,`--.._                    /-            ---------/                          O                                  O        ");
-            Console.WriteLine("             /`--._ .'.     `.     `,`-.`-._Y                  -                                       |                                                      ");
-            Console.WriteLine("            ||   Y  `.`---.__`__..-`. ,'`-._/              /-                                          /             O     /`-._                              ");
-            Console.WriteLine("       _  ,`Y `-._Y   Y    `.    `_.-`-._,``-.         /- -                                           |                   /_,.._`:-               O           ");
-            Console.WriteLine("    ,`   `-_ Y/ `-.`--.Y    _Y_.-'Y__.-`-.`-._`.      -                                                               ,.-'  ,   `-:..-')   /- -        /---   ");
-            Console.WriteLine("   (_.o> ,--. `._/'--.-`,--`  Y_.-'       Y`-._ Y   /--                                               Y           O  : o ):';      _  {   --/Y-Y--    --/Y-Y- ");
-            Console.WriteLine("    `---'    `._ `---._/__,----`           `-. `-Y--                                                   -Y             `-._ `'__,.-'Y`-.)  Y-Y/- /     |-Y/-  |");
-            Console.WriteLine("              /_, ,  _..-'                    `-._Y                                                      -                `YY  Y,.-'`      Y   /      Y     / ");
-            Console.WriteLine("              Y_, Y/ ._(                                                                                   Y                          - -Y  Y   -      |    | ");
-            Console.WriteLine("               Y_, Y/ ._Y                                                                                   -Y                     ---/Y- -| -Y  Y-   |    /  ");
-            Console.WriteLine("                `._,Y/ ._Y                                                                                    -   ---Y              Y-Y/-  Y   -Y  Y  Y    |  ");
-            Console.WriteLine("                  `._// ./`-._                                                                                        ---   ----     Y---   |-Y  -  Y- |  /   ");
-            Console.WriteLine("                    `-._-_-_.-'                                                                                                          Y-------Y    Y   |   ");
-            Console.WriteLine("                                                                                                                                               Y----     /    ");
-        }
+            string Sp1 = "     ";
+            string Sp2 = "     ";
+            string Sp3 = "     ";
+            string Sp4 = "     ";
+            string Sp5 = "     ";
 
-        public static void NPC0()
-        {
-            Game.Text("\n\n         --------", 0);
-            Game.Text("\n        !        !", 0);
-            Game.Text("\n       |----------|", 0);
-            Game.Text("\n   |---|          |---|", 0);
-            Game.Text("\n   |------------------|", 0);
-            Game.Text("\n      /    ____    !", 0);
-            Game.Text("\n     |--███ /! ███|", 0);
-            Game.Text("\n     |    !____/    |", 0);
-            Game.Text("\n     -!            /-", 0);
-            Game.Text("\n       ----(  /----", 0);
-            Game.Text("\n|  --  |", 0);
-            Game.Text("\n /--- ---|-----|| -----(", 0);
-            Game.Text("\n|     | ~~~~~  |  /    /-", 0);
-            Game.Text("\n|    || ~~~~~  | -    /", 0);
-            Game.Text("\n|    |/---|----|-    /", 0);
-            Game.Text("\n|    |(   |         -", 0);
-            Game.Text("\n|    | ---|--------/", 0);
-            Game.Text("\n------             |", 0);
-            Game.Text("\n(    /-------------|", 0);
-            Game.Text("\n (--/--------------|", 0);
-            Game.Text("\n     |     I       |", 0);
-            Game.Text("\n     |      -      |", 0);
-            Game.Text("\n     |      |      |", 0);
-            Game.Text("\n     |      |      |", 0);
-            Game.Text("\n     |      |      |", 0);
-            Game.Text("\n     (-----/ (----/", 0);
-            Game.Text("\n      -   |   |  --", 0);
-            Game.Text("\n     --(- |   | -/--", 0);
-            Game.Text("\n    /------   ------(", 4);
+            if(IslandIndustrial.MinigameWon)
+                Sp2 = "CLEAN";
+            if(IslandPlastic.MinigameWon)
+                Sp3 = "CLEAN";
+            if(IslandOil.MinigameWon)
+                Sp4 = "CLEAN";
+            if(IslandCoral.MinigameWon)
+                Sp5 = "CLEAN";
+
+            switch(urhere)
+            {
+                case IslandIndustrial:
+                    Sp2 = "[YOU]";
+                    break;
+                case IslandPlastic:
+                    Sp3 = "[YOU]";
+                    break;
+                case IslandOil:
+                    Sp4 = "[YOU]";
+                    break;
+                case IslandCoral:
+                    Sp5 = "[YOU]";
+                    break;
+                default:
+                    Sp1 = "[YOU]";
+                    break;
+            }
+
+            Console.Clear();
+            Console.WriteLine(@"________________________________________________________________________________________________________________________________________________________________");
+            Console.WriteLine(@"|                                                                                                                                                              |");
+            Console.WriteLine(@"|                 /\                                                                                                                                           |");
+            Console.WriteLine(@"|                /\/\                                                         --- -\                                       /--\----------------\--------\      |");
+            Console.WriteLine(@"|               _|/\|_              -------  --\                   ------  --/      -                                    /-    -\     \-        -\       -\    |");
+                Console.Write(@"|              |______|  ");
+                Game.Text(Sp2, 0, ConsoleColor.Yellow);
+                Console.WriteLine(@"   --             --  -\        --                      -\                               |-        -      \         -        -   |");
+            Console.WriteLine(@"|               |\/\/|        --/                     --   --/                          -                     ------   |         |      |+- ___--+|        |   |");
+            Console.WriteLine(@"|              \|/\/\|   .''`/:                                                           --\        -- -----/         |         |      || (0 0) ||        |   |");
+            Console.WriteLine(@"|      :\''.    \`'. |  ||  /  :                                                             --   --/                  |         |      ||  |||  ||        |   |");
+                Console.Write(@"|      : \ ||   |\ |||  || /    o                                   ---\                                       ");
+                Game.Text(Sp4, 0, ConsoleColor.Yellow);
+                Console.WriteLine(@"   |  -/\-   |      |+-------+|        |   |");
+            Console.WriteLine(@"|      j _\||__/__\||_\_||/___                            /- --   -/   --                                           /- --\-\/- /-       -         -        -   |");
+            Console.WriteLine(@"|       |___________________|                          /----  \---  -/             /\                           /--      -- ----------/---------/--------/     |");
+            Console.WriteLine(@"|        |  |   |   |   |  |                         ---/   -\  /   /- -         /-  -\                     / --                             \                 |");
+            Console.WriteLine(@"|   ~~~~~~|~~|~~~|~~~|~~~|~~|~~~~~~                         |  -- ---    \      /-      -\                  /                                  -               |");
+            Console.WriteLine(@"|                 -                                        / /-    \----\ \    -------------               -        --\           /------ -     /              |");
+            Console.WriteLine(@"|                  \-                                      |-        | | --\   |  -------  |                 ------/   -         /         \-  -               |");
+            Console.WriteLine(@"|                     -                                               \ \   ---|  |     |  |\                     /-   -----    -                              |");
+            Console.WriteLine(@"|                    /                                                | |--/   |  |   0 |  | -\                 /-          \----                              |");
+            Console.WriteLine(@"|                 --                                                ---\ \     -------------   --\             -                                               |");
+            Console.WriteLine(@"|               -/                                             \---/                              -\          /-                                               |");
+            Console.WriteLine(@"|               -                                               - --\                               ---     --                                                 |");
+                Console.Write(@"|                \            ");
+                Game.Text(Sp3, 0, ConsoleColor.Yellow);
+                Console.Write(@"                                 ----\           ");
+                Game.Text(Sp1, 0, ConsoleColor.Yellow);
+                Console.WriteLine(@"      -----/      /                                        O          |");
+            Console.WriteLine(@"|                  _,.---.---.---.--.._                                   ----\          ----/           -                                                     |");
+            Console.WriteLine(@"|              _.-' `--.`---.`---'-. _,`--.._                    /-            ---------/                          O                                  O        |");
+                Console.Write(@"|             /`--._ .'.     `.     `,`-.`-._\                  -                                       |                                 ");
+                Game.Text(Sp5, 0, ConsoleColor.Yellow);
+                Console.WriteLine(@"                |");
+            Console.WriteLine(@"|            ||   \  `.`---.__`__..-`. ,'`-._/              /-                                          /             O     /`-._                              |");
+            Console.WriteLine(@"|      _  ,`\ `-._\   \    `.    `_.-`-._,``-.         /- -                                           |                   /_,.._`:-              O             |");
+            Console.WriteLine(@"|    ,`   `-_ \/ `-.`--.\    _\_.-'\__.-`-.`-._`.      -                                                               ,.-'  ,   `-:..-')   /- -        /---   |");
+            Console.WriteLine(@"|   (_.o> ,--. `._/'--.-`,--`  \_.-'       \`-._ \   /--                                               \           O  : o ):';      _  {   --/\-\--    --/\-\- |");
+            Console.WriteLine(@"|    `---'    `._ `---._/__,----`           `-. `-\--                                                   -\             `-._ `'__,.-'\`-.)  \-\/- /     |-\/-  ||");
+            Console.WriteLine(@"|              /_, ,  _..-'                    `-._\                                                      -                `\\  \,.-'`      \   /      \     / |");
+            Console.WriteLine(@"|              \_, \/ ._(                                                                                   \                          - -\  \   -      |    | |");
+            Console.WriteLine(@"|               \_, \/ ._\                                                                                   -\                     ---/\- -| -\  \-   |    /  |");
+            Console.WriteLine(@"|                `._,\/ ._\                                                                                    -   ---\              \-\/-  \   -\  \  \    |  |");
+            Console.WriteLine(@"|                  `._// ./`-._                                                                                        ---   ----     \---   |-\  -  \- |  /   |");
+            Console.WriteLine(@"|                    `-._-_-_.-'                                                                                                          \-------\    \   |   |");
+            Console.WriteLine(@"|                                                                                                                                               \----     /    |");
+            Console.WriteLine(@"|______________________________________________________________________________________________________________________________________________________________|");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
 
         public static void MazeVisual1()
@@ -132,20 +150,21 @@ namespace OperationHav
             Game.Text("\n        (|_/\n\n", 0, ConsoleColor.DarkCyan);
         }
 
-        public static void NPC01()
+        public static void NPC0()
         {
+            Console.Clear();
             Console.WriteLine("         --------");
-            Console.WriteLine("        !        !");
+            Console.WriteLine("        !        |");
             Console.WriteLine("       |----------|");
             Console.WriteLine("   |---|          |---|");
             Console.WriteLine("   |------------------|");
-            Console.WriteLine("      /    ____    !");
-            Console.WriteLine("     |--███ /! ███|");
-            Console.WriteLine("     |    !____/    |");
-            Console.WriteLine("     -!            /-");
+            Console.WriteLine("      /    ____    |");
+            Console.WriteLine("     |--███ /| ███|");
+            Console.WriteLine("     |    |____/    |");
+            Console.WriteLine("     -|            /-");
             Console.WriteLine("       ----(  /----");
             Console.WriteLine("         |  --  |");
-            Console.WriteLine(" /--- ---|-----|| -----(");
+            Console.WriteLine(" /--- ---|-----|| -----)");
             Console.WriteLine("|     | ~~~~~  |  /    /-");
             Console.WriteLine("|    || ~~~~~  | -    /");
             Console.WriteLine("|    |/---|----|-    /");
@@ -154,7 +173,7 @@ namespace OperationHav
             Console.WriteLine("------             |");
             Console.WriteLine("(    /-------------|");
             Console.WriteLine(" (--/--------------|");
-            Console.WriteLine("     |     I       |");
+            Console.WriteLine("     |     |       |");
             Console.WriteLine("     |      -      |");
             Console.WriteLine("     |      |      |");
             Console.WriteLine("     |      |      |");
@@ -162,10 +181,16 @@ namespace OperationHav
             Console.WriteLine("     (-----/ (----/");
             Console.WriteLine("      -   |   |  --");
             Console.WriteLine("     --(- |   | -/--");
-            Console.WriteLine("    /------   ------(");
+            Console.WriteLine("    /------   ------|");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
+
         public static void NPC1()
-{           Console.WriteLine("  /-|---------------------------------|                      ");
+        {      
+            Console.Clear();  
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("  /-|---------------------------------|                      ");
             Console.WriteLine(" /   -|                 |              -|                    ");
             Console.WriteLine("-      -                 -|              ----                ");
             Console.WriteLine("|      |                   -             |   |               ");
@@ -173,6 +198,8 @@ namespace OperationHav
             Console.WriteLine("-      -        -/             -/        ----                ");
             Console.WriteLine(" |-  -/        /              /        -/                    ");
             Console.WriteLine("   |/ --------------------------------/                      ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("                                                    ,'       ");
             Console.WriteLine("                                                  ,;         ");
             Console.WriteLine("                                                .'/          ");
@@ -188,9 +215,15 @@ namespace OperationHav
             Console.WriteLine("                        /   |                                ");
             Console.WriteLine("                        |  |`                                ");
             Console.WriteLine("                        `.^'                                 ");
-}
-         public static void NPC11()
-{      
+            Thread.Sleep(3000);
+            Console.ResetColor();
+            Console.Clear();
+        }
+
+        public static void NPC11()
+        {      
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("                                                    ,'   ");
             Console.WriteLine("                                                  ,;     ");
             Console.WriteLine("                                                .'/      ");
@@ -198,7 +231,7 @@ namespace OperationHav
             Console.WriteLine("             `;-_                           .' /         ");
             Console.WriteLine("               `.-.        ,_.-'`'--'`'-._.` .'          ");
             Console.WriteLine("                 `.`-.    /    .--.   _.   /             ");
-            Console.WriteLine("                   `. '-.'_.._/0 ~ 0 |/`    ||           ");
+            Console.WriteLine("                   `. '-.'_.._/^ ~ ^ |/`    ||           ");
             Console.WriteLine("                     `.      |'-^Y^- |     //            ");
             Console.WriteLine("                      (`|     |_.~._/|...-;..-.          ");
             Console.WriteLine("                      `._'._,'` ```    _.:---''`         ");
@@ -206,10 +239,16 @@ namespace OperationHav
             Console.WriteLine("                        /   (                            ");
             Console.WriteLine("                        |  (`                            ");
             Console.WriteLine("                        `.^'                             ");
-}
+            Thread.Sleep(3000);
+            Console.ResetColor();
+            Console.Clear();
+        }
 
         public static void NPC111()
-        {   Console.WriteLine("                                                    ,'   ");
+        {   
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("                                                    ,'   ");
             Console.WriteLine("                                                  ,;     ");
             Console.WriteLine("                                                .'/      ");
             Console.WriteLine("           `-_                                .'.'       ");
@@ -224,77 +263,85 @@ namespace OperationHav
             Console.WriteLine("                        /   (                            ");
             Console.WriteLine("                        |  (`                            ");
             Console.WriteLine("                        `.^'                             ");
-           
-}
-
-        
+            Thread.Sleep(3000);
+            Console.ResetColor();
+            Console.Clear();
+        }
 
         public static void NPC2()
         {
-            Console.WriteLine("         |Y  /|                         ");
-            Console.WriteLine("         | -- |----------               ");
-            Console.WriteLine("         |/  Y|/------Y |Y              ");
-            Console.WriteLine("         |---___  ___ ---               ");
-            Console.WriteLine("         //  (■)/Y(■)  |Y               ");
-            Console.WriteLine("        /-Y    <══>     |--Y            ");
-            Console.WriteLine("       /   -------------     -          ");
-            Console.WriteLine("      -       |     |                   ");
-            Console.WriteLine("      /--------Y   /---------           ");
-            Console.WriteLine("     |      --Y -©- /-       |          ");
-            Console.WriteLine("     |---|     -- --     |----          ");
-            Console.WriteLine("     |   |               |   |          ");
-            Console.WriteLine("     |   |Y             /|   |          ");
-            Console.WriteLine("     |   ||             ||   |          ");
-            Console.WriteLine("     |   ||             ||   |          ");
-            Console.WriteLine("     Y   //             YY   /          ");
-            Console.WriteLine("      ---/               Y---           ");
-            Console.WriteLine("        /               ░░Y             ");
-            Console.WriteLine("       |             ░░░▓▓██            ");
-            Console.WriteLine("       /           ░░▓▓█████            ");
-            Console.WriteLine("      /           ░░▓▓███████           ");
-            Console.WriteLine("     /          ░░▓▓██████████          ");
-            Console.WriteLine("    ----------░░▓▓█████████████         ");
-            Console.WriteLine("            |  |   ███|                 ");
-            Console.WriteLine("          - |  |   ███| -               ");
-            Console.WriteLine("         /------   ██████Y              ");
-
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine(@"         |\  /|                         ");
+            Console.WriteLine(@"         | -- |----------               ");
+            Console.WriteLine(@"         |/  \|/------\ |\              ");
+            Console.WriteLine(@"         |---         ---               ");
+            Console.WriteLine(@"         //  (0)/\(0)  |\               ");
+            Console.WriteLine(@"        /-\  : <══> :   |--\            ");
+            Console.WriteLine(@"       /   -------------     -          ");
+            Console.WriteLine(@"      -       |     |                   ");
+            Console.WriteLine(@"      /--------\   /---------           ");
+            Console.WriteLine(@"     |      --\ -©- /-       |          ");
+            Console.WriteLine(@"     |---|     -- --     |----          ");
+            Console.WriteLine(@"     |   |               |   |          ");
+            Console.WriteLine(@"     |   |\             /|   |          ");
+            Console.WriteLine(@"     |   ||             ||   |          ");
+            Console.WriteLine(@"     |   ||             ||   |          ");
+            Console.WriteLine(@"     \   //             \\   /          ");
+            Console.WriteLine(@"      ---/               \---           ");
+            Console.WriteLine(@"        /               ░░\             ");
+            Console.WriteLine(@"       |             ░░░▓▓██            ");
+            Console.WriteLine(@"       /           ░░▓▓█████            ");
+            Console.WriteLine(@"      /           ░░▓▓███████           ");
+            Console.WriteLine(@"     /          ░░▓▓██████████          ");
+            Console.WriteLine(@"    ----------░░▓▓█████████████         ");
+            Console.WriteLine(@"            |  |   ███|                 ");
+            Console.WriteLine(@"          - |  |   ███| -               ");
+            Console.WriteLine(@"         /------   ██████\              ");
+            Thread.Sleep(3000);
+            Console.ResetColor();
+            Console.Clear();
         }
 
-         public static void NPC22()
+        public static void NPC22()
         {
-            Console.WriteLine("         |Y  /|                         ");
-            Console.WriteLine("         | -- |----------               ");
-            Console.WriteLine("         |/  Y|/------Y |Y              ");
-            Console.WriteLine("         |---___  ___ ---               ");
-            Console.WriteLine("         //  (■)/Y(■)  |Y               ");
-            Console.WriteLine("        /-Y    <══>     |--Y            ");
-            Console.WriteLine("       /   -------------     -          ");
-            Console.WriteLine("      -       |     |                   ");
-            Console.WriteLine("      /--------Y   /---------           ");
-            Console.WriteLine("     |      --Y -©- /-       |          ");
-            Console.WriteLine("     |---|     -- --     |----          ");
-            Console.WriteLine("     |   |               |   |          ");
-            Console.WriteLine("     |   |Y             /|   |          ");
-            Console.WriteLine("     |   ||             ||   |          ");
-            Console.WriteLine("     |   ||             ||   |          ");
-            Console.WriteLine("     Y   //             YY   /          ");
-            Console.WriteLine("      ---/               Y---           ");
-            Console.WriteLine("        /                 Y             ");
-            Console.WriteLine("       |                   Y            ");
-            Console.WriteLine("       /                   Y            ");
-            Console.WriteLine("      /                     Y           ");
-            Console.WriteLine("     /                       Y          ");
-            Console.WriteLine("    ---------------------------         ");
-            Console.WriteLine("            |  |   |  |                 ");
-            Console.WriteLine("          - |  |   |  | -               ");
-            Console.WriteLine("         /------   ------Y              ");
-
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(@"         |\  /|                         ");
+            Console.WriteLine(@"         | -- |----------               ");
+            Console.WriteLine(@"         |/  \|/------\ |\              ");
+            Console.WriteLine(@"         |---         ---               ");
+            Console.WriteLine(@"         //  (^)/\(^)  |\               ");
+            Console.WriteLine(@"        /-\    <══>     |--\            ");
+            Console.WriteLine(@"       /   -------------     -          ");
+            Console.WriteLine(@"      -       |     |                   ");
+            Console.WriteLine(@"      /--------\   /---------           ");
+            Console.WriteLine(@"     |      --\ -©- /-       |          ");
+            Console.WriteLine(@"     |---|     -- --     |----          ");
+            Console.WriteLine(@"     |   |               |   |          ");
+            Console.WriteLine(@"     |   |\             /|   |          ");
+            Console.WriteLine(@"     |   ||             ||   |          ");
+            Console.WriteLine(@"     |   ||             ||   |          ");
+            Console.WriteLine(@"     \   //             \\   /          ");
+            Console.WriteLine(@"      ---/               \---           ");
+            Console.WriteLine(@"        /                 \             ");
+            Console.WriteLine(@"       |                   \            ");
+            Console.WriteLine(@"       /                   \            ");
+            Console.WriteLine(@"      /                     \           ");
+            Console.WriteLine(@"     /                       \          ");
+            Console.WriteLine(@"    ---------------------------         ");
+            Console.WriteLine(@"            |  |   |  |                 ");
+            Console.WriteLine(@"          - |  |   |  | -               ");
+            Console.WriteLine(@"         /------   ------\              ");
+            Thread.Sleep(3000);
+            Console.ResetColor();
+            Console.Clear();
         }
 
-       
-
-         public static void NPC3()
+        public static void NPC3()
         {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("                                  _____                    ");
             Console.WriteLine("                                 |     |                   ");
             Console.WriteLine("                                 | X | |                   ");
@@ -318,14 +365,18 @@ namespace OperationHav
             Console.WriteLine("                             ///                           ");
             Console.WriteLine("                           _///___                         ");
             Console.WriteLine("                          |_______|                        ");
-
+            Thread.Sleep(3000);
+            Console.ResetColor();
+            Console.Clear();
         }
 
- public static void NPC33()
+        public static void NPC33()
         {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("                                  _____                    ");
             Console.WriteLine("                                 |     |                   ");
-            Console.WriteLine("                                 | | | |                   ");
+            Console.WriteLine("                                 | ^ ^ |                   ");
             Console.WriteLine("                                 |_____|                   ");
             Console.WriteLine("                           ____ ___|_|___ ____             ");
             Console.WriteLine("                          ()___)         ()___)            ");
@@ -346,11 +397,15 @@ namespace OperationHav
             Console.WriteLine("                             ///         |||               ");
             Console.WriteLine("                           _///___     ___|||_             ");
             Console.WriteLine("                          |_______|   |_______|            ");
-
+            Thread.Sleep(3000);
+            Console.ResetColor();
+            Console.Clear();
         }
+
         public static void NPC4() 
         {
-
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("                                  __"            );
             Console.WriteLine("                               _.-~  )"          );
             Console.WriteLine("                    _..--~~~~,'   ,-/     _"     );
@@ -365,27 +420,34 @@ namespace OperationHav
             Console.WriteLine("       . . . ./  - .          )"                 );
             Console.WriteLine("      .  . . |  _____..---.._/ _________"        );
             Console.WriteLine("~---~~~~----~~~~             ~~"                 );
-
+            Thread.Sleep(3000);
+            Console.ResetColor();
+            Console.Clear();
         }     
 
-         public static void NPC44() 
+        public static void NPC44() 
         {
-            Console.WriteLine("                                    _"                                       );
-            Console.WriteLine("                               _.-~~.)"                                      );
-            Console.WriteLine("         _.--~~~~~---....__  .' . .,'"                                       );
-            Console.WriteLine("       ,'. . . . . . . . . .~- ._ ("                                         );
-            Console.WriteLine("      ( .. .g. . . . . . . . . . .~-._"                                      );
-            Console.WriteLine("   .~__.-~    ~`. . . . . . . . . . . -."                                    );
-            Console.WriteLine("   `----..._      ~-=~~-. . . . . . . . ~-."                                 );
-            Console.WriteLine("             ~-._   `-._ ~=_~~--. . . . . .~."                               );
-            Console.WriteLine("              | .~-.._  ~--._-.    ~-. . . . ~-."                            );
-            Console.WriteLine("               | .(   ~~--.._~'       `. . . . .~-.                ,"        );
-            Console.WriteLine("                `._Y         ~~--.._    `. . . . . ~-.    .- .   ,'/"        );
-            Console.WriteLine("_  . _ . -~|        _ ..  _          ~~--.`_. . . . . ~-_     ,-','`  ."     );
-            Console.WriteLine("             ` ._           ~                ~--. . . . .~=.-'. /. `"        );
-            Console.WriteLine("       - . -~            -. _ . - ~ - _   - ~     ~--..__~ _,. /   Y  - ~"   );
-            Console.WriteLine("              . __ ..                   ~-               ~~_. (  `"          );
-            Console.WriteLine(")`. _ _               `-       ..  - .    . - ~ ~ .    |    ~-` ` `  `. _"   );
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine(@"                                    _"                                       );
+            Console.WriteLine(@"                               _.-~~.)"                                      );
+            Console.WriteLine(@"         _.--~~~~~---....__  .' . .,'"                                       );
+            Console.WriteLine(@"       ,'. . . . . . . . . .~- ._ ("                                         );
+            Console.WriteLine(@"      ( .. .^. . . . . . . . . . .~-._"                                      );
+            Console.WriteLine(@"   .~__.-~    ~`. . . . . . . . . . . -."                                    );
+            Console.WriteLine(@"   `----..._      ~-=~~-. . . . . . . . ~-."                                 );
+            Console.WriteLine(@"             ~-._   `-._ ~=_~~--. . . . . .~."                               );
+            Console.WriteLine(@"              | .~-.._  ~--._-.    ~-. . . . ~-."                            );
+            Console.WriteLine(@"               | .(   ~~--.._~'       `. . . . .~-.                ,"        );
+            Console.WriteLine(@"                `._\         ~~--.._    `. . . . . ~-.    .- .   ,'/"        );
+            Console.WriteLine(@"_  . _ . -~|        _ ..  _          ~~--.`_. . . . . ~-_     ,-','`  ."     );
+            Console.WriteLine(@"             ` ._           ~                ~--. . . . .~=.-'. /. `"        );
+            Console.WriteLine(@"       - . -~            -. _ . - ~ - _   - ~     ~--..__~ _,. /   \  - ~"   );
+            Console.WriteLine(@"              . __ ..                   ~-               ~~_. (  `"          );
+            Console.WriteLine(@")`. _ _               `-       ..  - .    . - ~ ~ .    |    ~-` ` `  `. _"   );
+            Thread.Sleep(5000);
+            Console.ResetColor();
+            Console.Clear();
         }
     } 
 }

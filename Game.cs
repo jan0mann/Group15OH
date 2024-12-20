@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Drawing;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualBasic;
@@ -46,26 +47,18 @@ namespace OperationHav
         }
 
 
-        //Conditions (or estates), fx: when you're in the harbor, the 'harbor-estate' is activated
-
-        //bool startscreen = true;
         bool beginning_of_game = true;
 
         public bool harbor = false;
- 
-        public static bool minigame = false;
 
         public static bool gameOver = false;
 
         public static bool continuePlaying = true;
 
-        public static int playerPoints = 0; // player score system, if (for example!) player will have 3 points, one for each completed mini game, he can enter coral reef
-
-        public static int totalScore = 0;
+        public static int playerPoints = 0; 
 
         public void Play()
         {
-
             Console.Clear();
 
             Parser parser = new();
@@ -78,26 +71,37 @@ namespace OperationHav
 
             StartScreen();
             PrintWelcome();
+            Choice();
 
-            while (continuePlaying) //&& startscreen
+            while (continuePlaying && playerPoints < 4) 
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Text("\n\n   > ", 0);
                 string? input = Console.ReadLine()?.ToLower();
                 Console.ResetColor();
                 Console.Clear();
-
                 if (string.IsNullOrEmpty(input))
                 {
-                    Text("\nPlease enter a command:", 0);
+                    Empty();
+                    if (beginning_of_game == true)
+                        Choice();
+                    else if (harbor == true)
+                        Harbor();
+                    else
+                        Instructions();
                     continue;
                 }
-                
                 Command? command = parser.GetCommand(input);
-
                 if (command == null)
                 {
-                    InvalidCommand();
+                    Invalid();
+                    if (beginning_of_game == true)
+                        Choice();
+                    else if (harbor == true)
+                        Harbor();
+                    else
+                        Instructions();
                     continue;
                 }
 
@@ -110,53 +114,48 @@ namespace OperationHav
                         case "accept":
                             beginning_of_game = false;
                             Accepted();
-                            Instructions();
                             break;
 
                         case "refuse":  //When refusing the offer, a message will be displayed giving the player a learning that he probably should try the game once more because it is needed SDG wise
                             Refused();
-                            break;
-
-                        default:
-                            InvalidCommand();
+                            Play();
                             break;
                     }
                 }
-                else if (gameOver == true)
+                else if (harbor == true)
                 {
                     switch(command.Name)
                     {
-                        case "accept":
-                            
+                        case "north":
+                        case "south":
+                        case "east" :
+                        case "west":
+                            {
+                                Console.Clear();                                     
+                                Move(command.Name);
+                            }
                             break;
-                        case "refuse":
-                            Environment.Exit(0);
-                            break;
-                        default:
-                            InvalidCommand();
+                        
+                        case "back": //going back from where you came from
+                            {
+                                Console.Clear();
+                                harbor = false;
+                                Text("You left the harbor.", 2);
+                            }   
                             break;
                     }
                 }
-
-                else if (continuePlaying == true && beginning_of_game == false && minigame == false)
+                else
                     switch(command.Name)
-                    {
-                        case "check":
-                            if (playerPoints > 0)
-                                Text($"You so far have saved {playerPoints} out of 4 Islands!\n", 0);
-                            else
-                                Text("You haven't made any progress yet.\n", 0);
-                            break;
-                        
+                    {   
                         case "harbor":
-                            if (harbor == true)
-                                InvalidCommand();
-                            else
+                            {
                                 harbor = true;
                                 Harbor();
+                            }
                             break;
 
-                        case "locals":  
+                        /*case "locals":  
                             switch(currentIsland)
                             {
                                 case IslandIndustrial:
@@ -172,96 +171,76 @@ namespace OperationHav
                                     IslandCoral.Locals();
                                     break;
                                 default:
-                                    Island.Main_Locals();
+                                    Main_Locals();
                                     break; 
                             }
                             break;
 
                         case "map":
-                            Visuals.Map();
+                            Visuals.Map(currentIsland);
                             Text("\nPress Enter to close the map.", 0);
                             PressEnter();
-                            break; 
+                            break; */
 
                         case "start": // starting the minigame
-                                minigame = true;
-                                switch(currentIsland) 
-                                {
-                                        case IslandIndustrial:  // making the minigame start only in IslandIndustrial
-                                            if(IslandIndustrial.MinigameWon == true)
-                                                AlreadyDone();
-                                            else
-                                                IslandIndustrial.Story_Minigame(); // here the minigame in industrial starts
-                                            break;
-                                        case IslandOil:
-                                            if(IslandOil.MinigameWon == true)
-                                                AlreadyDone();
-                                            else
-                                               IslandOil.Story_Minigame(); 
-                                            break;
-                                        case IslandPlastic:
-                                            if(IslandPlastic.MinigameWon == true)
-                                                AlreadyDone();
-                                            else
-                                                IslandPlastic.Story_Minigame(); 
-                                            break;
-                                        case IslandCoral:
-                                            if(IslandCoral.MinigameWon == true)
-                                                AlreadyDone();
-                                            else
-                                                IslandCoral.Story_Minigame(); 
-                                            break;
-                                        default:
-                                            NoProblemHere();
-                                            break;
-                                }   
-                                break;
+                            switch(currentIsland) 
+                            {
+                                case IslandIndustrial:  
+                                    if(IslandIndustrial.MinigameWon == true)
+                                        AlreadyDone();
+                                    else
+                                        IslandIndustrial.Story_Minigame(); 
+                                    break;
+                                case IslandOil:
+                                    if(IslandOil.MinigameWon == true)
+                                        AlreadyDone();
+                                    else
+                                        IslandOil.Story_Minigame(); 
+                                    break;
+                                case IslandPlastic:
+                                    if(IslandPlastic.MinigameWon == true)
+                                        AlreadyDone();
+                                    else
+                                        IslandPlastic.Story_Minigame(); 
+                                    break;
+                                case IslandCoral:
+                                    if(IslandCoral.MinigameWon == true)
+                                        AlreadyDone();
+                                    else
+                                        IslandCoral.Story_Minigame(); 
+                                    break;
+                                default:
+                                        NoProblemHere();
+                                    break;
+                            }   
+                            break;
 
                         case "back": //going back from where you came from
-                            if (harbor == true)
-                            {
-                                Text("\nYou left the harbor.", 0);
-                                harbor = false;
-                            }   
-                            else if(previousIsland == null)
-                                InvalidCommand();
+                            if(previousIsland == null)
+                                Invalid();
                             else
                                 currentIsland = previousIsland;
                             break;
 
-                        case "north":
-                        case "south":
-                        case "east" :
-                        case "west":
-                            if (harbor == true)
-                            {
-                                Console.Clear();                                     
-                                Move(command.Name);
-                            }
-                            else
-                                InvalidCommand();                       
+                        case "info":
                             break;
-
+                        
                         case "quit":
-                                Quitted();
+                                Quit();
                             break;
+                    }
 
-                        case "help": //printing the print help (direction info)
-                                Instructions();
-                            break;
-
-                        default:
-                                InvalidCommand();
-                            break;
-                     }
-
-            if(beginning_of_game==false) 
-                Status();
-
+                if(beginning_of_game==false && harbor==false && playerPoints < 4)
+                {
+                    Visuals.Map(currentIsland); 
+                    Status();
+                    Instructions();
+                }
             }
+
+            //Once the game is beaten:
+            Ending();
         }
-
-
 
 
 
@@ -269,23 +248,19 @@ namespace OperationHav
         {
             if (currentIsland?.Exits.ContainsKey(direction) == true)
             {   
+                harbor = false;
                 previousIsland = currentIsland;
                 currentIsland = currentIsland?.Exits[direction];
-                Text($"\nAlright, we take off towards {currentIsland?.Name}! Lets get you to work!\n", 3);
-                harbor = false;
+                Text($"Alright, we take off towards {currentIsland?.Name}! Lets get you to work!", 3);
+                Console.Clear();
             }
             else
             {
-                Text($"\nYou can't go {direction}! \n(type 'back' to leave the harbor)", 2);
+                Text($"There is no island in {direction}ern direction!", 2);
+                Console.Clear();
+                Harbor();
             }
         }
-
-
-
-
-
-
-
 
 
 
@@ -305,34 +280,54 @@ namespace OperationHav
 
         private void PrintWelcome()
         {
-            Text("Welcome!\n", 3);
-            Text("The United Nations are urgently hiring you, to save life below water surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands.", 3);
-            Text("\nEach islands inhabitants suffer from another problem, which all, however, have one thing in common: They were all caused by man.\n", 3);
-            Text("\nIt is now up to if you either accept the hiring and take on the challenge to work with the UN to stay on track for the goals regarding sustainable goal 14!",3,ConsoleColor.Blue);
-            Text("\nYou will get help along the way from locals on each island if you call for them. Elsewise it could get tough to complete all challenges that you will meet along the way.",3,ConsoleColor.Blue);
-            Text("\nIf you choose to refuse it would be a huge mess. You are the UN's and locals last hope for a change to the better. Therefore please try to do your best for the people, for the future!\n",3,ConsoleColor.Blue);
-            Text("\nWill you ", 0);
+            Text("Welcome to Operation Hav!", 3, ConsoleColor.Yellow);
+            Text("\n\nThe United Nations are urgently hiring you, to save life below water surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands.", 3);
+            Text("\nEach islands inhabitants suffer from another problem, which all, however, have one thing in common:", 3);
+            Text("\nThey were all caused by man.", 3);
+            Console.Clear();
+            Text("It is now up to if you either accept the hiring and take on the challenge to work with the UN to stay on track for the goals regarding sustainable goal 14!",4,ConsoleColor.Blue);
+            Text("\nYou will get help along the way from locals on each island if you call for them. Elsewise it could get tough to complete all challenges that you will meet along the way.",4,ConsoleColor.Blue);
+            Text("\nIf you choose to refuse it would be a huge mess. You are the UN's and locals last hope for a change to the better. Therefore please try to do your best for the people, \nfor the future!\n\n",6,ConsoleColor.Blue);
+            Console.Clear();
+        }    
+
+        private static void Choice()  
+        {  
+            Text("Will you ", 0);
             Text("accept", 0, ConsoleColor.Yellow);
             Text(" or ", 0);
             Text("refuse", 0, ConsoleColor.Yellow);
-            Text("?", 2);
+            Text(" to help?", 2);
         }
 
         private void Accepted()
         {   
-            Text("\nAmazing!", 2);
+            Text("Amazing!", 2);
+            Text("\n\nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you.", 3);
+            Text("\n\nUnsure, you head to the airport...", 3);
             Console.Clear();
-            Text("\nThe UN immediately responded to your acceptance, assuring you everything necessary has been arranged for you.", 3);
-            Text("\nUnsure, you head to the airport...", 3);
+            Text("...you arrive on the island of Mæinø, which lies in the center of Økompleks.", 3);
+            Text("\n\nA UN referant walks up to you.", 3);
+            Visuals.NPC0();
+            Text("Thank you so much for coming. Hopefully we can solve all this with your help.", 3, ConsoleColor.Green);
+            Text("\nI am here to hand you a few things before you start:", 3, ConsoleColor.Green);
             Console.Clear();
-            Text("\n\n\n... you arrive on the island of Mæinø, which lies in the center of Økompleks.", 3);
-            Text("\nIt is here, where you get to choose your next step.", 3);
+            Text("First, you'll get from me those two suits: A 'diving suit' and an 'anti-hazardous suit'.", 3, ConsoleColor.Green);
+            Text("\nThen I have this 'skimmer' for you. With it you can gather oil pollutions out of the sea.", 3, ConsoleColor.Green);
+            Text("\n\nYou don't need those things now, but you'll know when you do, so don't worry.", 3, ConsoleColor.Green);
+            Text("\n\nLast but not least, take this 'map'. With it you can always see your position.", 3, ConsoleColor.Green);
+            Visuals.Map(currentIsland);
+            Text("That's all for now.", 2, ConsoleColor.Green);
+            Text("\nThis island here doesn't pose as a problem as of now. But it will if we don't hurry up.", 3, ConsoleColor.Green);
+            Text("\nI suggest you go to the harbor and start right away with your work. Good luck.", 3, ConsoleColor.Green);
+            Text("\n\nThe referant walks away...", 3);
             Console.Clear();
+            Thread.Sleep(3000);
         }
         
         private void Refused()
         {
-            Text("\nYou refused to help and therefore ignored the hiring.", 3);
+            Text("You refused to help and therefore ignored the hiring.", 3);
             Text("\nYou keep on with your everyday life.", 3);
             Console.ForegroundColor = ConsoleColor.Red;
             Text("\n\nYears later, the news flashes grim headlines:", 2);
@@ -344,125 +339,177 @@ namespace OperationHav
             Text("\nA monument to humanity's neglect.", 2);
             Console.ResetColor();
             GameOver();
-            Environment.Exit(0);
         }
 
 
-        private static void Instructions()
+        public static void Instructions()
         {
-            Text("You have the following options:", 1);
+            
+            Text("You now have the following options:\n", 2, ConsoleColor.DarkYellow);
 
-            Text("\n\nGo to the ", 0);
+            Text("\nType ", 0);
             Text("harbor", 0, ConsoleColor.Yellow);
-            Text(". From there, you can reach the other islands.", 1); 
-
-            Text("\n\nTalk to the ", 0);
+            Text(" to get to the other islands.", 1); 
+            
+            /*Text("\n\nTalk to the ", 0);
             Text("locals", 0, ConsoleColor.Yellow);
-            Text(". They can tell you more about the island you're on, and it's problem.", 1);
-
+            Text(". Perhaps they can tell you more about the island you're on, and it's problem.", 1);
+            
             Text("\n\nView the ", 0); 
             Text("map", 0, ConsoleColor.Yellow);
-            Text(". It will display an illustration of Økompleks, and your current location on it.", 1);
-
+            Text(". It will display an illustration of Økompleks, and your current location on it.", 1);   */
+            
             Text("\n\nType ", 0); 
             Text("start", 0, ConsoleColor.Yellow);
             Text(" if you're ready to save the island you're currently on.", 1);
 
-            Text("\n\nWhat are you doing? (type the colored word)\n\n", 1);
+            Text("\n\nType ", 0); 
+            Text("info", 0, ConsoleColor.Yellow);
+            Text(" to see your current status.", 1);
 
+            Text("\n\nType ", 0); 
+            Text("quit", 0, ConsoleColor.Yellow);
+            Text(" if you want to leave the game.", 1);
+
+            Text("\n\nWhat are you doing?\n", 0, ConsoleColor.DarkYellow);
         }
-
         private static void Status()
         {
-            Text($"You find yourself on {currentIsland?.ShortDescription}.", 1);
-            Text("\n\nYou have saved ", 0);
+            Text($"You currently find yourself on {currentIsland?.ShortDescription}.", 2);
+            Console.Clear();
+            Text("You have saved ", 0);
             Text($"{playerPoints} / 4", 0, ConsoleColor.Green);
-            Text(" islands.", 1);
-            Text("\n\nTo see the options, type 'help'.", 1, ConsoleColor.DarkGray);
-            Text("\nTo leave the game, type 'quit'.", 1, ConsoleColor.DarkGray);
+            Text(" islands.", 2);
+            Console.Clear();
         }
 
         private static void Harbor()
         {
-            Text($"\nWelcome to the harbor of {currentIsland?.Name}!", 2);
-            Text("\nWhat ", 0);
-            Text("direction", 0, ConsoleColor.Yellow);
-            Text(" do you want to ride to, Captain?", 2);
-            Text("\n\n'north' ", 0, ConsoleColor.Yellow);
+            Text($"Welcome to the harbor of {currentIsland?.Name}!", 2);
+            Text("\nWhat direction do you want to ride to, Captain?", 2);
+            Text("\n\nnorth ", 0, ConsoleColor.Yellow);
             Text("for Oslø,", 0); 
-            Text("'east'" , 0, ConsoleColor.Yellow);
+            Text("\neast" , 0, ConsoleColor.Yellow);
             Text("for Tokyø,", 0); 
-            Text("'south' ", 0, ConsoleColor.Yellow); 
+            Text("\nsouth ", 0, ConsoleColor.Yellow); 
             Text("for Sydnø and ", 0); 
-            Text("'west' ", 0, ConsoleColor.Yellow); 
+            Text("\nwest ", 0, ConsoleColor.Yellow); 
             Text("for Såndiægø ", 0);
-            Text("(type 'back' to leave)\n\n", 1); 
+            Text("\n\n(type 'back' to leave)\n", 1, ConsoleColor.DarkGray); 
         }
 
         public static void MinigameVictory()
         {   
             Console.Clear();
-            playerPoints++; // Player earns a point after completing the minigame
-            minigame = false;        
-            Text("\n\nCongratulations!\n", 1, ConsoleColor.Yellow);
-            Text($"\nYou have completed the task and saved {currentIsland?.Name}!", 3);
+            playerPoints++; // Player earns a point after completing the minigame       
+            Text("Congratulations!", 1, ConsoleColor.Yellow);
+            Text($"\n\nYou have completed the task and saved {currentIsland?.Name}!", 3);
             currentIsland = previousIsland;
-            Text($"\nYou returned to Mæinø. \n{4 - playerPoints} islands remain!\n", 3);
+            Text("\nYou returned to Mæinø.", 1);
+            Text($"\n{4 - playerPoints} islands remain!", 3);
             Console.Clear();
         }
 
         public static void AlreadyDone()
         {
-            Text($"\nYou have already completed the minigame, and therefore returned to Mæinø. \nThere are {4 - playerPoints} more islands to save out there!", 3);
-            minigame = false;
+            Text("You have already completed the minigame, and therefore returned to Mæinø.", 3);
+            Text($"\nThere are {4 - playerPoints} more islands to save out there!", 3);
             currentIsland = previousIsland;
+        }
+
+        private static void Ending()
+        {
+            Console.Clear();
+            Text("Congratulations!", 3, ConsoleColor.DarkYellow);
+            Console.Clear();
+            Text("You saved all four islands and cleared Operation Hav!", 3, ConsoleColor.DarkYellow);
+            Console.Clear();
+            Text("We hope you enjoyed our little game and learned something from it!", 5, ConsoleColor.DarkYellow);
+            Console.Clear();
+            Text("So, in case we don't see ya (anymore):", 3, ConsoleColor.DarkYellow);
+            Console.Clear();
+            Text("Good afternoon! <3", 1, ConsoleColor.DarkYellow);
+            Console.Clear();
+            Text("Good evening!   <3", 1, ConsoleColor.DarkYellow);
+            Console.Clear();
+            Text("Good night!     <3", 1, ConsoleColor.DarkYellow);
+            Console.Clear();
+            //Environment.Exit(0);
         }
 
         public static void NoProblemHere()
         {
-            Text("There are no problems here to tackle! But for sure other islands have problems ahead for you.\n", 3);
-            minigame = false;
+            Text("There are no problems here to tackle! But for sure the other islands have problems ahead for you.\n", 3);
         }
-        public static void Quitted()
+        public static void Quit()
         {
             Console.Clear();
             Text("\nThank you for playing Operation Hav!",3);
-            Text("\nWe hope you have learnt something about the SDG 14 regarding 'Life below Water'.", 3);
+            Text("\n\nWe hope you have learnt something about the SDG 14 regarding 'Life below Water'.", 3);
             Text("\nWe are sorry to see you go already, but therefore we will sum up the most important knowledge for you:\n", 3);
-            Text("\n- Biodiversity Preservation: Oceans house over 80% of Earth's species, making them essential for maintaining ecological balance and preventing mass extinctions.\n", 3, ConsoleColor.DarkMagenta);
-            Text("- Climate Regulation: Oceans act as a carbon sink, absorbing CO₂ and moderating global temperatures, but their capacity depends on healthy ecosystems like coral reefs and seagrass meadows.\n", 3, ConsoleColor.DarkMagenta);
-            Text("- Food Security: Over 3 billion people rely on seafood as their primary protein source; protecting marine life ensures sustainable fisheries for future generations.\n", 3, ConsoleColor.DarkMagenta);
-            Text("- Disaster Mitigation: Healthy ecosystems like coral reefs and mangroves buffer coastal areas from storms and rising sea levels, safeguarding communities from devastation.\n\n", 3, ConsoleColor.DarkMagenta);
+            Text("\n- Biodiversity Preservation: Oceans house over 80% of Earth's species, making them essential for maintaining ecological balance and preventing mass extinctions.", 3, ConsoleColor.DarkMagenta);
+            Text("\n- Climate Regulation: Oceans act as a carbon sink, absorbing CO₂ and moderating global temperatures, but their capacity depends on healthy ecosystems like coral reefs and seagrass meadows.", 3, ConsoleColor.DarkMagenta);
+            Text("\n- Food Security: Over 3 billion people rely on seafood as their primary protein source; protecting marine life ensures sustainable fisheries for future generations.", 3, ConsoleColor.DarkMagenta);
+            Text("\n- Disaster Mitigation: Healthy ecosystems like coral reefs and mangroves buffer coastal areas from storms and rising sea levels, safeguarding communities from devastation.", 3, ConsoleColor.DarkMagenta);
             Environment.Exit(0);
         }
 
         public static void GameOver()
         {
-            Text("\n\n", 4);
+            Text("\n\n", 0);
             Console.BackgroundColor = ConsoleColor.Red;
-            Text("GAME OVER", 0, ConsoleColor.Black);
-            Text("\n\n\n", 2);
+            Text("GAME OVER", 5, ConsoleColor.Black);
+            Retry();
         }
-        public static void InvalidCommand()
+
+        public static void Retry()
         {
-            Text("\nInvalid. Type again.", 1);
+            Console.Clear();
+            Text("Do you want to retry? (y/n)\n", 1);
+                var key = Console.ReadKey(intercept: true).Key;
+                switch (key)
+                {
+                    case ConsoleKey.Y:
+                        break;
+                    case ConsoleKey.N:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Invalid();
+                        Retry();
+                        break;
+                }
+        }
+
+
+        public static void Empty()
+        {
+            Text("Please enter a command.", 2, ConsoleColor.DarkGray);
+            Console.Clear();
+        }
+        public static void Invalid()
+        {
+            Text("Invalid input. Please type again.", 2, ConsoleColor.DarkGray);
+            Console.Clear();
         }
 
 
 
         //Displaying methods
-        public static void Text(string text, int readtime, ConsoleColor color)
-        {
-            Console.ForegroundColor = color;
-            Console.Write(text);
-            Thread.Sleep(readtime*1000);
-            Console.ResetColor();
-        }
+        
         public static void Text(string text, int readtime)
         {
             Console.Write(text);
             Thread.Sleep(readtime*1000);
         }
+        
+        public static void Text(string text, int readtime, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Text(text, readtime);
+            Console.ResetColor();
+        }
+        
 
         public static void Center(string message)
         {
