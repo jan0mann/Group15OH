@@ -1,3 +1,6 @@
+using System.Net.Mail;
+using System.Reflection.PortableExecutable;
+
 namespace OperationHav
 {
     public class IslandIndustrial : Island
@@ -9,52 +12,49 @@ namespace OperationHav
         }
         public static bool MinigameWon = false;
 
-        public static void Locals() // I (Noah) think methods for texts are better, because that way we have more freedom using text color, delays etc.
-        {
-            if (MinigameWon)
-            {
-                Game.Text("Thank you for saving our island!", 3);
-            }
-            else
-            {
-                Game.Text("\nNear the shore you meet an old man, who used to work in the factories.", 3);
-                Game.Text("\nYou start asking him about those old factories, which litter the entire island in trash.\nHe explains:", 3);
-                Game.Text("\nOslø has been suffering for decades now from extreme industrial waste, \nbecause it used to serve as a secret industrial outpost to the Soviet-Union during the Cold War.", 3, ConsoleColor.DarkGreen);
-                Game.Text("\nEver since the latter fell, however, no one came to clean, or even dismantle all those facilities, \nleaving our island and its surrounding waters a gigantic junkyard ...", 3, ConsoleColor.DarkGreen);
-            }
-        }
+    
 
-
-        //You might wanne use this method here for the minigame itself
         public static void Story_Minigame()
         {
             // STORY/INTRODUCTION
-            Game.Text("\nYou go to meet with the local UN referant, who has been analysing the situation.", 3);
-            Game.Text("\n\nHe speaks to you:", 1);
-            Game.Text("\n\nWelcome! Thank you so much for agreeing to help!", 2, ConsoleColor.DarkGreen);
-            Game.Text("\nThe UN supplied us with anti-hazardous suits, as well as special containers, which are provided directly by the spot.", 3, ConsoleColor.DarkGreen);
-            Game.Text("\n\nYou put on the suit and you walk straight into the old rusty facility...", 2);
-            Game.Text("\n\nThe building looks really old, so you think it's a good idea to hurry up.", 3, ConsoleColor.Red);
-            Game.Text("\n\nThe referant, who is still standing outside, shouts:", 2);
-            Game.Text("\n\nThis place can fall apart in any moment!", 3, ConsoleColor.DarkGreen);
-            Game.Text("\nIf another storm or hurricane happens, the buillding will surely collapse and all of the waste will end up in the water.", 5, ConsoleColor.DarkGreen);
-            Game.Text("\nYou need to pick up all the waste from this place and put it in correct containers.", 4, ConsoleColor.DarkGreen);
-            Game.Text("\nRemember to sort it properly, otherwise it can have negative impact for environment and can pose safety risks to workers at recycling facilities\n I don't have proper equipment to help but I installed a little camera in your suit so I can see your progress. We will stay in contact through the radio.\n Now, let's get to work.", 5, ConsoleColor.DarkGreen);
-            Game.Text("\nRemember: \nYellow stuff belongs to ", 0, ConsoleColor.DarkGreen);
-            Game.Text("'plastic'! ", 1, ConsoleColor.DarkYellow);
-            Game.Text("\nGray stuff to ", 0, ConsoleColor.DarkGreen);
-            Game.Text("'metal'!", 1, ConsoleColor.DarkGray);
-            Game.Text("\nGreen to ", 0, ConsoleColor.DarkGreen);
-            Game.Text("'atomic'! ", 1, ConsoleColor.Green);
-            Game.Text("\nBlue to ", 0, ConsoleColor.DarkGreen);
-            Game.Text("'rubber'! ", 1, ConsoleColor.DarkBlue);
-            Game.Text("\nAnd magenta to ", 0, ConsoleColor.DarkGreen);
-            Game.Text("'hardware'!", 2, ConsoleColor.DarkMagenta);
-            Game.Text("\n\nYou got it? Good luck!", 2, ConsoleColor.DarkGreen);
-            Game.Text("\n\nYou look around, as the entrance to the facility is entirely blocked...", 5);
-            Game.Text("\n\nSort the waste? Now??", 3, ConsoleColor.Cyan);
+            Game.Text("You go to meet with the local UN referant, who has been analysing the situation.", 3);
+            Game.Text("\nIt turns out, the referant is a... robot?", 3);
+            Visuals.NPC3();
+            Game.Text("Welcome! Thank you so much for agreeing to help!", 3, ConsoleColor.DarkGray);
+            Game.Text("\nPlease don't mind my current condition. We've had some difficulties...", 3, ConsoleColor.DarkGray);
+            Game.Text("\nThe UN already supplied special containers, which are provided directly by the spot.", 3, ConsoleColor.DarkGray);
+            Console.Clear();
+            Game.Text("You put on the anti-hazardous suit which was given to you earlier on Mæinø, and you walk straight into one of the old rusty facilities...", 6);
+            Game.Text("\n\nThe building looks really old and the wind from the sea is strong today, so you think it's a good idea to hurry up.", 5, ConsoleColor.Red);
+            Game.Text("\n\nThe handicaped referant bot, who is still standing outside, shouts:", 3);
+            Game.Text("\n\nCareful! This place can fall apart in any moment!", 3, ConsoleColor.DarkGray);
+            Game.Text("\n\nAll of a sudden, the entrance area you just passed, starts collapsing.", 3, ConsoleColor.Red);
+            Game.Text("\n\nYou hear the referant shouting:", 3);
+            Game.Text("\n\nDo not panick! I will get you help!", 3, ConsoleColor.DarkGray);
+            Game.Text("\nThis can take a while though... if you remain able, then maybe already start working!", 4, ConsoleColor.DarkGray);
+            Game.Text("\nYou need to pick up all the waste from this place and put it in correct containers.", 5, ConsoleColor.DarkGray);
+            Console.Clear();
+            Game.Text("Remember: \nYellow stuff belongs to ", 0, ConsoleColor.DarkGray);
+            Game.Text("'plastic'! ", 2, ConsoleColor.DarkYellow);
+            Game.Text("\nGray stuff to ", 0, ConsoleColor.DarkGray);
+            Game.Text("'metal'!", 2, ConsoleColor.DarkGray);
+            Game.Text("\nGreen to ", 0, ConsoleColor.DarkGray);
+            Game.Text("'atomic'! ", 2, ConsoleColor.Green);
+            Game.Text("\nBlue to ", 0, ConsoleColor.DarkGray);
+            Game.Text("'rubber'! ", 2, ConsoleColor.DarkBlue);
+            Game.Text("\nAnd magenta to ", 0, ConsoleColor.DarkGray);
+            Game.Text("'hardware'!", 3, ConsoleColor.DarkMagenta);
+            Game.Text("\n\nYou got it? Good luck!", 3, ConsoleColor.DarkGray);
+            Console.Clear();
+            Game.Text("You look around, as the entrance to the facility is entirely blocked...", 3);
+            Game.Text("\nYou start picking up some trash, in order to distract yourself from the shock...", 5);
 
-            //GAME START
+            //GAMEPLAY
+            SortingGame();            
+        }
+
+        public static void SortingGame()
+        {
             int minigamePoints = 0;
             Random random = new();
             Dictionary<string, int> wasteCount = new() // implementing the dictionary to see how many times each waste type was selected
@@ -68,6 +68,9 @@ namespace OperationHav
 
             for (int i = 0; i < 10; i++)
             {
+
+                Parser parser = new();
+
                 // Filter out waste types that have been selected twice
                 var availableWasteTypes = wasteCount.Where(w => w.Value < 2).Select(w => w.Key).ToArray(); // for now this removes waste from pool after it was generated twice but i dont know how it exactly works( used AI)
 
@@ -77,7 +80,14 @@ namespace OperationHav
 
                 Console.Clear();
 
-                Game.Text("\nYou have picked up some ", 0);
+                if (minigamePoints == 5)
+                {
+                    Game.Text("\nAs you pick up the rubbish, parts of the roof suddenly start falling down, blocking the entrance to the building.", 4);
+                    Game.Text("\nYou can hear the referant speaking through the radio:", 3);
+                    Game.Text("\nDon't worry, I'll get some help, hurry up!", 3, ConsoleColor.DarkGreen);
+                }
+
+                Game.Text("You've picked up some ", 0);
                 switch (pickedWaste)
                 {
                     case "plastic":
@@ -95,16 +105,36 @@ namespace OperationHav
                     case "hardware":
                         Game.Text("waste", 0, ConsoleColor.DarkMagenta);
                         break;
-                }
-                Game.Text(". Which container does it belong to? (type the word):\n", 2);
 
+                }
+                Game.Text(". Which container does it belong to? (type the name):", 2);
+
+
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Game.Text("\n\n   > ", 0);
                 string? container = Console.ReadLine()?.ToLower();
+                Console.ResetColor();
+                Console.Clear();
+                if (string.IsNullOrEmpty(container))
+                {
+                    Game.Empty();
+                    continue;
+                }
+                Command? command = parser.GetCommand(container);
+                if (command == null)
+                {
+                    Game.Invalid();
+                    continue;
+                }
+
+
 
                 if (container == pickedWaste)
                 {
                     Console.Clear();
 
-                    Game.Text("\nCorrect! You have placed the waste in the right container.", 2);
+                    Game.Text("Correct! You have placed the waste in the right container.", 2);
                     minigamePoints++;
 
                     if (pickedWaste == "plastic" && wasteCount[pickedWaste] == 1) // adding the text after correctly typed waste
@@ -157,62 +187,47 @@ namespace OperationHav
                         Game.Text("\n You have managed to remove all the hardware. It's important to remember that toxic substances from it can accumulate in tissues of marine organisms\n causing harm to people who consume these contaminated fish.", 5, ConsoleColor.DarkMagenta);
                     }
                 }
-                else if (string.IsNullOrEmpty(container))
-                {
-                    Game.Text("\nPlease enter a command:", 0);
-                    continue;
-                }
                 else
                 {
                     Console.Clear();
-
-                    Game.Text("\nNo! \nThat's the wrong container!", 2);
+                    Game.Text("No! That's the wrong container!", 2);
                 }
             }
 
+            //CONCLUSION - VICTORY/FAIL
+            Console.Clear();
+            Game.Text("You turn around, as you hear some men put the scrap aside which blocks the entrance.", 3);
+            Game.Text("\nThe referant carries himself in and says:", 3);
+            Game.Text("\n\nWhat a relief to see you well!", 3, ConsoleColor.DarkGray);
+            Game.Text("\nLet's see now, how you've done cleaning up this place.", 3, ConsoleColor.DarkGray);
+            Console.Clear();
+            Game.Text("\n...", 3, ConsoleColor.DarkGray);
             if (minigamePoints < 7)
-            {
-                Console.Clear();
-
-                Game.Text("\nYou turn around, as you hear some men put the scrap aside which blocks the entrance.", 3);
-                Game.Text("\nThe referant comes in and says:", 2);
-                Game.Text("\n\nWhat a relief to see you well!", 2, ConsoleColor.DarkGreen);
-                Game.Text("\nLet's see now, how you've done cleaning up this place.", 3, ConsoleColor.DarkGreen);
-                Game.Text("\n...", 3, ConsoleColor.DarkGreen);
-                Game.Text("\nYou've put too much waste in the wrong containers...", 0, ConsoleColor.DarkGreen);
-                Game.GameOver();
-                Console.Clear();
-                Game.Text("Do you want to retry? (y/n)\n", 1);
-                string? yN = Console.ReadLine()?.ToLower();
-                switch (yN)
-                {
-                    case "y":
-                        Story_Minigame();
-                        break;
-                    case "n":
-                        Console.Clear();
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Game.InvalidCommand();
-                        break;
-                }
-            }
+                Fail();
             else
-            {
-                Console.Clear();
+                Victory();
+        }
 
-                Game.Text("\nYou turn around, as you hear some men put the scrap aside which blocks the entrance.", 3);
-                Game.Text("\nThe referant comes in and says:", 2);
-                Game.Text("\n\nWhat a relief to see you well!", 2, ConsoleColor.DarkGreen);
-                Game.Text("\nLet's see now, how you've done cleaning up this place.", 3, ConsoleColor.DarkGreen);
-                Game.Text("\n...", 3, ConsoleColor.DarkGreen);
-                Game.Text("\nLooks fantastic!", 2, ConsoleColor.DarkGreen);
-                Game.Text("\nYou've done a great job sorting the waste. Both my superiors and the locals will be happy to see this.", 5, ConsoleColor.DarkGreen);
-                Game.Text("\nThank you so much for your help!", 5, ConsoleColor.DarkGreen);
+
+
+        static void Fail()
+        {
+                Game.Text("\nIt seems you've put too much waste in the wrong containers...", 3, ConsoleColor.DarkGray);
+                Game.Text("\nNow we have no way to dispose it properly... we need to burn it.", 3, ConsoleColor.DarkGray);
+                Game.GameOver();
+                Story_Minigame();
+        }
+
+        static void Victory()
+        {
+                Game.Text("\nLooks fantastic!", 3, ConsoleColor.DarkGray);
+                Game.Text("\nYou've done a great job sorting the waste. Both my superiors and the locals will be very happy to see this.", 5, ConsoleColor.DarkGray);
+                Game.Text("\nWait... You even found my lost parts! Give me some seconds...", 5, ConsoleColor.DarkGray);
+                Visuals.NPC33();
+                Game.Text("\nNow I'm finally whole again! How could I ever make up for that!", 5, ConsoleColor.DarkGray);
+                Game.Text("\nThank you so much for your help!", 5, ConsoleColor.DarkGray);
                 Game.MinigameVictory();
                 MinigameWon = true;
-            }
         }
     }
 }
