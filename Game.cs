@@ -232,6 +232,7 @@ namespace OperationHav
 
                 if(beginning_of_game==false && harbor==false && playerPoints < 4)
                 {
+                    Text("Your current status:", 2, ConsoleColor.DarkYellow);
                     Visuals.Map(currentIsland); 
                     Status();
                     Instructions();
@@ -322,7 +323,6 @@ namespace OperationHav
             Text("\nI suggest you go to the harbor and start right away with your work. Good luck.", 3, ConsoleColor.Green);
             Text("\n\nThe referant walks away...", 3);
             Console.Clear();
-            Thread.Sleep(3000);
         }
         
         private void Refused()
@@ -371,7 +371,7 @@ namespace OperationHav
             Text("quit", 0, ConsoleColor.Yellow);
             Text(" if you want to leave the game.", 1);
 
-            Text("\n\nWhat are you doing?\n", 0, ConsoleColor.DarkYellow);
+            Text("\n\nWhat are you doing?", 0, ConsoleColor.DarkYellow);
         }
         private static void Status()
         {
@@ -386,16 +386,22 @@ namespace OperationHav
         private static void Harbor()
         {
             Text($"Welcome to the harbor of {currentIsland?.Name}!", 2);
-            Text("\nWhat direction do you want to ride to, Captain?", 2);
-            Text("\n\nnorth ", 0, ConsoleColor.Yellow);
-            Text("for Oslø,", 0); 
-            Text("\neast" , 0, ConsoleColor.Yellow);
-            Text("for Tokyø,", 0); 
-            Text("\nsouth ", 0, ConsoleColor.Yellow); 
-            Text("for Sydnø and ", 0); 
-            Text("\nwest ", 0, ConsoleColor.Yellow); 
-            Text("for Såndiægø ", 0);
-            Text("\n\n(type 'back' to leave)\n", 1, ConsoleColor.DarkGray); 
+            if (currentIsland?.Name == "Mæinø")
+            {
+                Text("\nWhat direction do you want to ride to, Captain?", 2);
+                Text("\n\nnorth ", 0, ConsoleColor.Yellow);
+                Text("for Oslø,", 0); 
+                Text("\neast " , 0, ConsoleColor.Yellow);
+                Text("for Tokyø,", 0); 
+                Text("\nsouth ", 0, ConsoleColor.Yellow); 
+                Text("for Sydnø and ", 0); 
+                Text("\nwest ", 0, ConsoleColor.Yellow); 
+                Text("for Såndiægø ", 0);
+                Text("\n\n(type 'back' to leave)\n", 1, ConsoleColor.DarkGray); 
+            }
+            else
+                Text("If you want to return to Mæinø, type ", 0);
+                Text("back.", 2, ConsoleColor.Yellow);
         }
 
         public static void MinigameVictory()

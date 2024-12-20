@@ -119,12 +119,14 @@ namespace OperationHav
                 if (string.IsNullOrEmpty(container))
                 {
                     Game.Empty();
+                    i--;
                     continue;
                 }
                 Command? command = parser.GetCommand(container);
                 if (command == null)
                 {
                     Game.Invalid();
+                    i--;
                     continue;
                 }
 
