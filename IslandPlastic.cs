@@ -90,14 +90,14 @@ namespace OperationHav
                         corporations.Influence++;
                         Game.Text("You admit that plastic doesn't cause as big issues on the environment as some people think. Industries can continue producing it in big numbers.", 5);
                         Game.Text("\n\nFun Fact: This is incorrect, because fish, seabirds, sea turtles, and marine mammals can become entangled in or ingest plastic debris, causing suffocation, starvation, and drowning.", 6, ConsoleColor.Blue);
-                        Game.Text("\nFun fact: Some alternatives can be: bamboo straws, bags made of fabric or even fishing nets made from micro-algae, making them biodegradable.", 5, ConsoleColor.Blue);
+                        Game.Text("\nFun Fact: Some alternatives can be: bamboo straws, bags made of fabric or even fishing nets made from micro-algae, making them biodegradable.", 5, ConsoleColor.Blue);
                     }
                     else if (answer == "advise")
                     {
                         environmentalists.Influence++;
                         Game.Text("You advise that plastic can be very harmful if used thoughtlessly. The industry must limit the production of plastic and search for alternatives.", 5);
                         Game.Text("\n\nFun Fact: Your advise is correct, because fish, seabirds, sea turtles, and marine mammals can become entangled in or ingest plastic debris, causing suffocation, starvation, and drowning.", 6, ConsoleColor.Blue);
-                        Game.Text("\nFun fact: Some alternatives can be: bamboo straws, bags made of fabric or even fishing nets made from micro-algae, making them biodegradable.", 5, ConsoleColor.Blue);
+                        Game.Text("\nFun Fact: Some alternatives can be: bamboo straws, bags made of fabric or even fishing nets made from micro-algae, making them biodegradable.", 5, ConsoleColor.Blue);
                     }
                 }
 
