@@ -31,7 +31,7 @@ namespace OperationHav
             Game.Text("\n\nWe're there then.", 3, ConsoleColor.Blue);
             Game.Text("\nI'm afraid this is where you must go alone.", 3, ConsoleColor.Blue);
             Game.Text("\nRemeber to use ", 0, ConsoleColor.Blue);
-            Game.Text("W A S D", 0, ConsoleColor.Yellow);
+            Game.Text("W A S D (or Arrow-keys)", 0, ConsoleColor.Yellow);
             Game.Text(" to move around down there.", 3); 
             Game.Text("\nAlso, remember that the trash looks like this:", 0);
             Game.Text("G", 3, ConsoleColor.Black);
@@ -263,6 +263,10 @@ namespace OperationHav
             else if (key == ConsoleKey.S) newY++; // Down
             else if (key == ConsoleKey.A) newX--; // Left
             else if (key == ConsoleKey.D) newX++; // Right
+            else if (key == ConsoleKey.UpArrow) newY--; //Up
+            else if (key == ConsoleKey.DownArrow) newY++; // Down
+            else if (key == ConsoleKey.LeftArrow) newX--; // Left
+            else if (key == ConsoleKey.RightArrow) newX++; // Right
 
             // Validate the new position (check bounds and walls)
             if (maze[newY, newX] == 0 || maze[newY, newX] == 2)

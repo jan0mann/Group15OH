@@ -30,7 +30,7 @@ namespace OperationHav
 
         // Score counter
         private static int score = 0;
-        private const int maxScore = 2;
+        private const int maxScore = 20;
 
         // Movement delay
         private const int movementDelay = 10; // Milliseconds
@@ -49,7 +49,7 @@ namespace OperationHav
             Game.Text("We hereby give you our fastest boat. You were given a skimmer earlier, right?", 4, ConsoleColor.Magenta);
             Game.Text("\nAttach that skimmer to the boat, and move around in the oily area to gather it all up.", 4, ConsoleColor.Magenta);
             Game.Text("\nMake sure to use the", 0, ConsoleColor.Magenta);
-            Game.Text(" W A S D ", 0, ConsoleColor.Yellow);
+            Game.Text(" W A S D (or Arrow-keys)", 0, ConsoleColor.Yellow);
             Game.Text("keys to move around and clean up all the dark spots of oil in the water by coming into contact with them. Good luck.", 5, ConsoleColor.Magenta);
             
             Console.Clear();
