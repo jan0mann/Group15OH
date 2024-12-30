@@ -21,7 +21,7 @@ namespace OperationHav
 
             if (words.Length > 1)
             {
-                return new Command(words[0], words[1]);
+                return new Command(words[0]);
             }
 
             return new Command(words[0]);

@@ -235,9 +235,10 @@ namespace OperationHav
             Text("\n\nThe United Nations are urgently hiring you, to save life below water surrounding a Danish pacific colony called ,,Økompleks'', which consists of five islands.", 3);
             Text("\nEach islands inhabitants suffer from another problem, which all, however, have one thing in common:", 3);
             Text("\nThey were all caused by man.", 3);
-            Text("It is now up to if you either accept the hiring and take on the challenge to work with the UN to stay on track for the goals regarding sustainable goal 14!", 4, ConsoleColor.Blue);
+            Text("\nIt is now up to if you either accept the hiring and take on the challenge to work with the UN to stay on track for the goals regarding sustainable goal 14!", 4, ConsoleColor.Blue);
             Text("\nYou will get help along the way from locals on each island if you call for them. Elsewise it could get tough to complete all challenges that you will meet along the way.", 4, ConsoleColor.Blue);
             Text("\nIf you choose to refuse it would be a huge mess. You are the UN's and locals last hope for a change to the better. Therefore please try to do your best for the people, \nfor the future!\n\n", 10, ConsoleColor.Blue);
+            Text("...", 2, ConsoleColor.Blue);
             Text("\nPress 'Enter' to continue!", 0, ConsoleColor.White);            
             PressEnter();
         }    
@@ -296,9 +297,7 @@ namespace OperationHav
 
         public static void Instructions()
         {
-            
             Text("You now have the following options:\n", 2, ConsoleColor.DarkYellow);
-
             Text("\nType ", 0);
             Text("harbor", 0, ConsoleColor.Yellow);
             Text(" to get to the other islands from Mainø or", 1); 
@@ -341,7 +340,7 @@ namespace OperationHav
             Text("for Sydnø and ", 0); 
             Text("\nwest ", 0, ConsoleColor.Yellow); 
             Text("for Såndiægø ", 0);
-            Text("\n\n(type 'back' to leave)\n", 1, ConsoleColor.DarkGray); 
+            Text("\n\n(type 'back' to leave the harbor)\n", 1, ConsoleColor.DarkGray); 
         }
 
         public static void MinigameVictory()
@@ -372,7 +371,7 @@ namespace OperationHav
             Console.Clear();
             Text("We hope you enjoyed Operation Hav and learned something from it!", 5, ConsoleColor.DarkYellow);
             Console.Clear();
-            Text("So, in case we don't see you anymore:", 3, ConsoleColor.DarkYellow);
+            Text("So, in case we don't see you anymore, we have some final learnings for you, regarding SDG 14 and everyday life:", 3, ConsoleColor.DarkYellow);
             Console.Clear();
             Console.WriteLine("""
                 Plastic Pollution
@@ -458,7 +457,7 @@ namespace OperationHav
 
 
 
-        //Displaying methods
+        //Methods:
         
         public static void Text(string text, int readtime)
         {

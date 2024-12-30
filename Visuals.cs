@@ -31,7 +31,7 @@ namespace OperationHav
             Game.Center("................................");
             Thread.Sleep(2000);
             Game.Center("\n\n");
-            Game.Center("fun fact: 'hav' is danish for ocean, and that is what the game is about!");
+            Game.Center("fun fact: 'hav' is danish for ocean, and that is what the game is all about!");
             Thread.Sleep(2000);
             Game.Center("\n\n");
             Game.Center("Press 'Enter' key to start Operation Hav!");
