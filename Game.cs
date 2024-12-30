@@ -374,7 +374,21 @@ namespace OperationHav
             Console.Clear();
             Text("So, in case we don't see you anymore:", 3, ConsoleColor.DarkYellow);
             Console.Clear();
-            Text("Educational summing up of all the problems", 0);
+            Console.WriteLine("""
+                Plastic Pollution
+                Plastic waste takes hundreds of years to break down, polluting land and seas. Each year, over 8 million tons end up in oceans, harming marine life. Simple actions like reducing single-use plastics and recycling make a huge difference.
+
+                Industrial Pollution
+                Industries release harmful chemicals and trash, damaging Life Below Water. This impacts ecosystems and contributes to climate change. Choosing sustainable products and supporting green companies helps reduce this impact.
+
+                Oil Pollution
+                Oil spills devastate marine ecosystems, killing wildlife and disrupting natural habitats. Even small leaks from transportation harm the environment. Switching to renewable energy and reducing fossil fuel use are key to preventing oil pollution.
+
+                Destruction of the Great Barrier Reef
+                Climate change, pollution, and destructive fishing practices are causing coral bleaching and the collapse of reefs. These reefs support a quarter of marine life. Lowering carbon emissions and protecting marine areas are essential to saving these underwater treasures.
+
+                Remember: Small actions, big impact. The choices you make can help protect our planet for generations to come.
+                """);
             Text("\nPress Enter to Exit the Operation Hav!",0);
             PressEnter();
             Text("Good afternoon! <3", 1, ConsoleColor.DarkYellow);

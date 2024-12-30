@@ -41,16 +41,16 @@ namespace OperationHav
         {   
             Game.Text("The sight surrounding the island is a horrendous reminder of the effect human activity has on the world. Where there was pristine,", 4);
             Game.Text("\nblue water, now dark patches of oil float above the water, moving along with the waves, spreading more and more across the surface, ", 4);
-            Game.Text("\nmaking it harder even for the kids to play by the shore...", 4);
+            Game.Text("\nmaking it harder even for the kids to play by the shore...", 6);
             Visuals.NPC2();
-            Game.Text("The situation is dire, and you're already presented with the items needed. With the help of the UN, the spill is contained", 4);
-            Game.Text("\nwith special things called 'booms', floating objects that act as barriers to keep it within limits. The next part is where you come in:", 5);
+            Game.Text("The situation is dire, and you're already presented with the items needed. With the help of the UN, the spill is contained", 5);
+            Game.Text("\nwith special things called 'booms', floating objects that act as barriers to keep it within limits. The next part is where you come in:", 7);
             Console.Clear();
             Game.Text("We hereby give you our fastest boat. You were given a skimmer earlier, right?", 4, ConsoleColor.Magenta);
             Game.Text("\nAttach that skimmer to the boat, and move around in the oily area to gather it all up.", 4, ConsoleColor.Magenta);
             Game.Text("\nMake sure to use the", 0, ConsoleColor.Magenta);
             Game.Text(" W A S D (or Arrow-keys)", 0, ConsoleColor.Yellow);
-            Game.Text("keys to move around and clean up all the dark spots of oil in the water by coming into contact with them. Good luck.", 5, ConsoleColor.Magenta);
+            Game.Text("keys to move around and clean up all the dark spots of oil in the water by coming into contact with them. Good luck.", 7, ConsoleColor.Magenta);
             
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.Black;

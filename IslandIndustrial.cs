@@ -12,8 +12,6 @@ namespace OperationHav
         }
         public static bool MinigameWon = false;
 
-    
-
         public static void Story_Minigame()
         {
             // STORY/INTRODUCTION
@@ -44,7 +42,7 @@ namespace OperationHav
             Game.Text("'rubber'! ", 2, ConsoleColor.DarkBlue);
             Game.Text("\nAnd magenta to ", 0, ConsoleColor.DarkGray);
             Game.Text("'hardware'!", 3, ConsoleColor.DarkMagenta);
-            Game.Text("\n\nYou got it? Good luck!", 3, ConsoleColor.DarkGray);
+            Game.Text("\n\nYou now got 10 seconds to remember all the different bins! the Good luck!", 13, ConsoleColor.DarkGray);
             Console.Clear();
             Game.Text("You look around, as the entrance to the facility is entirely blocked...", 3);
             Game.Text("\nYou start picking up some trash, in order to distract yourself from the shock...", 5);
@@ -72,7 +70,7 @@ namespace OperationHav
                 Parser parser = new();
 
                 // Filter out waste types that have been selected twice
-                var availableWasteTypes = wasteCount.Where(w => w.Value < 2).Select(w => w.Key).ToArray(); // for now this removes waste from pool after it was generated twice but i dont know how it exactly works( used AI)
+                var availableWasteTypes = wasteCount.Where(w => w.Value < 2).Select(w => w.Key).ToArray(); // this removes waste from pool after it was generated 
 
 
                 string pickedWaste = availableWasteTypes[random.Next(availableWasteTypes.Length)];
@@ -107,7 +105,7 @@ namespace OperationHav
                         break;
 
                 }
-                Game.Text(". Which container does it belong to? (type the name):", 2);
+                Game.Text(". Which container does it belong to? (type the name):", 3);
 
 
 
