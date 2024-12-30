@@ -119,32 +119,6 @@ namespace OperationHav
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Score: {score}/{maxScore}".PadRight(areaWidth));
         }
-
-        static void UpdateDisplayArea(int line, string content)
-        {
-            if (line < 0 || line >= areaHeight)
-            {
-                Console.SetCursorPosition(0, areaTop + areaHeight);
-                Console.WriteLine("Error: Line index out of bounds.");
-                return;
-            }
-
-            displayArea[line] = content.Length > areaWidth
-                ? content.Substring(0, areaWidth) // Truncate if too long
-                : content.PadRight(areaWidth, '░');    // Pad if too short
-
-            RenderDisplayArea();
-        }
-
-        static void ClearDisplayArea()
-        {
-            for (int i = 0; i < areaHeight; i++)
-            {
-                displayArea[i] = new string('░', areaWidth);
-            }
-            RenderDisplayArea();
-        }
-
         static void MoveCharacter(int x, int y)
         {
             // Clear the previous character position
