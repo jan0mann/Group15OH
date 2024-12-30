@@ -10,7 +10,7 @@ namespace OperationHav
     {
         public string Name { get; }
 
-        public Command(string name, string? secondWord = null)
+        public Command(string name)
         {
             Name = name;
         }
