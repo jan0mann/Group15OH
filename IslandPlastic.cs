@@ -12,26 +12,6 @@ namespace OperationHav
         public static bool MinigameWon = false;
         private static bool Teenagers;
 
-        /*public static void Locals() 
-        {
-                Game.Text("After reaching the shore and walking around a bit, you spot a figure not far away. You approach a man that looks more ", 4);
-                Game.Text("\nsophisticated than the average citizen.", 4); 
-                Game.Text("\nYou greet each other and start talking. He says:", 4);
-                Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of plastic waste…", 4, ConsoleColor.DarkCyan);
-                Game.Text("\nHe keeps on telling you that he used to be a teacher on this island, ", 4);
-                Game.Text("\nbefore it was made a plastic wasteland. He comes here when he needs some time alone to think.", 4);
-                Game.Text("\nYou ask him if there is anything to be done for the island to gain its former glory. He gives you some insight:", 4);
-                Game.Text("\nIn the recent history of this insular republic, two parties have been fighting for the balance of power:", 4, ConsoleColor.DarkCyan);
-                Game.Text("\nThe corporations ", 1, ConsoleColor.Red);
-                Game.Text("and the ", 0, ConsoleColor.DarkCyan);
-                Game.Text("environmentalists.", 1, ConsoleColor.Green);
-                Game.Text("\nCorporations operate under the name 'Industrial Association'. Their goals are to make money, the health of the ecosystem is not in their agenda.", 5, ConsoleColor.Red);
-                Game.Text("\nTheir view on the environmentalists is, that they are a group of fearmongerers that are overreacting on the small damage done and that the ecosystem will eventually fix itself.", 6, ConsoleColor.DarkCyan);
-                Game.Text("\nThe environmentalists, aka. 'Green Syndicate', strive to mitigate the damage done to the ecosystem and plan to reverse some of its negative consequences.", 5, ConsoleColor.Green);
-                Game.Text("\nThose people hate the corporations with all their heart. They think they are blinded by their greediness and that their goals are futile, since no one takes their wealth to their grave.", 6, ConsoleColor.DarkCyan);
-                Game.Text("\nWe must act quickly and support the correct side of history before it's too late. You know what to do...\n\n", 1, ConsoleColor.DarkCyan);
-        }*/
-
 
         public static void Story_Minigame()
         {
@@ -39,12 +19,30 @@ namespace OperationHav
             Faction corporations = new("Industrial Assosiation", 0);
             Faction environmentalists = new("Green Syndicate", 0);
 
+            Game.Text("After reaching the shore and walking around a bit, you spot a figure not far away. You approach a man that looks more ", 4);
+            Game.Text("\nsophisticated than the average citizen.", 4);
+            Game.Text("\nYou greet each other and start talking. He says:", 4);
+            Game.Text("\nThis island is closest to the Asian mainland, making it a collecting point for huge quantities of plastic waste…", 4, ConsoleColor.DarkCyan);
+            Game.Text("\nHe keeps on telling you that he used to be a teacher on this island, ", 4);
+            Game.Text("\nbefore it was made a plastic wasteland. He comes here when he needs some time alone to think.", 4);
+            Game.Text("\nYou ask him if there is anything to be done for the island to gain its former glory. He gives you some insight:", 4);
+            Game.Text("\nIn the recent history of this insular republic, two parties have been fighting for the balance of power:", 4, ConsoleColor.DarkCyan);
+            Game.Text("\nThe corporations ", 1, ConsoleColor.Red);
+            Game.Text("and the ", 0, ConsoleColor.DarkCyan);
+            Game.Text("environmentalists.", 1, ConsoleColor.Green);
+            Game.Text("\nCorporations operate under the name 'Industrial Association'. Their goals are to make money, the health of the ecosystem is not in their agenda.", 5, ConsoleColor.Red);
+            Game.Text("\nTheir view on the environmentalists is, that they are a group of fearmongerers that are overreacting on the small damage done and that the ecosystem will eventually fix itself.", 6, ConsoleColor.DarkCyan);
+            Game.Text("\nThe environmentalists, aka. 'Green Syndicate', strive to mitigate the damage done to the ecosystem and plan to reverse some of its negative consequences.", 5, ConsoleColor.Green);
+            Game.Text("\nThose people hate the corporations with all their heart. They think they are blinded by their greediness and that their goals are futile, since no one takes their wealth to their grave.", 6, ConsoleColor.DarkCyan);
+            Game.Text("\nWe must act quickly and support the correct side of history before it's too late. You know what to do...\n\n", 1, ConsoleColor.DarkCyan);
+
+
             Game.Text("You are now called to make decisions for the future of the island and its marine life.", 3);
             Game.Text("\nWith your success over the improvement of the situation on the other islands, you have gained the trust of the locals.", 4);
             Game.Text("\nThe citizens will follow your guidance and example.", 3);
             Game.Text("\nEach of the two parties exerts influence on the island and its people.", 3);
             Game.Text("\nWith your choices, you change the balance of power by taking actions that support each party.", 3);
-            Game.Text("\nThe mayor has announced, that by the end of this month, the side that has the most support of the population, will help the president the republic's policies.", 6);
+            Game.Text("\nThe mayor has announced, that by the end of this month, the side that has the most support of the population, will help the president decide on the republic's policies.", 6);
             Game.Text("\n\nWho will you support? Will you save the island's health and its life underwater?", 5, ConsoleColor.Blue);
 
             Visuals.NPC1();
@@ -91,6 +89,8 @@ namespace OperationHav
                         Game.Text("You admit that plastic doesn't cause as big issues on the environment as some people think. Industries can continue producing it in big numbers.", 5);
                         Game.Text("\n\nFun Fact: This is incorrect, because fish, seabirds, sea turtles, and marine mammals can become entangled in or ingest plastic debris, causing suffocation, starvation, and drowning.", 6, ConsoleColor.Blue);
                         Game.Text("\nFun Fact: Some alternatives can be: bamboo straws, bags made of fabric or even fishing nets made from micro-algae, making them biodegradable.", 5, ConsoleColor.Blue);
+                        Game.Text("\n\nPress any key to continue\n", 0);
+                        Console.ReadKey();
                     }
                     else if (answer == "advise")
                     {
@@ -98,6 +98,8 @@ namespace OperationHav
                         Game.Text("You advise that plastic can be very harmful if used thoughtlessly. The industry must limit the production of plastic and search for alternatives.", 5);
                         Game.Text("\n\nFun Fact: Your advise is correct, because fish, seabirds, sea turtles, and marine mammals can become entangled in or ingest plastic debris, causing suffocation, starvation, and drowning.", 6, ConsoleColor.Blue);
                         Game.Text("\nFun Fact: Some alternatives can be: bamboo straws, bags made of fabric or even fishing nets made from micro-algae, making them biodegradable.", 5, ConsoleColor.Blue);
+                        Game.Text("\n\nPress any key to continue\n", 0);
+                        Console.ReadKey();
                     }
                 }
 
@@ -110,7 +112,7 @@ namespace OperationHav
                     Game.Text("them about responsibility by picking up their trash together. But you could just ", 2);
                     Game.Text("\ncontinue ", 0, ConsoleColor.Yellow);
                     Game.Text("enjoying the sun. You supose that someone will collect the trash at some point.", 2);
-                    
+
 
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Game.Text("\n\n   > ", 0);
@@ -136,12 +138,16 @@ namespace OperationHav
                         Teenagers = true;
                         Game.Text("You catch up to the youngsters and politely try to make them see sense. You teach them what practises are good and bad and then you help them dispose of their trash. Motivated by your words, the teens go on and clean the whole beach.", 7);
                         Game.Text("\n\nFun Fact: Seas and oceans belong to all of us, they are part of the earth which is our home. It should be our responsibility to keep them clean and healthy.", 5, ConsoleColor.Blue);
+                        Game.Text("\n\nPress any key to continue\n", 0);
+                        Console.ReadKey();
                     }
                     else if (answer == "continue")
                     {
                         corporations.Influence++;
                         Game.Text("You ignore your consciousness, sunbathing was too pleasant to abandon. The beach stays littered and the teenagers will probably do it again.", 5);
                         Game.Text("\n\nFun Fact: Seas and oceans belong to all of us, they are part of the earth which is our home. It should be our responsibility to keep them clean and healthy.", 5, ConsoleColor.Blue);
+                        Game.Text("\n\nPress any key to continue\n", 0);
+                        Console.ReadKey();
                     }
                 }
 
@@ -158,7 +164,7 @@ namespace OperationHav
                     Game.Text("the bottles ", 2);
                     Game.Text("\nor search for an ", 0);
                     Game.Text("alternative?", 2, ConsoleColor.Yellow);
-                    
+
 
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Game.Text("\n\n   > ", 0);
@@ -185,14 +191,18 @@ namespace OperationHav
                         Game.Text("\n\nFun Fact: Plastic bottles can accumulate in sensitive coastal ecosystems and coral reefs.", 3, ConsoleColor.Blue);
                         Game.Text("\nOver time, plastic bottles break down into smaller particles, releasing harmful chemicals into the water", 4, ConsoleColor.Blue);
                         Game.Text("\nBetter alternatives to plastic bottles are: glass bottles, stainless steel bottles, aluminum bottles. They can be used for long periods of time.\n", 4, ConsoleColor.Blue);
+                        Game.Text("\n\nPress any key to continue\n", 0);
+                        Console.ReadKey();
                     }
                     else if (answer == "alternative")
                     {
                         environmentalists.Influence++;
                         Game.Text("You tell the man that facts say otherwise. Plastic bottles can indeed pose a serious threat to our seas. The woman applauds you, she will spread the word of your actions. The man tried to suppress his anger.", 6);
                         Game.Text("\n\nFun Fact: Plastic bottles can accumulate in sensitive coastal ecosystems and coral reefs.", 3, ConsoleColor.Blue);
-                        Game.Text("\nOver time, plastic bottles break down into smaller particles, releasing harmful chemicals into the water", 4, ConsoleColor.Blue);
+                        Game.Text("\nOver time, plastic bottles break down into smaller particles, releasing harmful chemicals into the water.", 4, ConsoleColor.Blue);
                         Game.Text("\nBetter alternatives to plastic bottles are: glass bottles, stainless steel bottles, aluminum bottles. They can be used for long periods of time.\n", 4, ConsoleColor.Blue);
+                        Game.Text("\n\nPress any key to continue\n", 0);
+                        Console.ReadKey();
                     }
                 }
 
@@ -207,7 +217,7 @@ namespace OperationHav
                     Game.Text("\nAnother course of action would be to ", 0);
                     Game.Text("\nridicule ", 0, ConsoleColor.Yellow);
                     Game.Text("them on social media. Their requests are unbased.", 2);
-                    
+
 
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Game.Text("\n\n   > ", 0);
@@ -234,7 +244,9 @@ namespace OperationHav
                         Game.Text("\nMore and more people follow your example and join the protest.", 3);
                         Game.Text("\nOne thing is sure, such an effort will not be ingored by the people in power.", 3);
                         Game.Text("\n\nFun Fact: Politicians are more likely to act on an issue, if a well-prepared and a passionate crowd demands a solution.", 4, ConsoleColor.Blue);
-                        Game.Text("\nYour voice can influence politics and can also help apply policies friendly for the environment. You can also influence other people by using smart and well-formulated arguments.", 5, ConsoleColor.Blue);  
+                        Game.Text("\nYour voice can influence politics and can also help apply policies friendly for the environment. You can also influence other people by using smart and well-formulated arguments.", 5, ConsoleColor.Blue);
+                        Game.Text("\n\nPress any key to continue\n", 0);
+                        Console.ReadKey();
                     }
                     else if (answer == "ridicule")
                     {
@@ -244,6 +256,8 @@ namespace OperationHav
                         Game.Text("\nPeople in power will not care about unserious demonstration attempts.", 3);
                         Game.Text("\n\nFun Fact: Politicians are more likely to act on an issue, if a well-prepared and a passionate crowd demands a solution.", 4, ConsoleColor.Blue);
                         Game.Text("\nYour voice can influence politics and can also help apply policies friendly for the environment. You can also influence other people by using smart and well-formulated arguments.", 5, ConsoleColor.Blue);
+                        Game.Text("\n\nPress any key to continue\n", 0);
+                        Console.ReadKey();
                     }
                 }
 
@@ -266,7 +280,7 @@ namespace OperationHav
                     Game.Text("\nBut you could make it more interactive by helping them make a simple ", 2);
                     Game.Text("\nvideogame ", 0, ConsoleColor.Yellow);
                     Game.Text("about sea plastic pollution.", 3);
-                    
+
 
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Game.Text("\n\n   > ", 0);
@@ -293,6 +307,8 @@ namespace OperationHav
                         Game.Text("\nHalf of the class has almost fallen asleep and the other half learns about plastic pollution from the corporations' point of view. ", 4);
                         Game.Text("\nYou return home having second thoughts about your decisions today. ", 2);
                         Game.Text("\n\nFun Fact: While searching about plastic pollution on the internet, it is advised to believe only what trusted sources say. Some articles may try to manipulate the reader.", 5, ConsoleColor.Blue);
+                        Game.Text("\n\nPress any key to continue\n", 0);
+                        Console.ReadKey();
                     }
                     else if (answer == "videogame")
                     {
@@ -301,7 +317,9 @@ namespace OperationHav
                         Game.Text("\nA couple of days later, a student group delivers a small game with choices, where the player learns even by making the wrong decisions. \nThey have implemented information such as: ", 5);
                         Game.Text("\n\nFun Fact: Ocean plastic pollution is on track to triple by 2060. ", 2, ConsoleColor.Blue);
                         Game.Text("\nFun Fact: The thing about plastic is that it never truly goes away, it just breaks down into smaller and smaller pieces called microplastics.", 4, ConsoleColor.Blue);
-                        Game.Text("\nThis means that every plastic we have ever used still exists in some form or another somewhere around the world.", 4, ConsoleColor.Blue);  
+                        Game.Text("\nThis means that every plastic we have ever used still exists in some form or another somewhere around the world.", 4, ConsoleColor.Blue);
+                        Game.Text("\n\nPress any key to continue\n", 0);
+                        Console.ReadKey();
                     }
                 }
                 Console.Clear();
@@ -324,6 +342,8 @@ namespace OperationHav
                 Game.Text("\nIn the next days everyone gets to work. Many volunteers help clean up the island of Såndiægø and it becomes a paradise on earth.", 4);
                 Game.Text("\nYou feel proud of yourself, your actions helped the island polluted by plastic gain its former glory. When you see the sea animals swimming happily in the distance, you get a new wave of hope for this world.", 6);
                 Visuals.NPC11();
+                Game.Text("\n\n\nPress any key to continue\n", 0);
+                Console.ReadKey();
 
                 Game.MinigameVictory();
                 MinigameWon = true;
@@ -336,6 +356,8 @@ namespace OperationHav
                 Game.Text("\nAfter some time, the situation on Såndiægø gets worse. Even the people who tried the most give up and the western island never recovers.", 4);
                 Game.Text("\nAll the animals have either died or emigrated. You feel guilty about the sequence of events.", 3);
                 Visuals.NPC111();
+                Game.Text("\n\n\nPress any key to continue\n", 0);
+                Console.ReadKey();
 
                 Game.GameOver();
                 Story_Minigame();
