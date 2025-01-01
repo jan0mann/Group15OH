@@ -19,10 +19,12 @@ namespace OperationHav
                 return null;
             }
 
+            //Not needing the following if:
+            /*
             if (words.Length > 1)
             {
                 return new Command(words[0]);
-            }
+            }*/
 
             return new Command(words[0]);
         }
